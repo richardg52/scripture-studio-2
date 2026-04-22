@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scripture Studio 2 — Reference Guide</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f7; color: #1d1d1f; margin: 0; padding: 40px 24px; }
+    .card { background: white; border-radius: 16px; padding: 32px; max-width: 700px; margin: 0 auto 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    h1 { font-size: 28px; color: #1a3a5c; margin-bottom: 4px; }
+    h2 { font-size: 16px; font-weight: 700; color: #1a3a5c; margin: 24px 0 12px; border-bottom: 2px solid #4a90d9; padding-bottom: 6px; }
+    .subtitle { color: #6e6e73; font-size: 14px; margin-bottom: 0; }
+    .link-box { background: #f0f5ff; border: 1px solid #1a3a5c; border-radius: 10px; padding: 14px 18px; margin: 10px 0; }
+    .link-box a { color: #1a3a5c; font-weight: 600; text-decoration: none; font-size: 15px; }
+    .link-box a:hover { text-decoration: underline; }
+    .link-box p { margin: 4px 0 0; font-size: 13px; color: #6e6e73; }
+    .code-block { background: #1d1d1f; color: #f5f5f7; border-radius: 10px; padding: 16px 20px; margin: 10px 0; font-family: 'Courier New', monospace; font-size: 14px; line-height: 1.8; }
+    .step { display: flex; gap: 14px; margin: 12px 0; align-items: flex-start; }
+    .step-num { background: #1a3a5c; color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .step-text { font-size: 14px; line-height: 1.6; }
+    .note { background: #fffbea; border-left: 4px solid #4a90d9; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 13px; margin: 16px 0; }
+    .file-row { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0f0f5; font-size: 14px; align-items: flex-start; }
+    .file-row:last-child { border-bottom: none; }
+    .file-name { font-family: 'Courier New', monospace; background: #f0f5ff; border-radius: 6px; padding: 2px 8px; font-size: 13px; color: #1a3a5c; white-space: nowrap; }
+    .file-desc { color: #6e6e73; font-size: 13px; margin-top: 3px; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Scripture Studio 2</h1>
+    <p class="subtitle">Reference Guide for Dr. Bishop Richard G. Clark — Last updated April 22, 2026</p>
+
+    <h2>🌐 Live Links</h2>
+    <div class="link-box">
+      <a href="https://scripture-studio-2.netlify.app" target="_blank">scripture-studio-2.netlify.app</a>
+      <p>Your live Scripture Studio 2 website</p>
+    </div>
+    <div class="link-box">
+      <a href="https://github.com/richardg52/scripture-studio-2" target="_blank">github.com/richardg52/scripture-studio-2</a>
+      <p>Your GitHub backup — stores all the website files</p>
+    </div>
+    <div class="link-box">
+      <a href="https://app.netlify.com" target="_blank">app.netlify.com</a>
+      <p>Netlify dashboard — where your site is hosted</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📁 Where Your Files Live</h2>
+    <p style="font-size:14px; margin-bottom:16px;">All Scripture Studio 2 files are in:</p>
+    <div class="code-block">/Users/richard/Desktop/RGC-MASTER/Websites and Designs/Scripture-Studio-2/</div>
+
+    <div style="margin-top: 20px;">
+      <div class="file-row">
+        <div>
+          <div class="file-name">index.html</div>
+          <div class="file-desc">Main landing page — what visitors see first</div>
+        </div>
+      </div>
+      <div class="file-row">
+        <div>
+          <div class="file-name">app/index.html</div>
+          <div class="file-desc">The main app page</div>
+        </div>
+      </div>
+      <div class="file-row">
+        <div>
+          <div class="file-name">app/download.html</div>
+          <div class="file-desc">Download page for the app</div>
+        </div>
+      </div>
+      <div class="file-row">
+        <div>
+          <div class="file-name">app/cover-v2.png</div>
+          <div class="file-desc">App cover image</div>
+        </div>
+      </div>
+      <div class="file-row">
+        <div>
+          <div class="file-name">author-photo.jpg</div>
+          <div class="file-desc">Author photo used on the site</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚡ How to Push an Update Live</h2>
+    <p style="font-size:14px; margin-bottom:16px;">After Claude makes any change to the website, open Terminal and run these commands:</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">
+        <strong>Navigate to your website folder:</strong>
+        <div class="code-block">cd "/Users/richard/Desktop/RGC-MASTER/Websites and Designs/Scripture-Studio-2"</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">
+        <strong>Push to GitHub (Netlify auto-deploys in ~30 seconds):</strong>
+        <div class="code-block">git add . && git commit -m "update" && git push</div>
+      </div>
+    </div>
+
+    <div class="note">
+      💡 <strong>Tip:</strong> If Terminal asks for a password, paste your Personal Access Token. Never use your regular GitHub password. Regenerate at GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic).
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🔑 GitHub Personal Access Token</h2>
+    <p style="font-size:14px;">If you ever need a new token:</p>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">Go to <strong>github.com</strong> → click your profile picture → <strong>Settings</strong></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">Scroll to the bottom of the left sidebar → <strong>Developer settings</strong></div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text"><strong>Personal access tokens → Tokens (classic) → Generate new token (classic)</strong></div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-text">In the <strong>Note</strong> field type <em>Scripture Studio Deploy</em>. Check the <strong>repo</strong> box, set expiration, click Generate. Copy and save it somewhere safe.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-text">Run this in Terminal to update the saved token (replace YOUR_TOKEN):
+        <div class="code-block">cd "/Users/richard/Desktop/RGC-MASTER/Websites and Designs/Scripture-Studio-2"
+git remote set-url origin https://richardg52:YOUR_TOKEN@github.com/richardg52/scripture-studio-2.git</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🤖 How to Get Claude Up to Speed Instantly</h2>
+    <p style="font-size:14px;">Start any new Cowork session by saying:</p>
+    <div class="code-block" style="font-family: inherit; font-size:14px; line-height:1.7;">
+      "Please read my SESSION-MEMORY.md file located at /Users/richard/Desktop/RGC-MASTER/Websites and Designs/clark-counsel-group/SESSION-MEMORY.md before we start."
+    </div>
+    <p style="font-size:13px; color:#6e6e73; margin-top:12px;">That file has everything — all your projects, GitHub repos, Netlify sites, branding, and setup details.</p>
+  </div>
+
+  <div style="text-align:center; color:#6e6e73; font-size:12px; max-width:700px; margin:0 auto 40px; padding-top:8px;">
+    <strong style="color:#1a3a5c;">Scripture Studio 2</strong> — GitHub + Netlify Auto-Deploy Active<br/>
+    <span style="font-size:11px;">Last configured April 22, 2026 by Dr. Bishop Richard G. Clark</span>
+  </div>
+
+</body>
+</html>
