@@ -348,83 +348,84 @@
         
         /* Why Section */
         .why-section {
-            padding: 6rem 2rem;
+            padding: 3.5rem 2rem;
             background: white;
         }
-        
+
         .section-container {
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 2.25rem;
         }
-        
+
         .section-header h2 {
-            font-size: 2.5rem;
+            font-size: 1.85rem;
             font-weight: 800;
             color: #1a1a2e;
-            margin-bottom: 1rem;
+            margin-bottom: 0.6rem;
         }
-        
+
         .section-header p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #6b7280;
-            max-width: 600px;
+            max-width: 560px;
             margin: 0 auto;
         }
-        
+
         .why-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: 1.25rem;
         }
-        
+
         .why-card {
             background: #f8fafc;
-            padding: 2rem;
-            border-radius: 16px;
+            padding: 1.25rem;
+            border-radius: 14px;
             transition: all 0.3s;
             cursor: pointer;
             border: 1px solid transparent;
         }
-        
+
         .why-card:hover {
             background: white;
             border-color: #1e40af;
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(30, 64, 175, 0.1);
         }
-        
+
         .why-icon {
-            width: 60px;
-            height: 60px;
+            width: 44px;
+            height: 44px;
             background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         
         .why-icon i {
-            width: 30px;
-            height: 30px;
+            width: 22px;
+            height: 22px;
             color: white;
         }
-        
+
         .why-card h3 {
-            font-size: 1.25rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: #1a1a2e;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
-        
+
         .why-card p {
             color: #6b7280;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
+            line-height: 1.6;
         }
         
         /* Features Section */
@@ -438,78 +439,94 @@
         .features-hero {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 3.5rem;
+            gap: 1.25rem;
+            margin-bottom: 3rem;
         }
 
         .feature-hero-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem 1.5rem;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 4px 20px rgba(30,64,175,0.06);
-            transition: all 0.3s;
+            border-radius: 18px;
+            padding: 1.75rem 1.5rem;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
         }
 
-        .feature-hero-card::before {
+        .feature-hero-card:nth-child(1) { background: linear-gradient(145deg, #1e3a8a 0%, #2563eb 100%); }
+        .feature-hero-card:nth-child(2) { background: linear-gradient(145deg, #5b21b6 0%, #7c3aed 100%); }
+        .feature-hero-card:nth-child(3) { background: linear-gradient(145deg, #0c4a6e 0%, #0284c7 100%); }
+        .feature-hero-card:nth-child(4) { background: linear-gradient(145deg, #7c2d12 0%, #c2410c 100%); }
+
+        .feature-hero-card::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #1e40af, #3b82f6);
-            border-radius: 16px 16px 0 0;
+            top: -30px; right: -30px;
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            pointer-events: none;
         }
 
         .feature-hero-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 40px rgba(30,64,175,0.14);
-            border-color: #bfdbfe;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 48px rgba(0,0,0,0.22);
         }
 
         .feature-hero-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, #eff6ff, #dbeafe);
-            border-radius: 14px;
+            width: 58px;
+            height: 58px;
+            background: rgba(255,255,255,0.18);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.1rem;
+            flex-shrink: 0;
         }
 
         .feature-hero-icon i {
             width: 28px;
             height: 28px;
-            color: #1e40af;
+            color: white;
         }
 
         .feature-hero-card h3 {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 0.6rem;
+            color: white;
+            margin-bottom: 0.5rem;
         }
 
         .feature-hero-card p {
-            font-size: 0.88rem;
-            color: #6b7280;
+            font-size: 0.83rem;
+            color: rgba(255,255,255,0);
             line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, color 0.3s ease;
+            flex: 1;
+        }
+
+        .feature-hero-card:hover p {
+            max-height: 120px;
+            color: rgba(255,255,255,0.82);
         }
 
         .feature-hero-badge {
             display: inline-block;
-            margin-top: 1rem;
-            font-size: 0.72rem;
+            margin-top: 0.85rem;
+            font-size: 0.68rem;
             font-weight: 700;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
-            color: #1e40af;
-            background: #eff6ff;
+            color: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.18);
             padding: 3px 10px;
             border-radius: 20px;
+            align-self: flex-start;
         }
 
         /* Category groups */
@@ -576,57 +593,72 @@
 
         .feature-category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 0;
         }
 
         .feature-item {
             display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            padding: 1rem 1.25rem;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.25rem 1rem;
             border-right: 1px solid #f1f5f9;
             border-bottom: 1px solid #f1f5f9;
-            transition: background 0.2s;
+            transition: background 0.22s;
             cursor: pointer;
+            position: relative;
         }
 
-        .feature-item:hover { background: #f8fafc; }
+        .feature-item:hover { background: #f1f5f9; }
 
         .feature-item-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            margin-top: 2px;
+            margin-bottom: 0.65rem;
+            transition: transform 0.22s;
         }
 
-        .feature-item-icon.blue   { background:#eff6ff; }
-        .feature-item-icon.purple { background:#f5f3ff; }
-        .feature-item-icon.green  { background:#f0fdf4; }
-        .feature-item-icon.amber  { background:#fffbeb; }
+        .feature-item:hover .feature-item-icon { transform: scale(1.08); }
 
-        .feature-item-icon i { width:15px; height:15px; }
+        .feature-item-icon.blue   { background:#dbeafe; }
+        .feature-item-icon.purple { background:#ede9fe; }
+        .feature-item-icon.green  { background:#dcfce7; }
+        .feature-item-icon.amber  { background:#fef3c7; }
+
+        .feature-item-icon i { width:22px; height:22px; }
         .feature-item-icon.blue   i { color:#1e40af; }
         .feature-item-icon.purple i { color:#7c3aed; }
         .feature-item-icon.green  i { color:#16a34a; }
         .feature-item-icon.amber  i { color:#d97706; }
 
         .feature-item-text h5 {
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 0.82rem;
+            font-weight: 700;
             color: #1a1a2e;
-            margin: 0 0 0.2rem;
+            margin: 0 0 0;
+            line-height: 1.3;
         }
 
         .feature-item-text p {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: #9ca3af;
-            margin: 0;
+            margin: 0.3rem 0 0;
             line-height: 1.4;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.25s ease, opacity 0.2s;
+            opacity: 0;
+        }
+
+        .feature-item:hover .feature-item-text p {
+            max-height: 60px;
+            opacity: 1;
         }
         
 
@@ -1048,7 +1080,8 @@
         .testimonial-grid-wrap {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 18px;
+            align-items: stretch;
         }
 
         /* Two-column feature blocks responsive */
@@ -1098,12 +1131,12 @@
                 grid-template-columns: 1fr !important;
             }
 
-            /* Features → 1 col on phone */
+            /* Features → 2 col on phone */
             .features-hero {
-                grid-template-columns: 1fr !important;
+                grid-template-columns: repeat(2,1fr) !important;
             }
             .feature-category-grid {
-                grid-template-columns: 1fr !important;
+                grid-template-columns: repeat(2,1fr) !important;
             }
 
             /* CTA banner text */
@@ -1446,10 +1479,9 @@
           <div style="flex-shrink:0;width:220px;margin:0 auto">
             <img src="author-photo.jpg" alt="Dr. Richard G. Clark" style="width:220px;height:260px;object-fit:cover;object-position:center top;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,0.6);display:block">
             <div style="margin-top:20px;display:flex;flex-direction:column;gap:8px">
-              <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;font-size:0.72rem;color:rgba(255,255,255,0.7);font-weight:600;text-align:center">🎓 Th.D. · Ph.D. · J.M. · MBA · B.A.</div>
+              <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;font-size:0.72rem;color:rgba(255,255,255,0.7);font-weight:600;text-align:center">🎓 Th.D. · J.M. · MBA · B.A.</div>
               <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;font-size:0.72rem;color:rgba(255,255,255,0.7);font-weight:600;text-align:center">⛪ Ebenezer Baptist · 31+ Years</div>
               <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;font-size:0.72rem;color:rgba(255,255,255,0.7);font-weight:600;text-align:center">📍 Memphis, Tennessee</div>
-              <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;font-size:0.72rem;color:rgba(255,255,255,0.7);font-weight:600;text-align:center">🏆 Best Young Pastors of the Millennium</div>
               <div style="background:rgba(188,0,45,0.15);border:1px solid rgba(188,0,45,0.35);border-radius:10px;padding:10px 14px;font-size:0.72rem;color:#ff6b7a;font-weight:700;text-align:center">ΚΑΨ Kappa Alpha Psi · W. Memphis</div>
             </div>
           </div>
@@ -1458,11 +1490,11 @@
           <div style="flex:1;min-width:280px">
             <h2 style="font-family:Georgia,serif;font-size:2rem;font-weight:800;color:#fff;margin:0 0 28px;line-height:1.3">Dr. Richard G. Clark</h2>
 
-            <p style="font-size:1.05rem;color:rgba(255,255,255,0.75);line-height:1.95;margin:0 0 22px">Within the span of a single year, Dr. Richard G. Clark lost his mother, his sister, his nephew, and his brother. His mother and his nephew — only 30 years old — passed just three months apart. For a man who had spent his entire life serving others, building ministry, and walking boldly in his calling, the grief hit like a wall. He stopped. He withdrew. He let the darkness in.</p>
+            <p style="font-size:0.95rem;color:rgba(255,255,255,0.75);line-height:1.85;margin:0 0 18px">Within the span of a single year, Dr. Richard G. Clark lost his mother, his sister, his nephew, and his brother. His mother and his nephew — only 30 years old — passed just three months apart. For a man who had spent his entire life serving others, building ministry, and walking boldly in his calling, the grief hit like a wall. He stopped. He withdrew. He let the darkness in.</p>
 
-            <p style="font-size:1.05rem;color:rgba(255,255,255,0.75);line-height:1.95;margin:0 0 22px">What followed wasn't a quick recovery or a tidy testimony. It was a slow, painful, honest reckoning with God — one that eventually led to something unexpected. God began pushing him. Not gently. Into things he hadn't chosen, toward a purpose he had nearly abandoned. And in that push, Dr. Clark found his way back — to his faith, to his mind, to his heart, and to his calling.</p>
+            <p style="font-size:0.95rem;color:rgba(255,255,255,0.75);line-height:1.85;margin:0 0 18px">What followed wasn't a quick recovery or a tidy testimony. It was a slow, painful, honest reckoning with God — one that eventually led to something unexpected. God began pushing him. Not gently. Into things he hadn't chosen, toward a purpose he had nearly abandoned. And in that push, Dr. Clark found his way back — to his faith, to his mind, to his heart, and to his calling.</p>
 
-            <p style="font-size:1.05rem;color:rgba(255,255,255,0.75);line-height:1.95;margin:0 0 22px"><em>The Push You Needed</em> is the book that came out of that season. It was not written from a stage. It was written from a valley.</p>
+            <p style="font-size:0.95rem;color:rgba(255,255,255,0.75);line-height:1.85;margin:0 0 18px"><em>The Push You Needed</em> is the book that came out of that season. It was not written from a stage. It was written from a valley.</p>
 
             <p style="font-size:1.05rem;color:rgba(255,255,255,0.75);line-height:1.95;margin:0 0 28px">And if I'm being honest — I didn't write it just for me. I wrote it because I know there is somebody reading this right now who is sitting in their own version of that year. Maybe it's not loss. Maybe it's a broken marriage, a failed business, a prodigal child, or a ministry that fell apart. Whatever it is, you have felt like nobody could possibly understand how deep that valley goes. I want you to know — I get it. I've been there. And this book is my hand reaching back into that darkness to push you forward — just like God pushed me.</p>
 
@@ -1530,7 +1562,7 @@
     <section class="why-section" id="why">
         <div class="section-container">
             <div class="section-header">
-                <div class="rc-logo-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" style="width:84px;height:84px;filter:drop-shadow(0 6px 18px rgba(30,64,175,0.22))"><circle cx="40" cy="40" r="38" fill="#1e3a8a"/><circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/><line x1="40" y1="9" x2="40" y2="3" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><line x1="54" y1="13" x2="59" y2="8" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><line x1="26" y1="13" x2="21" y2="8" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><line x1="63" y1="23" x2="68" y2="18" stroke="#fbbf24" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/><line x1="17" y1="23" x2="12" y2="18" stroke="#fbbf24" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/><rect x="37" y="12" width="6" height="32" rx="2.5" fill="#f59e0b"/><rect x="23" y="22" width="34" height="7" rx="2.5" fill="#f59e0b"/><circle cx="40" cy="15" r="5" fill="#fde68a" opacity="0.5"/><path d="M 40 62 C 33 55, 15 47, 10 34 L 10 26 C 15 39, 32 47, 40 54 Z" fill="white"/><path d="M 40 62 C 47 55, 65 47, 70 34 L 70 26 C 65 39, 48 47, 40 54 Z" fill="rgba(255,255,255,0.86)"/><line x1="18" y1="38" x2="34" y2="44" stroke="#bfdbfe" stroke-width="1.4" stroke-linecap="round"/><line x1="16" y1="46" x2="32" y2="52" stroke="#bfdbfe" stroke-width="1.4" stroke-linecap="round"/><line x1="62" y1="38" x2="46" y2="44" stroke="#bfdbfe" stroke-width="1.4" stroke-linecap="round"/><line x1="64" y1="46" x2="48" y2="52" stroke="#bfdbfe" stroke-width="1.4" stroke-linecap="round"/><line x1="40" y1="44" x2="40" y2="62" stroke="rgba(148,163,184,0.35)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                <div class="rc-logo-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" style="width:52px;height:52px;filter:drop-shadow(0 4px 10px rgba(30,64,175,0.18))"><circle cx="40" cy="40" r="38" fill="#1e3a8a"/><circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/><line x1="40" y1="9" x2="40" y2="3" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><line x1="54" y1="13" x2="59" y2="8" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><line x1="26" y1="13" x2="21" y2="8" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><line x1="63" y1="23" x2="68" y2="18" stroke="#fbbf24" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/><line x1="17" y1="23" x2="12" y2="18" stroke="#fbbf24" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/><rect x="37" y="12" width="6" height="32" rx="2.5" fill="#f59e0b"/><rect x="23" y="22" width="34" height="7" rx="2.5" fill="#f59e0b"/><circle cx="40" cy="15" r="5" fill="#fde68a" opacity="0.5"/><path d="M 40 62 C 33 55, 15 47, 10 34 L 10 26 C 15 39, 32 47, 40 54 Z" fill="white"/><path d="M 40 62 C 47 55, 65 47, 70 34 L 70 26 C 65 39, 48 47, 40 54 Z" fill="rgba(255,255,255,0.86)"/><line x1="18" y1="38" x2="34" y2="44" stroke="#bfdbfe" stroke-width="1.4" stroke-linecap="round"/><line x1="16" y1="46" x2="32" y2="52" stroke="#bfdbfe" stroke-width="1.4" stroke-linecap="round"/><line x1="62" y1="38" x2="46" y2="44" stroke="#bfdbfe" stroke-width="1.4" stroke-linecap="round"/><line x1="64" y1="46" x2="48" y2="52" stroke="#bfdbfe" stroke-width="1.4" stroke-linecap="round"/><line x1="40" y1="44" x2="40" y2="62" stroke="rgba(148,163,184,0.35)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
                 <h2>Why Scripture Studio?</h2>
                 <p>Built specifically for ministry leaders who demand excellence in biblical study and sermon preparation.</p>
             </div>
@@ -1760,72 +1792,72 @@
     <!-- ══════════════════════════════════════════════════════════════════ -->
     <!-- TESTIMONIALS -->
     <!-- ══════════════════════════════════════════════════════════════════ -->
-    <section style="padding:80px 0;background:white">
+    <section style="padding:52px 0;background:white">
       <div style="max-width:1100px;margin:0 auto;padding:0 24px">
-        <div style="text-align:center;margin-bottom:56px">
-          <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2563eb;margin-bottom:14px">Testimonials</div>
-          <h2 style="font-family:Georgia,serif;font-size:3rem;font-weight:800;color:#111827;margin:0 0 16px;line-height:1.15">Pastors who preach<br>differently now.</h2>
-          <p style="color:#6b7280;font-size:1.05rem;max-width:560px;margin:0 auto;line-height:1.7">From small congregations to large churches — Scripture Studio is transforming how ministers prepare and teach.</p>
+        <div style="text-align:center;margin-bottom:36px">
+          <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2563eb;margin-bottom:10px">Testimonials</div>
+          <h2 style="font-family:Georgia,serif;font-size:2.1rem;font-weight:800;color:#111827;margin:0 0 12px;line-height:1.2">Pastors who preach<br>differently now.</h2>
+          <p style="color:#6b7280;font-size:0.95rem;max-width:500px;margin:0 auto;line-height:1.65">From small congregations to large churches — Scripture Studio is transforming how ministers prepare and teach.</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch">
           <!-- Card 1 -->
-          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
-            <div style="font-size:2rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:16px">&#10077;&#10078;</div>
-            <div style="margin-bottom:14px">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
-            <p style="font-style:italic;color:#374151;font-size:0.94rem;line-height:1.75;margin:0 0 20px">I've been preaching for 22 years and Scripture Studio is the first tool that actually fits how I think and prepare. My entire sermon library is finally organized in one place. I can't imagine ministry without it now.</p>
-            <div style="display:flex;align-items:center;gap:12px">
-              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#2563eb,#1e3a8a);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.85rem;flex-shrink:0">RM</div>
-              <div><div style="font-weight:700;color:#111827;font-size:0.9rem">Pastor Robert M.</div><div style="color:#9ca3af;font-size:0.8rem">Senior Pastor &middot; Atlanta, GA</div></div>
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,0.04);display:flex;flex-direction:column">
+            <div style="font-size:1.6rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:12px">&#10077;&#10078;</div>
+            <div style="margin-bottom:12px;font-size:0.85rem">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.88rem;line-height:1.7;margin:0 0 16px;flex:1">I've been preaching for 22 years and Scripture Studio is the first tool that actually fits how I think and prepare. My entire sermon library is finally organized in one place. I can't imagine ministry without it now.</p>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:auto">
+              <div style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#2563eb,#1e3a8a);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.78rem;flex-shrink:0">RM</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.85rem">Pastor Robert M.</div><div style="color:#9ca3af;font-size:0.75rem">Senior Pastor &middot; Atlanta, GA</div></div>
             </div>
           </div>
           <!-- Card 2 -->
-          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
-            <div style="font-size:2rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:16px">&#10077;&#10078;</div>
-            <div style="margin-bottom:14px">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
-            <p style="font-style:italic;color:#374151;font-size:0.94rem;line-height:1.75;margin:0 0 20px">The 5-translation Bible reader alone is worth every penny of the subscription. Being able to compare The Message alongside KJV while I'm preparing has completely changed how I exegete Scripture. My congregants feel the depth.</p>
-            <div style="display:flex;align-items:center;gap:12px">
-              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#5b21b6);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.85rem;flex-shrink:0">JL</div>
-              <div><div style="font-weight:700;color:#111827;font-size:0.9rem">Pastor Jennifer L.</div><div style="color:#9ca3af;font-size:0.8rem">Lead Pastor &middot; Portland, OR</div></div>
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,0.04);display:flex;flex-direction:column">
+            <div style="font-size:1.6rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:12px">&#10077;&#10078;</div>
+            <div style="margin-bottom:12px;font-size:0.85rem">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.88rem;line-height:1.7;margin:0 0 16px;flex:1">The 5-translation Bible reader alone is worth every penny of the subscription. Being able to compare The Message alongside KJV while I'm preparing has completely changed how I exegete Scripture. My congregants feel the depth.</p>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:auto">
+              <div style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#7c3aed,#5b21b6);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.78rem;flex-shrink:0">JL</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.85rem">Pastor Jennifer L.</div><div style="color:#9ca3af;font-size:0.75rem">Lead Pastor &middot; Portland, OR</div></div>
             </div>
           </div>
           <!-- Card 3 -->
-          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
-            <div style="font-size:2rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:16px">&#10077;&#10078;</div>
-            <div style="margin-bottom:14px">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
-            <p style="font-style:italic;color:#374151;font-size:0.94rem;line-height:1.75;margin:0 0 20px">The Sermon Development Studio helps me connect insights across years of messages I'd forgotten about. It's like having a research assistant who knows every sermon I've ever preached. Absolutely brilliant.</p>
-            <div style="display:flex;align-items:center;gap:12px">
-              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#059669,#065f46);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.85rem;flex-shrink:0">DT</div>
-              <div><div style="font-weight:700;color:#111827;font-size:0.9rem">Pastor David T.</div><div style="color:#9ca3af;font-size:0.8rem">Church Planter &middot; Chicago, IL</div></div>
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,0.04);display:flex;flex-direction:column">
+            <div style="font-size:1.6rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:12px">&#10077;&#10078;</div>
+            <div style="margin-bottom:12px;font-size:0.85rem">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.88rem;line-height:1.7;margin:0 0 16px;flex:1">The Sermon Development Studio helps me connect insights across years of messages I'd forgotten about. It's like having a research assistant who knows every sermon I've ever preached. Absolutely brilliant.</p>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:auto">
+              <div style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#059669,#065f46);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.78rem;flex-shrink:0">DT</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.85rem">Pastor David T.</div><div style="color:#9ca3af;font-size:0.75rem">Church Planter &middot; Chicago, IL</div></div>
             </div>
           </div>
           <!-- Card 4 -->
-          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
-            <div style="font-size:2rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:16px">&#10077;&#10078;</div>
-            <div style="margin-bottom:14px">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
-            <p style="font-style:italic;color:#374151;font-size:0.94rem;line-height:1.75;margin:0 0 20px">As a Bible study teacher who isn't a full-time pastor, I was worried this would be too preacher-focused. Scripture Studio is perfect for teachers too. The topical scripture finder and illustration library are things I use every single week.</p>
-            <div style="display:flex;align-items:center;gap:12px">
-              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#f59e0b,#b45309);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.85rem;flex-shrink:0">SM</div>
-              <div><div style="font-weight:700;color:#111827;font-size:0.9rem">Sister Sandra M.</div><div style="color:#9ca3af;font-size:0.8rem">Women's Bible Study Leader &middot; Nashville, TN</div></div>
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,0.04);display:flex;flex-direction:column">
+            <div style="font-size:1.6rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:12px">&#10077;&#10078;</div>
+            <div style="margin-bottom:12px;font-size:0.85rem">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.88rem;line-height:1.7;margin:0 0 16px;flex:1">As a Bible study teacher who isn't a full-time pastor, I was worried this would be too preacher-focused. Scripture Studio is perfect for teachers too. The topical scripture finder and illustration library are things I use every single week.</p>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:auto">
+              <div style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#f59e0b,#b45309);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.78rem;flex-shrink:0">SM</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.85rem">Sister Sandra M.</div><div style="color:#9ca3af;font-size:0.75rem">Women's Bible Study &middot; Nashville, TN</div></div>
             </div>
           </div>
           <!-- Card 5 -->
-          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
-            <div style="font-size:2rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:16px">&#10077;&#10078;</div>
-            <div style="margin-bottom:14px">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
-            <p style="font-style:italic;color:#374151;font-size:0.94rem;line-height:1.75;margin:0 0 20px">The commentary feature with Pastor Clark's pastoral notes is unlike anything else available. Having a trusted voice frame the passage before the historical commentators speak gives me exactly the angle I need for my congregation. Outstanding.</p>
-            <div style="display:flex;align-items:center;gap:12px">
-              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#374151,#111827);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.85rem;flex-shrink:0">KW</div>
-              <div><div style="font-weight:700;color:#111827;font-size:0.9rem">Bishop Kenneth W.</div><div style="color:#9ca3af;font-size:0.8rem">Senior Bishop &middot; Memphis, TN</div></div>
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,0.04);display:flex;flex-direction:column">
+            <div style="font-size:1.6rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:12px">&#10077;&#10078;</div>
+            <div style="margin-bottom:12px;font-size:0.85rem">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.88rem;line-height:1.7;margin:0 0 16px;flex:1">The commentary feature with Pastor Clark's pastoral notes is unlike anything else available. Having a trusted voice frame the passage before the historical commentators speak gives me exactly the angle I need for my congregation. Outstanding.</p>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:auto">
+              <div style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#374151,#111827);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.78rem;flex-shrink:0">KW</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.85rem">Bishop Kenneth W.</div><div style="color:#9ca3af;font-size:0.75rem">Senior Bishop &middot; Memphis, TN</div></div>
             </div>
           </div>
           <!-- Card 6 -->
-          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
-            <div style="font-size:2rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:16px">&#10077;&#10078;</div>
-            <div style="margin-bottom:14px">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
-            <p style="font-style:italic;color:#374151;font-size:0.94rem;line-height:1.75;margin:0 0 20px">I used to use six different apps for sermon prep. Now I use one. The prayer journal alone has transformed my morning devotional time. When I scroll back through answered prayers it builds my faith in ways no sermon ever could. Thank you for building this.</p>
-            <div style="display:flex;align-items:center;gap:12px">
-              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#ef4444,#b91c1c);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.85rem;flex-shrink:0">AB</div>
-              <div><div style="font-weight:700;color:#111827;font-size:0.9rem">Rev. Anthony B.</div><div style="color:#9ca3af;font-size:0.8rem">Associate Pastor &middot; Houston, TX</div></div>
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,0.04);display:flex;flex-direction:column">
+            <div style="font-size:1.6rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:12px">&#10077;&#10078;</div>
+            <div style="margin-bottom:12px;font-size:0.85rem">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.88rem;line-height:1.7;margin:0 0 16px;flex:1">I used to use six different apps for sermon prep. Now I use one. The prayer journal alone has transformed my morning devotional time. When I scroll back through answered prayers it builds my faith in ways no sermon ever could. Thank you for building this.</p>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:auto">
+              <div style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#ef4444,#b91c1c);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.78rem;flex-shrink:0">AB</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.85rem">Rev. Anthony B.</div><div style="color:#9ca3af;font-size:0.75rem">Associate Pastor &middot; Houston, TX</div></div>
             </div>
           </div>
         </div>
@@ -1856,11 +1888,23 @@
               <div style="background:#7c3aed;color:white;font-weight:700;font-size:0.75rem;padding:4px 10px;border-radius:20px;flex-shrink:0">MSG</div>
               <div style="color:#1f2937;font-size:0.9rem">God, my shepherd! <strong>I don't need a thing.</strong></div>
             </div>
-            <div style="background:white;border:2px solid #2563eb;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px">
+            <div style="background:white;border:1px solid #e5e7eb;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px">
               <div style="background:#059669;color:white;font-weight:700;font-size:0.75rem;padding:4px 10px;border-radius:20px;flex-shrink:0">NLT</div>
               <div style="color:#1f2937;font-size:0.9rem">The Lord is my shepherd; <strong>I have all that I need.</strong></div>
             </div>
-            <div style="text-align:center;font-size:0.75rem;color:#9ca3af;padding:8px 0">+ 9 more translations including ESV, NASB, AMP &amp; The Passion</div>
+            <div style="background:white;border:1px solid #e5e7eb;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px">
+              <div style="background:#0369a1;color:white;font-weight:700;font-size:0.75rem;padding:4px 10px;border-radius:20px;flex-shrink:0">ESV</div>
+              <div style="color:#1f2937;font-size:0.9rem">The Lord is my shepherd; <strong>I shall not want.</strong></div>
+            </div>
+            <div style="background:white;border:1px solid #e5e7eb;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px">
+              <div style="background:#6d28d9;color:white;font-weight:700;font-size:0.75rem;padding:4px 10px;border-radius:20px;flex-shrink:0">AMP</div>
+              <div style="color:#1f2937;font-size:0.9rem">The Lord is my Shepherd <strong>[to feed, to guide and to shield me]</strong>, I shall not want.</div>
+            </div>
+            <div style="background:white;border:2px solid #2563eb;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px">
+              <div style="background:#b45309;color:white;font-weight:700;font-size:0.75rem;padding:4px 10px;border-radius:20px;flex-shrink:0">NASB</div>
+              <div style="color:#1f2937;font-size:0.9rem">The Lord is my shepherd, <strong>I will not be in need.</strong></div>
+            </div>
+            <div style="text-align:center;font-size:0.75rem;color:#9ca3af;padding:8px 0">+ 6 more translations including NKJV, CSB, The Message &amp; The Passion</div>
           </div>
         </div>
 
