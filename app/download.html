@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Book Download — Scripture Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Outseta Auth -->
+    <script>
+        var o_options = {
+            domain: 'scripturestudio.outseta.com',
+            load: 'auth'
+        };
+    </script>
+    <script src="https://cdn.outseta.com/outseta.min.js" data-options="o_options"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0810;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .logo-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(10,8,16,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212,168,32,0.15);
+            z-index: 100;
+        }
+
+        .logo-bar span {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #d4a820;
+            letter-spacing: 0.02em;
+        }
+
+        .logo-bar small {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.4);
+            font-weight: 400;
+            margin-left: 4px;
+        }
+
+        /* ── Loading state ── */
+        #loading-state {
+            text-align: center;
+        }
+
+        .spinner {
+            width: 40px; height: 40px;
+            border: 3px solid rgba(212,168,32,0.2);
+            border-top-color: #d4a820;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── Login wall ── */
+        #login-state {
+            display: none;
+            text-align: center;
+            max-width: 640px;
+            width: 100%;
+        }
+
+        #login-state .cover-thumb {
+            width: 360px;
+            max-width: 90vw;
+            border-radius: 16px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+            margin: 0 auto 36px;
+            display: block;
+        }
+
+        #login-state h2 {
+            font-size: 4.2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.1;
+            font-family: Georgia, serif;
+        }
+
+        #login-state p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-login {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4a820, #f0cc50);
+            color: #0a0810;
+            font-weight: 800;
+            font-size: 1.15rem;
+            padding: 18px 48px;
+            border-radius: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.2s, transform 0.15s;
+            box-shadow: 0 8px 32px rgba(212,168,32,0.4);
+        }
+
+        .btn-login:hover { opacity: 0.88; transform: translateY(-2px); }
+
+        /* ── No purchase state ── */
+        #no-purchase-state {
+            display: none;
+            text-align: center;
+            max-width: 480px;
+        }
+
+        #no-purchase-state h2 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        #no-purchase-state p {
+            font-size: 0.86rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .buy-options {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-buy-standard {
+            background: linear-gradient(135deg, #d4a820, #f0cc50);
+            color: #0a0810;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn-buy-signed {
+            background: transparent;
+            border: 1px solid rgba(212,168,32,0.55);
+            color: #d4a820;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .promo-note {
+            margin-top: 14px;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        .promo-note span {
+            color: #d4a820;
+            font-weight: 700;
+        }
+
+        /* ── Download card ── */
+        #download-state {
+            display: none;
+            width: 100%;
+            max-width: 520px;
+        }
+
+        .welcome-line {
+            text-align: center;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 28px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .download-card {
+            background: linear-gradient(135deg, #14102a 0%, #1a1535 100%);
+            border: 1px solid rgba(212,168,32,0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #1e1840 0%, #110e25 100%);
+            padding: 28px 32px 24px;
+            border-bottom: 1px solid rgba(212,168,32,0.12);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .card-cover {
+            width: 72px;
+            border-radius: 6px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            flex-shrink: 0;
+        }
+
+        .card-meta h1 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .card-meta .subtitle {
+            font-size: 0.74rem;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 8px;
+        }
+
+        .edition-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        .edition-badge.signed {
+            background: rgba(212,168,32,0.15);
+            color: #d4a820;
+            border: 1px solid rgba(212,168,32,0.3);
+        }
+
+        .edition-badge.standard {
+            background: rgba(255,255,255,0.07);
+            color: rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .card-body {
+            padding: 28px 32px;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: linear-gradient(135deg, #d4a820, #f0cc50);
+            color: #0a0810;
+            text-decoration: none;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            transition: opacity 0.2s, transform 0.15s;
+            box-shadow: 0 8px 32px rgba(212,168,32,0.35);
+            margin-bottom: 12px;
+        }
+
+        .download-btn:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        .download-btn .icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .download-btn .label { flex: 1; }
+        .download-btn .label small {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 500;
+            opacity: 0.65;
+            margin-top: 1px;
+        }
+
+        .download-btn .arrow { font-size: 1rem; opacity: 0.7; }
+
+        .note {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.32);
+            line-height: 1.6;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            margin: 20px 0;
+        }
+
+        .help-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.74rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        .help-row a {
+            color: #d4a820;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .sign-out-btn {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.72rem;
+            cursor: pointer;
+            font-family: inherit;
+            padding: 0;
+        }
+
+        .sign-out-btn:hover { color: rgba(255,255,255,0.6); }
+    </style>
+</head>
+<body>
+
+    <!-- Top bar -->
+    <div class="logo-bar">
+        <span>✦ Scripture Studio</span>
+        <small>Book Club</small>
+        <a href="javascript:void(0)" onclick="window.location.href=window.location.href.replace('/app/download.html','').replace('/app/download','') + '/index.html'" style="margin-left:auto;font-size:0.78rem;color:rgba(255,255,255,0.45);text-decoration:none;display:flex;align-items:center;gap:6px;font-weight:500;transition:color 0.2s" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">← Return to Scripture Studio</a>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading-state">
+        <div class="spinner"></div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.4)">Verifying your access…</p>
+    </div>
+
+    <!-- Not logged in -->
+    <div id="login-state">
+        <img src="cover-v2.png" alt="The Push You Needed" class="cover-thumb">
+        <h2>Sign in to get your book</h2>
+        <p>Your download is waiting. Sign in with the email you used at checkout and we'll pull it right up.</p>
+        <button class="btn-login" onclick="Outseta.auth.open({widgetMode:'login'})">Sign In to Download</button>
+    </div>
+
+    <!-- Logged in but no purchase -->
+    <div id="no-purchase-state">
+        <h2>No purchase found</h2>
+        <p>We couldn't find a copy of <em>The Push You Needed</em> linked to your account. Grab your copy below — it'll be here waiting for you as soon as you check out.</p>
+        <div class="buy-options">
+            <a href="https://scripturestudio.outseta.com/checkout?planUid=aWxoRq9V" target="_blank" class="btn-buy-standard">📖 Standard — $14.99</a>
+            <a href="https://scripturestudio.outseta.com/checkout?planUid=rm081GmX" target="_blank" class="btn-buy-signed">✍ Signed — $19.99</a>
+        </div>
+        <p class="promo-note">Already have a code? Apply it at checkout.</p>
+    </div>
+
+    <!-- Download ready -->
+    <div id="download-state">
+        <div class="welcome-line" id="welcome-line">Welcome back</div>
+
+        <div class="download-card">
+            <div class="card-header">
+                <img src="cover-v2.png" alt="Cover" class="card-cover">
+                <div class="card-meta">
+                    <h1>The Push You Needed</h1>
+                    <div class="subtitle">by Richard G. Clark &nbsp;·&nbsp; 2026</div>
+                    <span class="edition-badge" id="edition-badge">Standard Edition</span>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <a href="#" class="download-btn" id="download-btn" download>
+                    <span class="icon">⬇</span>
+                    <span class="label">
+                        Download Your Book
+                        <small id="download-label">PDF · Standard Edition</small>
+                    </span>
+                    <span class="arrow">→</span>
+                </a>
+
+                <p class="note" id="signed-note" style="display:none">
+                    ✍ Your Signed Edition includes a personal thank you note and Richard's handwritten signature — a one-of-a-kind copy.
+                </p>
+
+                <hr class="divider">
+
+                <div class="help-row">
+                    <span>Questions? <a href="mailto:drbishopclark20@gmail.com">Contact us</a></span>
+                    <button class="sign-out-btn" onclick="signOut()">Sign out</button>
+                </div>
+            </div>
+        </div>
+
+        <p class="note" style="margin-top:18px">
+            This download is personal to your account. Please don't share the file link.
+        </p>
+    </div>
+
+    <script>
+        // ── Config ────────────────────────────────────────────────────────────
+        var PLAN_STANDARD = 'aWxoRq9V';
+        var PLAN_SIGNED   = 'rm081GmX';
+
+        // PDF paths — update these to your hosted PDF URLs or relative paths
+        var PDF_STANDARD = 'The Push You Needed - Book.pdf';
+        var PDF_SIGNED   = 'The Push You Needed - Signed Edition.pdf';
+
+        // ── State helpers ─────────────────────────────────────────────────────
+        function showState(id) {
+            ['loading-state','login-state','no-purchase-state','download-state'].forEach(function(s) {
+                document.getElementById(s).style.display = (s === id) ? 'block' : 'none';
+            });
+        }
+
+        function signOut() {
+            Outseta.auth.logout();
+        }
+
+        // ── Check purchases ───────────────────────────────────────────────────
+        function checkPurchases(token) {
+            fetch('https://scripturestudio.outseta.com/api/v1/people/me?fields=OneTimePurchases,OneTimePurchases.PlanUid', {
+                headers: { 'Authorization': 'Bearer ' + token }
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(person) {
+                var purchases = person.OneTimePurchases || [];
+                var planUids = purchases.map(function(p) { return p.PlanUid || (p.Plan && p.Plan.Uid) || ''; });
+
+                var hasSigned   = planUids.indexOf(PLAN_SIGNED)   > -1;
+                var hasStandard = planUids.indexOf(PLAN_STANDARD) > -1;
+
+                if (!hasSigned && !hasStandard) {
+                    showState('no-purchase-state');
+                    return;
+                }
+
+                // Set up download card
+                var firstName = (person.FirstName || '').trim();
+                document.getElementById('welcome-line').textContent = firstName ? 'Welcome, ' + firstName : 'Your copy is ready';
+
+                if (hasSigned) {
+                    document.getElementById('edition-badge').textContent = 'Signed Edition';
+                    document.getElementById('edition-badge').className = 'edition-badge signed';
+                    document.getElementById('download-btn').href = PDF_SIGNED;
+                    document.getElementById('download-btn').setAttribute('download', 'The Push You Needed - Signed Edition.pdf');
+                    document.getElementById('download-label').textContent = 'PDF · Signed Edition';
+                    document.getElementById('signed-note').style.display = 'block';
+                } else {
+                    document.getElementById('edition-badge').textContent = 'Standard Edition';
+                    document.getElementById('edition-badge').className = 'edition-badge standard';
+                    document.getElementById('download-btn').href = PDF_STANDARD;
+                    document.getElementById('download-btn').setAttribute('download', 'The Push You Needed.pdf');
+                    document.getElementById('download-label').textContent = 'PDF · Standard Edition';
+                }
+
+                showState('download-state');
+            })
+            .catch(function() {
+                // API error — fall back to showing download based on token presence
+                showState('no-purchase-state');
+            });
+        }
+
+        // ── Boot ──────────────────────────────────────────────────────────────
+        showState('loading-state');
+
+        window.addEventListener('load', function() {
+            // Give Outseta a moment to hydrate
+            setTimeout(function() {
+                var token = Outseta.getAccessToken ? Outseta.getAccessToken() : null;
+
+                if (token) {
+                    checkPurchases(token);
+                } else {
+                    showState('login-state');
+                }
+
+                // Listen for login events
+                Outseta.on('accessToken.set', function() {
+                    var t = Outseta.getAccessToken();
+                    if (t) checkPurchases(t);
+                });
+
+                Outseta.on('accessToken.cleared', function() {
+                    showState('login-state');
+                });
+
+            }, 800);
+        });
+    </script>
+
+</body>
+</html>

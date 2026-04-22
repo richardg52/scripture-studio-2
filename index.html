@@ -1,0 +1,2530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scripture Studio - Professional Bible Study & Sermon Preparation</title>
+    
+    <!-- Outseta -->
+    <script>
+        var o_options = {
+            domain: 'scripturestudio.outseta.com',
+            load: 'auth,customForm,emailList,leadCapture,nocode,profile,support'
+        };
+    </script>
+    <script src="https://cdn.outseta.com/outseta.min.js" data-options="o_options"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #ffffff;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #1e40af;
+            text-decoration: none;
+        }
+        
+        .logo i {
+            width: 32px;
+            height: 32px;
+            color: #1e40af;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #1e40af;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 0.95rem;
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            color: #4b5563;
+        }
+        
+        .btn-ghost:hover {
+            background: #f3f4f6;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(30, 64, 175, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+        }
+        
+        .hero-content h1 span {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-content p {
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #1e40af;
+            border: 2px solid #1e40af;
+        }
+        
+        .btn-secondary:hover {
+            background: #eff6ff;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e40af;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+        }
+        
+        .app-preview {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .preview-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .preview-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .preview-dot.red { background: #ef4444; }
+        .preview-dot.yellow { background: #f59e0b; }
+        .preview-dot.green { background: #22c55e; }
+        
+        .preview-content {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            min-height: 300px;
+        }
+        
+        .preview-sidebar {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .preview-nav-item {
+            padding: 0.5rem 1rem;
+            background: #e5e7eb;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: #4b5563;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            user-select: none;
+        }
+        
+        .preview-nav-item.active {
+            background: #1e40af;
+            color: white;
+        }
+        
+        .preview-verse {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #1e40af;
+            margin-bottom: 1rem;
+        }
+        
+        .preview-verse-ref {
+            font-weight: 600;
+            color: #1e40af;
+            font-size: 0.9rem;
+        }
+        
+        .preview-verse-text {
+            color: #4b5563;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Floating Cards */
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .floating-card i {
+            width: 24px;
+            height: 24px;
+            color: #1e40af;
+        }
+        
+        .floating-card span {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #1a1a2e;
+        }
+        
+        .floating-card.card-1 {
+            top: -20px;
+            right: -20px;
+            animation-delay: 0s;
+        }
+        
+        .floating-card.card-2 {
+            bottom: 60px;
+            left: -40px;
+            animation-delay: 1s;
+        }
+        
+        .floating-card.card-3 {
+            bottom: -20px;
+            right: 40px;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Why Section */
+        .why-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+        
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .why-card {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 16px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        
+        .why-card:hover {
+            background: white;
+            border-color: #1e40af;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.1);
+        }
+        
+        .why-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .why-icon i {
+            width: 30px;
+            height: 30px;
+            color: white;
+        }
+        
+        .why-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 0.75rem;
+        }
+        
+        .why-card p {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 6rem 2rem;
+            background: #f8fafc;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            border-color: #1e40af;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.1);
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: #eff6ff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        .feature-icon i {
+            width: 24px;
+            height: 24px;
+            color: #1e40af;
+        }
+        
+        .feature-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-card p {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #f59e0b;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 1.5rem 0;
+        }
+        
+        .pricing-card .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.7;
+        }
+        
+        .pricing-card .annual {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .pricing-features li i {
+            width: 20px;
+            height: 20px;
+            color: #22c55e;
+        }
+        
+        .pricing-card.featured .pricing-features li i {
+            color: white;
+        }
+        
+        .pricing-card .btn {
+            width: 100%;
+        }
+        
+        .pricing-card.featured .btn {
+            background: white;
+            color: #1e40af;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+        
+        .cta-section .btn {
+            background: white;
+            color: #1e40af;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 4rem 2rem 2rem;
+            background: #1a1a2e;
+            color: white;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+        }
+        
+        .footer-links h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            display: block;
+            color: #9ca3af;
+            text-decoration: none;
+            padding: 0.25rem 0;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-visual {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .floating-card {
+                display: none;
+            }
+        }
+    
+        .preview-panel { display: none; animation: fadeIn 0.3s ease; }
+        .preview-panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+        .sermon-preview-block { background: white; border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; border-left: 4px solid #7c3aed; }
+        .sermon-preview-title { font-weight: 700; color: #1a1a2e; font-size: 0.95rem; margin-bottom: 0.4rem; }
+        .sermon-preview-sub  { color: #6b7280; font-size: 0.8rem; margin-bottom: 0.5rem; }
+        .sermon-preview-point { color: #374151; font-size: 0.82rem; padding: 3px 0; border-bottom: 1px dashed #e5e7eb; }
+        .sermon-preview-point:last-child { border-bottom: none; }
+
+        .study-preview-block { background: white; border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; }
+        .study-preview-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #9ca3af; margin-bottom: 0.35rem; }
+        .study-preview-value { color: #1a1a2e; font-size: 0.85rem; line-height: 1.5; }
+        .study-tag { display: inline-block; background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 10px; font-size: 0.72rem; font-weight: 600; margin: 2px; }
+
+        
+        /* ── POLICY SECTION ─────────────────────────── */
+        .policy-section {
+            padding: 5rem 2rem;
+            background: #f8fafc;
+        }
+        .policy-section .section-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .policy-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0;
+        }
+        .policy-tab-btn {
+            padding: 0.65rem 1.25rem;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            transition: color 0.2s, border-color 0.2s;
+            white-space: nowrap;
+        }
+        .policy-tab-btn:hover { color: #1e40af; }
+        .policy-tab-btn.active {
+            color: #1e40af;
+            border-bottom-color: #1e40af;
+        }
+        .policy-panel { display: none; }
+        .policy-panel.active { display: block; }
+        .policy-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+        }
+        .policy-card h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 0.4rem;
+        }
+        .policy-updated {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 1.75rem;
+        }
+        .policy-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin: 1.75rem 0 0.6rem;
+        }
+        .policy-card p {
+            color: #374151;
+            line-height: 1.8;
+            font-size: 0.92rem;
+            margin-bottom: 0.75rem;
+        }
+        .policy-card ul {
+            margin: 0.5rem 0 0.75rem 1.25rem;
+            color: #374151;
+            font-size: 0.92rem;
+            line-height: 2;
+        }
+        .policy-highlight {
+            background: #fef9c3;
+            border-left: 4px solid #f59e0b;
+            border-radius: 0 8px 8px 0;
+            padding: 1rem 1.25rem;
+            margin: 1.25rem 0;
+            font-size: 0.9rem;
+            color: #92400e;
+            font-weight: 600;
+            line-height: 1.7;
+        }
+        .policy-alert {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            border-radius: 0 8px 8px 0;
+            padding: 1rem 1.25rem;
+            margin: 1.25rem 0;
+            font-size: 0.9rem;
+            color: #991b1b;
+            font-weight: 600;
+            line-height: 1.7;
+        }
+
+        
+        /* ── RC LOGO ─── */
+        .rc-logo-wrap {
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .rc-logo-wrap svg {
+            width: 90px; height: 90px;
+            filter: drop-shadow(0 4px 12px rgba(30,64,175,0.18));
+        }
+        .footer-rc-logo svg {
+            width: 56px; height: 56px;
+            filter: drop-shadow(0 2px 6px rgba(255,255,255,0.15));
+        }
+        .footer-rc-logo svg path,
+        .footer-rc-logo svg circle { stroke: #93c5fd; }
+
+        
+        /* ══════════════════════════════════════════════
+           MOBILE & TABLET RESPONSIVE — iPhone / iPad
+           ══════════════════════════════════════════════ */
+
+        /* Hamburger menu for mobile nav */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .mobile-menu-btn span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #1e293b;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* Testimonial cards responsive */
+        .testimonial-grid-wrap {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /* Two-column feature blocks responsive */
+        .two-col-feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: center;
+        }
+
+        /* ── iPad (≤1024px) ────────────────────────── */
+        @media (max-width: 1024px) {
+            .testimonial-grid-wrap {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .two-col-feature {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* ── Tablet / large phone (≤768px) ────────── */
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: flex; }
+
+            .hero-content h1 { font-size: 2rem !important; }
+            .hero-content p  { font-size: 1rem !important; }
+
+            .testimonial-grid-wrap {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin: 0 auto;
+            }
+
+            .two-col-feature {
+                grid-template-columns: 1fr !important;
+                gap: 32px !important;
+            }
+
+            /* Inline grid sections — force single column */
+            [style*="grid-template-columns:1fr 1fr"],
+            [style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Features grid → 1 col on phone */
+            .features-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Nav links hidden — show hamburger */
+            .nav-links { display: none !important; }
+
+            /* CTA banner text */
+            .cta-banner-title { font-size: 1.6rem !important; }
+
+            /* Pricing */
+            .pricing-grid { max-width: 360px; margin: 0 auto; }
+
+            /* Footer bottom credit wraps cleanly */
+            .footer-bottom p { font-size: 0.78rem; text-align: center; }
+
+            /* Modal padding on phone */
+            #helpcenter-modal > div > div,
+            #blog-modal > div > div,
+            #tutorials-modal > div > div {
+                padding: 20px 16px !important;
+            }
+
+            /* Modals full-width on phone */
+            #helpcenter-modal > div,
+            #blog-modal > div,
+            #tutorials-modal > div {
+                border-radius: 14px !important;
+            }
+        }
+
+        /* ── Small phones (≤480px) ─────────────────── */
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 1.7rem !important; line-height: 1.25 !important; }
+            .hero-buttons { flex-direction: column !important; align-items: stretch !important; }
+            .hero-buttons a, .hero-buttons button {
+                text-align: center !important;
+                width: 100% !important;
+            }
+
+            /* Section headings */
+            h2 { font-size: 1.5rem !important; }
+
+            /* Testimony cards full width */
+            .testimonial-grid-wrap { grid-template-columns: 1fr; }
+
+            /* Inline 3-col grids → 1 col */
+            [style*="grid-template-columns:repeat(3"],
+            [style*="grid-template-columns: repeat(3"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Sermon evaluator score card */
+            [style*="grid-template-columns:1fr 1fr 1fr"] {
+                grid-template-columns: 1fr 1fr !important;
+            }
+
+            /* Video demo modal */
+            #video-demo-modal > div {
+                border-radius: 12px !important;
+            }
+
+            /* Pricing buttons full width */
+            .pricing-card .btn { width: 100% !important; }
+        }
+
+        /* ── iPhone SE / tiny screens (≤375px) ─────── */
+        @media (max-width: 375px) {
+            .hero-content h1 { font-size: 1.5rem !important; }
+            nav { padding: 0.75rem 1rem !important; }
+        }
+
+        /* Touch-friendly tap targets everywhere */
+        @media (hover: none) and (pointer: coarse) {
+            .btn, button, a, .nav-item, .tab,
+            [onclick], [role="button"] {
+                min-height: 44px;
+            }
+            /* Larger font for readability on mobile */
+            body { font-size: 16px; }
+            /* Prevent text zoom on input focus (iOS) */
+            input, select, textarea { font-size: 16px !important; }
+        }
+
+        /* ══════════════════════════════════════════════
+           MOBILE & TABLET RESPONSIVE — iPhone / iPad
+           ══════════════════════════════════════════════ */
+
+        /* Hamburger menu for mobile nav */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .mobile-menu-btn span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #1e293b;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* Testimonial cards responsive */
+        .testimonial-grid-wrap {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /* Two-column feature blocks responsive */
+        .two-col-feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: center;
+        }
+
+        /* ── iPad (≤1024px) ────────────────────────── */
+        @media (max-width: 1024px) {
+            .testimonial-grid-wrap {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .two-col-feature {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* ── Tablet / large phone (≤768px) ────────── */
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: flex; }
+
+            .hero-content h1 { font-size: 2rem \!important; }
+            .hero-content p  { font-size: 1rem \!important; }
+
+            .testimonial-grid-wrap {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin: 0 auto;
+            }
+
+            .two-col-feature {
+                grid-template-columns: 1fr \!important;
+                gap: 32px \!important;
+            }
+
+            /* Inline grid sections — force single column */
+            [style*="grid-template-columns:1fr 1fr"],
+            [style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr \!important;
+            }
+
+            /* Features grid → 1 col on phone */
+            .features-grid {
+                grid-template-columns: 1fr \!important;
+            }
+
+            /* Nav links hidden — show hamburger */
+            .nav-links { display: none \!important; }
+
+            /* CTA banner text */
+            .cta-banner-title { font-size: 1.6rem \!important; }
+
+            /* Pricing */
+            .pricing-grid { max-width: 360px; margin: 0 auto; }
+
+            /* Footer bottom credit wraps cleanly */
+            .footer-bottom p { font-size: 0.78rem; text-align: center; }
+
+            /* Modal padding on phone */
+            #helpcenter-modal > div > div,
+            #blog-modal > div > div,
+            #tutorials-modal > div > div {
+                padding: 20px 16px \!important;
+            }
+
+            /* Modals full-width on phone */
+            #helpcenter-modal > div,
+            #blog-modal > div,
+            #tutorials-modal > div {
+                border-radius: 14px \!important;
+            }
+        }
+
+        /* ── Small phones (≤480px) ─────────────────── */
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 1.7rem \!important; line-height: 1.25 \!important; }
+            .hero-buttons { flex-direction: column \!important; align-items: stretch \!important; }
+            .hero-buttons a, .hero-buttons button {
+                text-align: center \!important;
+                width: 100% \!important;
+            }
+
+            /* Section headings */
+            h2 { font-size: 1.5rem \!important; }
+
+            /* Testimony cards full width */
+            .testimonial-grid-wrap { grid-template-columns: 1fr; }
+
+            /* Inline 3-col grids → 1 col */
+            [style*="grid-template-columns:repeat(3"],
+            [style*="grid-template-columns: repeat(3"] {
+                grid-template-columns: 1fr \!important;
+            }
+
+            /* Sermon evaluator score card */
+            [style*="grid-template-columns:1fr 1fr 1fr"] {
+                grid-template-columns: 1fr 1fr \!important;
+            }
+
+            /* Video demo modal */
+            #video-demo-modal > div {
+                border-radius: 12px \!important;
+            }
+
+            /* Pricing buttons full width */
+            .pricing-card .btn { width: 100% \!important; }
+        }
+
+        /* ── iPhone SE / tiny screens (≤375px) ─────── */
+        @media (max-width: 375px) {
+            .hero-content h1 { font-size: 1.5rem \!important; }
+            nav { padding: 0.75rem 1rem \!important; }
+        }
+
+        /* Touch-friendly tap targets everywhere */
+        @media (hover: none) and (pointer: coarse) {
+            .btn, button, a, .nav-item, .tab,
+            [onclick], [role="button"] {
+                min-height: 44px;
+            }
+            /* Larger font for readability on mobile */
+            body { font-size: 16px; }
+            /* Prevent text zoom on input focus (iOS) */
+            input, select, textarea { font-size: 16px \!important; }
+        }
+</style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" style="width:28px;height:28px;flex-shrink:0;margin-right:2px"><circle cx="40" cy="40" r="38" fill="#1e3a8a"/><line x1="40" y1="9" x2="40" y2="4" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round"/><line x1="52" y1="13" x2="57" y2="9" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round"/><line x1="28" y1="13" x2="23" y2="9" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round"/><rect x="37" y="13" width="6" height="30" rx="2" fill="#f59e0b"/><rect x="25" y="23" width="30" height="6" rx="2" fill="#f59e0b"/><circle cx="40" cy="16" r="4" fill="#fde68a" opacity="0.55"/><path d="M 40 61 C 34 54, 17 47, 12 35 L 12 27 C 17 39, 33 47, 40 53 Z" fill="white"/><path d="M 40 61 C 46 54, 63 47, 68 35 L 68 27 C 63 39, 47 47, 40 53 Z" fill="rgba(255,255,255,0.88)"/><line x1="20" y1="38" x2="35" y2="44" stroke="#bfdbfe" stroke-width="1.3" stroke-linecap="round"/><line x1="18" y1="45" x2="33" y2="50" stroke="#bfdbfe" stroke-width="1.3" stroke-linecap="round"/><line x1="60" y1="38" x2="45" y2="44" stroke="#bfdbfe" stroke-width="1.3" stroke-linecap="round"/><line x1="62" y1="45" x2="47" y2="50" stroke="#bfdbfe" stroke-width="1.3" stroke-linecap="round"/></svg>
+                Scripture Studio
+            </a>
+            <div class="nav-links">
+                <a href="#book">Book</a>
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+            </div>
+            <div class="nav-buttons">
+                <a href="#book" class="btn btn-ghost" style="color:#d4a820;border-color:rgba(212,168,32,0.4);font-weight:700;letter-spacing:0.03em">📖 Get Your Copy Today</a>
+                <a href="https://scripturestudio.outseta.com/auth?widgetMode=login#o-anonymous" class="btn btn-ghost">Log In</a>
+                <a href="https://scripturestudio.outseta.com/auth?widgetMode=register#o-anonymous" class="btn btn-primary">Start Free Trial</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Study Scripture.<br><span>Prepare Sermons.</span><br>Grow Ministry.</h1>
+                <p>The all-in-one Bible study and sermon preparation platform designed for pastors, teachers, and ministry leaders.</p>
+                <div class="hero-buttons">
+                    <a href="https://scripturestudio.outseta.com/auth?widgetMode=register#o-anonymous" class="btn btn-primary btn-large">Start 7-Day Free Trial</a>
+                    <a href="#features" class="btn btn-secondary btn-large">Explore Features</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-value">13</div>
+                        <div class="stat-label">Bible Versions</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">23+</div>
+                        <div class="stat-label">Powerful Features</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">24/7</div>
+                        <div class="stat-label">AI Assistance</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="app-preview">
+                    <div class="preview-header">
+                        <div class="preview-dot red"></div>
+                        <div class="preview-dot yellow"></div>
+                        <div class="preview-dot green"></div>
+                    </div>
+                    <div class="preview-content">
+                        <!-- Tab Nav -->
+                        <div class="preview-sidebar">
+                            <div class="preview-nav-item active" onclick="switchHeroTab('bible',this)">Bible</div>
+                            <div class="preview-nav-item" onclick="switchHeroTab('sermon',this)">Sermon</div>
+                            <div class="preview-nav-item" onclick="switchHeroTab('study',this)">Study</div>
+                        </div>
+
+                        <!-- Bible Panel -->
+                        <div class="preview-panel active" id="hero-panel-bible">
+                            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;padding:0 4px">
+                                <span style="background:#dbeafe;color:#1e40af;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">KJV</span>
+                                <span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">NKJV</span>
+                                <span style="background:#fef9c3;color:#92400e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">NIV</span>
+                                <span style="background:#fce7f3;color:#9d174d;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">ESV</span>
+                                <span style="background:#ffedd5;color:#c2410c;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">NLT</span>
+                                <span style="background:#f3e8ff;color:#7c3aed;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">AMP</span>
+                                <span style="background:#e0f2fe;color:#0369a1;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">NASB</span>
+                                <span style="background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">CSB</span>
+                                <span style="background:#fef3c7;color:#78350f;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">MSG</span>
+                                <span style="background:#ede9fe;color:#5b21b6;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">TPT</span>
+                                <span style="background:#f0fdf4;color:#15803d;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">+3 more</span>
+                            </div>
+                            <div class="preview-verse">
+                                <div class="preview-verse-ref">John 3:16 (KJV)</div>
+                                <div class="preview-verse-text">For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.</div>
+                            </div>
+                            <div class="preview-verse">
+                                <div class="preview-verse-ref">Proverbs 3:5-6 (NIV)</div>
+                                <div class="preview-verse-text">Trust in the LORD with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.</div>
+                            </div>
+                        </div>
+
+                        <!-- Sermon Panel -->
+                        <div class="preview-panel" id="hero-panel-sermon">
+                            <div class="sermon-preview-block">
+                                <div class="sermon-preview-title">The God Who Keeps His Promises</div>
+                                <div class="sermon-preview-sub">Text: Romans 8:28 &bull; Series: Unshakeable Faith</div>
+                                <div class="sermon-preview-point">I. Introduction &mdash; God is faithful through every season</div>
+                                <div class="sermon-preview-point">II. Point 1 &mdash; His promises are yes and amen (2 Cor. 1:20)</div>
+                                <div class="sermon-preview-point">III. Point 2 &mdash; All things work together for our good</div>
+                                <div class="sermon-preview-point">IV. Point 3 &mdash; Nothing can separate us from His love</div>
+                                <div class="sermon-preview-point">V. Conclusion &mdash; Stand firm; He who promised is faithful</div>
+                            </div>
+                            <div class="sermon-preview-block" style="border-left-color:#1e40af;">
+                                <div class="sermon-preview-title">Walking in the Spirit</div>
+                                <div class="sermon-preview-sub">Text: Galatians 5:16-25 &bull; Sunday Morning</div>
+                                <div class="sermon-preview-point">I. The War Within &mdash; Flesh vs. Spirit</div>
+                                <div class="sermon-preview-point">II. The Fruit That Follows &mdash; Love, Joy, Peace...</div>
+                                <div class="sermon-preview-point">III. The Life That Wins &mdash; Crucified with Christ</div>
+                            </div>
+                        </div>
+
+                        <!-- Study Panel -->
+                        <div class="preview-panel" id="hero-panel-study">
+                            <div class="study-preview-block">
+                                <div class="study-preview-label">Word Study &mdash; &ldquo;Agape&rdquo; (Greek)</div>
+                                <div class="study-preview-value">Unconditional, selfless love. Used 320x in the NT. Root of the Great Commandment (Matt. 22:37-39).</div>
+                            </div>
+                            <div class="study-preview-block">
+                                <div class="study-preview-label">Cross-References &mdash; John 3:16</div>
+                                <div class="study-preview-value">
+                                    <span class="study-tag">Rom 5:8</span>
+                                    <span class="study-tag">1 John 4:9</span>
+                                    <span class="study-tag">John 1:14</span>
+                                    <span class="study-tag">Eph 2:4-5</span>
+                                    <span class="study-tag">Isa 53:6</span>
+                                </div>
+                            </div>
+                            <div class="study-preview-block">
+                                <div class="study-preview-label">Bishop&rsquo;s Commentary &mdash; Romans 8:28</div>
+                                <div class="study-preview-value">Paul anchors the believer&rsquo;s hope not in circumstance but in divine sovereignty. &ldquo;All things&rdquo; includes trials, loss, and suffering&mdash;redeemed for eternal purpose.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-card card-1">
+                    <i data-lucide="sparkles"></i>
+                    <span>Bishop's Commentary</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i data-lucide="mic"></i>
+                    <span>Sermon Builder</span>
+                </div>
+                <div class="floating-card card-3">
+                    <i data-lucide="book-marked"></i>
+                    <span>Study Tools</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Section -->
+    <section style="padding:90px 24px;background:#fff;text-align:center" id="book">
+      <div style="max-width:960px;margin:0 auto">
+        <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#2563eb;margin-bottom:18px">Now Available</div>
+        <h2 style="font-family:Georgia,serif;font-size:2.8rem;font-weight:800;color:#111827;margin:0 0 14px;line-height:1.2">The Push You Needed</h2>
+        <p style="font-style:italic;color:#6b7280;font-size:1.05rem;margin:0 0 48px">When God Shoves You Toward Your Destiny</p>
+        <div style="display:flex;align-items:center;justify-content:center;gap:56px;flex-wrap:wrap">
+          <img src="app/cover-v2.png" alt="The Push You Needed" style="width:200px;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,0.18)">
+          <div style="max-width:420px;text-align:left">
+            <p style="color:#374151;font-size:1rem;line-height:1.8;margin:0 0 28px">A 125-page, 8-chapter book for anyone who needed one more push. Based on 1 Samuel 16:1 — what feels like rejection is often redirection. Richard G. Clark writes with the conviction that God's timing is never late, and your season hasn't passed.</p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+              <a href="https://scripturestudio.outseta.com/checkout?planUid=aWxoRq9V" target="_blank" style="background:linear-gradient(135deg,#d4a820,#f0cc50);color:#0a0810;font-weight:800;font-size:0.9rem;padding:13px 28px;border-radius:10px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 18px rgba(212,168,32,0.35)">📖 Standard — $14.99</a>
+              <a href="https://scripturestudio.outseta.com/checkout?planUid=rm081GmX" target="_blank" style="background:#0a0810;color:#d4a820;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:10px;text-decoration:none;white-space:nowrap;border:1px solid rgba(212,168,32,0.45)">✍ Signed — $19.99</a>
+            </div>
+            <p style="font-size:0.73rem;color:#9ca3af">Instant PDF download &nbsp;·&nbsp; Available in Standard &amp; Signed editions</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Author Bio Section -->
+    <section style="padding:96px 24px;background:#0a0810" id="about">
+      <div style="max-width:1000px;margin:0 auto">
+
+        <!-- Opening pull quote -->
+        <div style="text-align:center;margin-bottom:72px;padding:0 24px">
+          <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#d4a820;margin-bottom:24px">About the Author</div>
+          <blockquote style="font-family:Georgia,serif;font-size:2rem;font-weight:800;color:#fff;line-height:1.45;margin:0 0 20px;font-style:italic">"I had given up. I had fallen deep into depression and become a recluse — until God pushed me into something I didn't see coming."</blockquote>
+          <div style="width:48px;height:3px;background:linear-gradient(90deg,#d4a820,#f0cc50);margin:0 auto;border-radius:2px"></div>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:60px;flex-wrap:wrap">
+          <!-- Photo + credentials -->
+          <div style="flex-shrink:0;width:220px;margin:0 auto">
+            <img src="author-photo.jpg" alt="Dr. Richard G. Clark" style="width:220px;height:260px;object-fit:cover;object-position:center top;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,0.6);display:block">
+            <div style="margin-top:20px;display:flex;flex-direction:column;gap:8px">
+              <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;font-size:0.72rem;color:rgba(255,255,255,0.7);font-weight:600;text-align:center">🎓 Th.D. · Ph.D. · J.M. · MBA · B.A.</div>
+              <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;font-size:0.72rem;color:rgba(255,255,255,0.7);font-weight:600;text-align:center">⛪ Ebenezer Baptist · 31+ Years</div>
+              <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;font-size:0.72rem;color:rgba(255,255,255,0.7);font-weight:600;text-align:center">📍 Memphis, Tennessee</div>
+              <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;font-size:0.72rem;color:rgba(255,255,255,0.7);font-weight:600;text-align:center">🏆 Best Young Pastors of the Millennium</div>
+              <div style="background:rgba(188,0,45,0.15);border:1px solid rgba(188,0,45,0.35);border-radius:10px;padding:10px 14px;font-size:0.72rem;color:#ff6b7a;font-weight:700;text-align:center">ΚΑΨ Kappa Alpha Psi · W. Memphis</div>
+            </div>
+          </div>
+
+          <!-- Bio text -->
+          <div style="flex:1;min-width:280px">
+            <h2 style="font-family:Georgia,serif;font-size:2rem;font-weight:800;color:#fff;margin:0 0 28px;line-height:1.3">Dr. Richard G. Clark</h2>
+
+            <p style="font-size:1.05rem;color:rgba(255,255,255,0.75);line-height:1.95;margin:0 0 22px">Within the span of a single year, Dr. Richard G. Clark lost his mother, his sister, his nephew, and his brother. His mother and his nephew — only 30 years old — passed just three months apart. For a man who had spent his entire life serving others, building ministry, and walking boldly in his calling, the grief hit like a wall. He stopped. He withdrew. He let the darkness in.</p>
+
+            <p style="font-size:1.05rem;color:rgba(255,255,255,0.75);line-height:1.95;margin:0 0 22px">What followed wasn't a quick recovery or a tidy testimony. It was a slow, painful, honest reckoning with God — one that eventually led to something unexpected. God began pushing him. Not gently. Into things he hadn't chosen, toward a purpose he had nearly abandoned. And in that push, Dr. Clark found his way back — to his faith, to his mind, to his heart, and to his calling.</p>
+
+            <p style="font-size:1.05rem;color:rgba(255,255,255,0.75);line-height:1.95;margin:0 0 22px"><em>The Push You Needed</em> is the book that came out of that season. It was not written from a stage. It was written from a valley.</p>
+
+            <p style="font-size:1.05rem;color:rgba(255,255,255,0.75);line-height:1.95;margin:0 0 28px">And if I'm being honest — I didn't write it just for me. I wrote it because I know there is somebody reading this right now who is sitting in their own version of that year. Maybe it's not loss. Maybe it's a broken marriage, a failed business, a prodigal child, or a ministry that fell apart. Whatever it is, you have felt like nobody could possibly understand how deep that valley goes. I want you to know — I get it. I've been there. And this book is my hand reaching back into that darkness to push you forward — just like God pushed me.</p>
+
+            <div style="border-left:3px solid #d4a820;padding-left:20px;margin:0 0 28px">
+              <p style="font-family:Georgia,serif;font-size:1.1rem;font-style:italic;color:#f0cc50;line-height:1.7;margin:0">"The push was never punishment. It was preparation. And I needed to walk through my own darkness before I could write that with any honesty."</p>
+              <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:8px;font-weight:600">— Dr. Richard G. Clark</div>
+            </div>
+
+            <p style="font-size:0.92rem;color:rgba(255,255,255,0.45);line-height:1.8;margin:0 0 32px">A proud Memphis native and graduate of Central High School, Dr. Clark holds a BA in Entrepreneurship <em>(Magna Cum Laude)</em>, an MBA in Marketing, a Juris Master, and a Ph.D. in Government, Law and Policy from Liberty University, and a Doctorate in Theology from Freedom Bible College and Seminary. He is an inductee of <strong style="color:rgba(255,255,255,0.65)">Omega Nu Lambda, Alpha Lambda Delta,</strong> and <strong style="color:rgba(255,255,255,0.65)">Delta Mu Delta</strong> National Honor Societies. He served with the Shelby County Sheriff's Office for over 12 years and has pastored Ebenezer Baptist Church in Memphis for over 31 years. A proud member of <strong style="color:rgba(255,255,255,0.65)">Kappa Alpha Psi Fraternity</strong> (West Memphis, Arkansas), he carries brotherhood as seriously as he carries the Gospel. He is the proud father of Jasmine and Richard, and grandfather of Jayden and Zoey.</p>
+
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <a href="#book" style="background:linear-gradient(135deg,#d4a820,#f0cc50);color:#0a0810;font-weight:800;font-size:0.88rem;padding:12px 26px;border-radius:10px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 16px rgba(212,168,32,0.35)">📖 Get the Book</a>
+              <a href="https://scripturestudio.outseta.com/auth?widgetMode=register#o-anonymous" target="_blank" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-weight:700;font-size:0.88rem;padding:12px 26px;border-radius:10px;text-decoration:none;white-space:nowrap">Join Scripture Studio</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Book Testimonials -->
+    <section style="padding:56px 24px;background:#fff">
+      <div style="max-width:1200px;margin:0 auto">
+        <div style="text-align:center;margin-bottom:36px">
+          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#2563eb;margin-bottom:10px">What Readers Are Saying</div>
+          <h2 style="font-family:Georgia,serif;font-size:1.9rem;font-weight:800;color:#111827;margin:0;line-height:1.2">The push is already working.</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+          <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:20px">
+            <div style="font-size:1.5rem;color:#d4a820;font-family:Georgia,serif;line-height:1;margin-bottom:10px">&#10077;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.8rem;line-height:1.7;margin:0 0 14px">I read this in one sitting. Every word felt written for me. Chapter 4 made me stop and just sit with it. Exactly what I needed.</p>
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#d4a820,#f0cc50);display:flex;align-items:center;justify-content:center;font-weight:800;color:#0a0810;font-size:0.72rem;flex-shrink:0">DT</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.8rem">Minister Diane T.</div><div style="color:#9ca3af;font-size:0.72rem">Memphis, TN</div></div>
+            </div>
+          </div>
+          <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:20px">
+            <div style="font-size:1.5rem;color:#d4a820;font-family:Georgia,serif;line-height:1;margin-bottom:10px">&#10077;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.8rem;line-height:1.7;margin:0 0 14px">Dr. Clark doesn't write to impress — he writes to heal. I've bought three copies for people in my congregation on the verge of giving up.</p>
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#1e3a8a,#2563eb);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:0.72rem;flex-shrink:0">MW</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.8rem">Deacon Marcus W.</div><div style="color:#9ca3af;font-size:0.72rem">Christ Fellowship · Houston, TX</div></div>
+            </div>
+          </div>
+          <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:20px">
+            <div style="font-size:1.5rem;color:#d4a820;font-family:Georgia,serif;line-height:1;margin-bottom:10px">&#10077;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.8rem;line-height:1.7;margin:0 0 14px">I was ready to walk away from everything God placed in me. Chapter 7 stopped me cold. The push was never punishment. I know that now.</p>
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#7c3aed,#5b21b6);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:0.72rem;flex-shrink:0">CM</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.8rem">Sister Carolyn M.</div><div style="color:#9ca3af;font-size:0.72rem">Atlanta, GA</div></div>
+            </div>
+          </div>
+          <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:20px">
+            <div style="font-size:1.5rem;color:#d4a820;font-family:Georgia,serif;line-height:1;margin-bottom:10px">&#10077;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.8rem;line-height:1.7;margin:0 0 14px">20 years in ministry and nothing has put language to my darkest season like this. Every pastor and every believer should have it on their shelf.</p>
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#065f46,#047857);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:0.72rem;flex-shrink:0">JH</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.8rem">Pastor James H.</div><div style="color:#9ca3af;font-size:0.72rem">Nashville, TN</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="why-section" id="why">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="rc-logo-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" style="width:84px;height:84px;filter:drop-shadow(0 6px 18px rgba(30,64,175,0.22))"><circle cx="40" cy="40" r="38" fill="#1e3a8a"/><circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/><line x1="40" y1="9" x2="40" y2="3" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><line x1="54" y1="13" x2="59" y2="8" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><line x1="26" y1="13" x2="21" y2="8" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><line x1="63" y1="23" x2="68" y2="18" stroke="#fbbf24" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/><line x1="17" y1="23" x2="12" y2="18" stroke="#fbbf24" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/><rect x="37" y="12" width="6" height="32" rx="2.5" fill="#f59e0b"/><rect x="23" y="22" width="34" height="7" rx="2.5" fill="#f59e0b"/><circle cx="40" cy="15" r="5" fill="#fde68a" opacity="0.5"/><path d="M 40 62 C 33 55, 15 47, 10 34 L 10 26 C 15 39, 32 47, 40 54 Z" fill="white"/><path d="M 40 62 C 47 55, 65 47, 70 34 L 70 26 C 65 39, 48 47, 40 54 Z" fill="rgba(255,255,255,0.86)"/><line x1="18" y1="38" x2="34" y2="44" stroke="#bfdbfe" stroke-width="1.4" stroke-linecap="round"/><line x1="16" y1="46" x2="32" y2="52" stroke="#bfdbfe" stroke-width="1.4" stroke-linecap="round"/><line x1="62" y1="38" x2="46" y2="44" stroke="#bfdbfe" stroke-width="1.4" stroke-linecap="round"/><line x1="64" y1="46" x2="48" y2="52" stroke="#bfdbfe" stroke-width="1.4" stroke-linecap="round"/><line x1="40" y1="44" x2="40" y2="62" stroke="rgba(148,163,184,0.35)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                <h2>Why Scripture Studio?</h2>
+                <p>Built specifically for ministry leaders who demand excellence in biblical study and sermon preparation.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <h3>Save Hours Weekly</h3>
+                    <p>AI-powered tools streamline research, cross-referencing, and sermon outlining so you can focus on ministry.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i data-lucide="book-open"></i>
+                    </div>
+                    <h3>Deep Biblical Study</h3>
+                    <p>Access 13 translations — KJV, NKJV, ESV, NIV, NLT, NASB, CSB, NRSV, ASV, WEB, AMP, The Message, and The Passion — plus Greek/Hebrew tools, commentaries, and cross-references in one unified workspace.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i data-lucide="brain"></i>
+                    </div>
+                    <h3>AI That Understands Ministry</h3>
+                    <p>Our AI is trained on Baptist expository preaching traditions for contextually appropriate insights.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i data-lucide="layout-dashboard"></i>
+                    </div>
+                    <h3>Everything in One Place</h3>
+                    <p>Bible study, sermon prep, prayer journal, calendar, and congregation management - unified.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i data-lucide="cloud"></i>
+                    </div>
+                    <h3>Access Anywhere</h3>
+                    <p>Cloud-synced across all devices. Prepare sermons at home, review on tablet, present on desktop.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>Your sermon notes, prayer requests, and ministry data are encrypted and never shared.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Quote Section -->
+    <section style="background:linear-gradient(135deg,#1e3a5f 0%,#1e40af 100%);padding:4rem 2rem;text-align:center">
+        <div style="max-width:800px;margin:0 auto">
+            <div style="font-size:3rem;color:rgba(255,255,255,0.3);font-family:Georgia,serif;line-height:1;margin-bottom:1rem">&#8220;</div>
+            <blockquote style="font-family:Georgia,serif;font-size:1.5rem;font-style:italic;color:white;line-height:1.7;margin:0 0 1.5rem;font-weight:400">
+                Study to show thyself approved unto God, a workman that needeth not to be ashamed, rightly dividing the word of truth.
+            </blockquote>
+            <cite style="color:#93c5fd;font-size:0.95rem;font-weight:600;font-style:normal;letter-spacing:0.05em">
+                2 Timothy 2:15 &#8212; KJV
+            </cite>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>23 Powerful Features</h2>
+                <p>Everything you need for effective ministry, all in one platform.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" onclick="scrollToFeature('bible')">
+                    <div class="feature-icon"><i data-lucide="book-open"></i></div>
+                    <h4>Bible Reader</h4>
+                    <p>13 translations with instant switching — KJV, NIV, ESV, NLT, AMP & more</p>
+                </div>
+                <div class="feature-card" onclick="scrollToFeature('sermon')">
+                    <div class="feature-icon"><i data-lucide="file-text"></i></div>
+                    <h4>Sermon Builder</h4>
+                    <p>Rich text editor with auto-save</p>
+                </div>
+                <div class="feature-card" onclick="scrollToFeature('ai-sermon')">
+                    <div class="feature-icon"><i data-lucide="sparkles"></i></div>
+                    <h4>Sermon Studio Generator</h4>
+                    <p>Structured outlines in seconds</p>
+                </div>
+                <div class="feature-card" onclick="scrollToFeature('commentary')">
+                    <div class="feature-icon"><i data-lucide="message-circle"></i></div>
+                    <h4>Bishop's Commentary</h4>
+                    <p>Bishop Clark's expository insights</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="bookmark"></i></div>
+                    <h4>Bookmarks</h4>
+                    <p>Save & organize key verses</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="highlighter"></i></div>
+                    <h4>Highlighting</h4>
+                    <p>Color-code your studies</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="sticky-note"></i></div>
+                    <h4>Study Notes</h4>
+                    <p>Attach notes to any verse</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="git-branch"></i></div>
+                    <h4>Cross-References</h4>
+                    <p>Discover connected passages</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="search"></i></div>
+                    <h4>Word Study</h4>
+                    <p>Greek & Hebrew analysis</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="languages"></i></div>
+                    <h4>Lexicon</h4>
+                    <p>Original language definitions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="book-copy"></i></div>
+                    <h4>Concordance</h4>
+                    <p>Find every occurrence</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="map"></i></div>
+                    <h4>Bible Maps</h4>
+                    <p>Interactive geography</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="clock"></i></div>
+                    <h4>Timeline</h4>
+                    <p>Biblical chronology</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="image"></i></div>
+                    <h4>Illustrations</h4>
+                    <p>Story & illustration library</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="heart"></i></div>
+                    <h4>Prayer Journal</h4>
+                    <p>Track prayers & answers</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="notebook"></i></div>
+                    <h4>Devotional Journal</h4>
+                    <p>Daily spiritual reflection</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="calendar"></i></div>
+                    <h4>Ministry Calendar</h4>
+                    <p>Schedule & planning</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="users"></i></div>
+                    <h4>Congregation</h4>
+                    <p>Member management</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="graduation-cap"></i></div>
+                    <h4>Bible Courses</h4>
+                    <p>Structured learning paths</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="trophy"></i></div>
+                    <h4>Reading Plans</h4>
+                    <p>Track your Bible journey</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="share-2"></i></div>
+                    <h4>Share & Export</h4>
+                    <p>Share insights & sermons</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="settings"></i></div>
+                    <h4>Settings</h4>
+                    <p>Customize your experience</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="help-circle"></i></div>
+                    <h4>Help Center</h4>
+                    <p>Guides & support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <!-- TESTIMONIALS -->
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <section style="padding:80px 0;background:white">
+      <div style="max-width:1100px;margin:0 auto;padding:0 24px">
+        <div style="text-align:center;margin-bottom:56px">
+          <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2563eb;margin-bottom:14px">Testimonials</div>
+          <h2 style="font-family:Georgia,serif;font-size:3rem;font-weight:800;color:#111827;margin:0 0 16px;line-height:1.15">Pastors who preach<br>differently now.</h2>
+          <p style="color:#6b7280;font-size:1.05rem;max-width:560px;margin:0 auto;line-height:1.7">From small congregations to large churches — Scripture Studio is transforming how ministers prepare and teach.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+          <!-- Card 1 -->
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+            <div style="font-size:2rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:16px">&#10077;&#10078;</div>
+            <div style="margin-bottom:14px">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.94rem;line-height:1.75;margin:0 0 20px">I've been preaching for 22 years and Scripture Studio is the first tool that actually fits how I think and prepare. My entire sermon library is finally organized in one place. I can't imagine ministry without it now.</p>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#2563eb,#1e3a8a);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.85rem;flex-shrink:0">RM</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.9rem">Pastor Robert M.</div><div style="color:#9ca3af;font-size:0.8rem">Senior Pastor &middot; Atlanta, GA</div></div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+            <div style="font-size:2rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:16px">&#10077;&#10078;</div>
+            <div style="margin-bottom:14px">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.94rem;line-height:1.75;margin:0 0 20px">The 5-translation Bible reader alone is worth every penny of the subscription. Being able to compare The Message alongside KJV while I'm preparing has completely changed how I exegete Scripture. My congregants feel the depth.</p>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#5b21b6);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.85rem;flex-shrink:0">JL</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.9rem">Pastor Jennifer L.</div><div style="color:#9ca3af;font-size:0.8rem">Lead Pastor &middot; Portland, OR</div></div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+            <div style="font-size:2rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:16px">&#10077;&#10078;</div>
+            <div style="margin-bottom:14px">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.94rem;line-height:1.75;margin:0 0 20px">The Sermon Development Studio helps me connect insights across years of messages I'd forgotten about. It's like having a research assistant who knows every sermon I've ever preached. Absolutely brilliant.</p>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#059669,#065f46);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.85rem;flex-shrink:0">DT</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.9rem">Pastor David T.</div><div style="color:#9ca3af;font-size:0.8rem">Church Planter &middot; Chicago, IL</div></div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+            <div style="font-size:2rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:16px">&#10077;&#10078;</div>
+            <div style="margin-bottom:14px">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.94rem;line-height:1.75;margin:0 0 20px">As a Bible study teacher who isn't a full-time pastor, I was worried this would be too preacher-focused. Scripture Studio is perfect for teachers too. The topical scripture finder and illustration library are things I use every single week.</p>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#f59e0b,#b45309);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.85rem;flex-shrink:0">SM</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.9rem">Sister Sandra M.</div><div style="color:#9ca3af;font-size:0.8rem">Women's Bible Study Leader &middot; Nashville, TN</div></div>
+            </div>
+          </div>
+          <!-- Card 5 -->
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+            <div style="font-size:2rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:16px">&#10077;&#10078;</div>
+            <div style="margin-bottom:14px">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.94rem;line-height:1.75;margin:0 0 20px">The commentary feature with Pastor Clark's pastoral notes is unlike anything else available. Having a trusted voice frame the passage before the historical commentators speak gives me exactly the angle I need for my congregation. Outstanding.</p>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#374151,#111827);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.85rem;flex-shrink:0">KW</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.9rem">Bishop Kenneth W.</div><div style="color:#9ca3af;font-size:0.8rem">Senior Bishop &middot; Memphis, TN</div></div>
+            </div>
+          </div>
+          <!-- Card 6 -->
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+            <div style="font-size:2rem;color:#e5e7eb;font-family:Georgia,serif;line-height:1;margin-bottom:16px">&#10077;&#10078;</div>
+            <div style="margin-bottom:14px">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+            <p style="font-style:italic;color:#374151;font-size:0.94rem;line-height:1.75;margin:0 0 20px">I used to use six different apps for sermon prep. Now I use one. The prayer journal alone has transformed my morning devotional time. When I scroll back through answered prayers it builds my faith in ways no sermon ever could. Thank you for building this.</p>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#ef4444,#b91c1c);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.85rem;flex-shrink:0">AB</div>
+              <div><div style="font-weight:700;color:#111827;font-size:0.9rem">Rev. Anthony B.</div><div style="color:#9ca3af;font-size:0.8rem">Associate Pastor &middot; Houston, TX</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <!-- 13 TRANSLATIONS + SERMON SCORE — SIDE BY SIDE -->
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <section style="padding:90px 0;background:#f9fafb">
+      <div style="max-width:1160px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+
+        <!-- LEFT: 13 Translations -->
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2563eb;margin-bottom:14px">Bible Reader</div>
+          <h2 style="font-family:Georgia,serif;font-size:2rem;font-weight:800;color:#111827;margin:0 0 12px;line-height:1.2">13 translations.<br>One beautiful reader.</h2>
+          <p style="color:#6b7280;font-size:0.92rem;margin:0 0 24px;line-height:1.7">Compare side-by-side and see how different translations illuminate the same eternal truth.</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="background:white;border:1px solid #e5e7eb;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px">
+              <div style="background:#2563eb;color:white;font-weight:700;font-size:0.75rem;padding:4px 10px;border-radius:20px;flex-shrink:0">NIV</div>
+              <div style="color:#1f2937;font-size:0.9rem">The Lord is my shepherd, <strong>I lack nothing.</strong></div>
+            </div>
+            <div style="background:white;border:1px solid #e5e7eb;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px">
+              <div style="background:#1f2937;color:white;font-weight:700;font-size:0.75rem;padding:4px 10px;border-radius:20px;flex-shrink:0">KJV</div>
+              <div style="color:#1f2937;font-size:0.9rem">The Lord is my shepherd; <strong>I shall not want.</strong></div>
+            </div>
+            <div style="background:white;border:1px solid #e5e7eb;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px">
+              <div style="background:#7c3aed;color:white;font-weight:700;font-size:0.75rem;padding:4px 10px;border-radius:20px;flex-shrink:0">MSG</div>
+              <div style="color:#1f2937;font-size:0.9rem">God, my shepherd! <strong>I don't need a thing.</strong></div>
+            </div>
+            <div style="background:white;border:2px solid #2563eb;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px">
+              <div style="background:#059669;color:white;font-weight:700;font-size:0.75rem;padding:4px 10px;border-radius:20px;flex-shrink:0">NLT</div>
+              <div style="color:#1f2937;font-size:0.9rem">The Lord is my shepherd; <strong>I have all that I need.</strong></div>
+            </div>
+            <div style="text-align:center;font-size:0.75rem;color:#9ca3af;padding:8px 0">+ 9 more translations including ESV, NASB, AMP &amp; The Passion</div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Sermon Score -->
+        <div>
+          <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2563eb;margin-bottom:14px">Sermon Evaluator</div>
+          <h2 style="font-family:Georgia,serif;font-size:2rem;font-weight:800;color:#111827;margin:0 0 12px;line-height:1.2">Know your sermon score before you preach.</h2>
+          <p style="color:#6b7280;font-size:0.92rem;margin:0 0 24px;line-height:1.7">Scores across four categories out of 80 — with a Biblical Soundness badge on every evaluation.</p>
+          <div style="background:#111827;border-radius:16px;padding:24px;color:white">
+            <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#9ca3af;margin-bottom:8px">Overall Score</div>
+            <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:6px">
+              <span style="font-size:3rem;font-weight:800;line-height:1">68</span>
+              <span style="color:#9ca3af;font-size:1.1rem">/80</span>
+            </div>
+            <div style="color:#22c55e;font-weight:700;font-size:0.88rem;margin-bottom:18px">Strong — Minor Refinements</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="background:#1f2937;border-radius:8px;padding:12px 14px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:0.82rem;color:#d1d5db">Introduction</span><span style="font-weight:700;font-size:0.85rem">17/20</span></div>
+                <div style="background:#374151;border-radius:4px;height:4px"><div style="background:#3b82f6;border-radius:4px;height:4px;width:85%"></div></div>
+              </div>
+              <div style="background:#1f2937;border-radius:8px;padding:12px 14px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:0.82rem;color:#d1d5db">Body &amp; Content</span><span style="font-weight:700;font-size:0.85rem">16/20</span></div>
+                <div style="background:#374151;border-radius:4px;height:4px"><div style="background:#3b82f6;border-radius:4px;height:4px;width:80%"></div></div>
+              </div>
+              <div style="background:#1f2937;border-radius:8px;padding:12px 14px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:0.82rem;color:#d1d5db">Clarity &amp; Flow</span><span style="font-weight:700;font-size:0.85rem">15/20</span></div>
+                <div style="background:#374151;border-radius:4px;height:4px"><div style="background:#22c55e;border-radius:4px;height:4px;width:75%"></div></div>
+              </div>
+              <div style="background:#1f2937;border-radius:8px;padding:12px 14px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:0.82rem;color:#d1d5db">Closing &amp; Call</span><span style="font-weight:700;font-size:0.85rem">10/20</span></div>
+                <div style="background:#374151;border-radius:4px;height:4px"><div style="background:#f59e0b;border-radius:4px;height:4px;width:50%"></div></div>
+              </div>
+              <div style="background:#14532d;border:1px solid #22c55e;border-radius:8px;padding:12px 14px">
+                <div style="color:#22c55e;font-weight:700;font-size:0.85rem;margin-bottom:3px">&#9989; Biblically Sound</div>
+                <div style="color:#86efac;font-size:0.78rem">Gospel themes found: grace, faith, hope, salvation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <!-- PRAYER JOURNAL FEATURE CALLOUT -->
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <section style="padding:90px 0;background:#f9fafb">
+      <div class="two-col-feature" style="max-width:1100px;margin:0 auto;padding:0 24px">
+        <div style="background:#f3f4f6;border-radius:20px;padding:28px">
+          <div style="display:flex;gap:28px;margin-bottom:20px">
+            <div><div style="font-size:1.8rem;font-weight:800;color:#111827">24</div><div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:#9ca3af;font-weight:600">Total</div></div>
+            <div><div style="font-size:1.8rem;font-weight:800;color:#2563eb">16</div><div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:#9ca3af;font-weight:600">Active</div></div>
+            <div><div style="font-size:1.8rem;font-weight:800;color:#22c55e">8</div><div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:#9ca3af;font-weight:600">Answered &#10003;</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:flex-start">
+              <div><div style="font-weight:700;color:#111827;margin-bottom:3px">Sister Grace's healing</div><div style="font-size:0.8rem;color:#9ca3af">Healing &middot; Jan 15, 2024</div></div>
+              <span style="background:#dcfce7;color:#16a34a;font-size:0.75rem;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap">&#10003; Answered</span>
+            </div>
+            <div style="background:white;border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px">
+              <div style="font-weight:700;color:#111827;margin-bottom:3px">Church building fund</div>
+              <div style="font-size:0.8rem;color:#9ca3af;margin-bottom:6px">Church &middot; Active since Mar 2024</div>
+              <div style="font-style:italic;font-size:0.83rem;color:#6b7280">"For I know the plans I have for you..." — Jer 29:11</div>
+            </div>
+            <div style="background:white;border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px">
+              <div style="font-weight:700;color:#111827;margin-bottom:3px">My son's salvation</div>
+              <div style="font-size:0.8rem;color:#9ca3af">Family &middot; Active since Jan 2024</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2563eb;margin-bottom:18px">Prayer Journal</div>
+          <h2 style="font-family:Georgia,serif;font-size:2.6rem;font-weight:800;color:#111827;margin:0 0 18px;line-height:1.15">Track every prayer.<br>Celebrate every answer.</h2>
+          <p style="color:#6b7280;font-size:1rem;line-height:1.75;margin:0 0 28px">Nothing builds faith like a written record of answered prayers. Scripture Studio's prayer journal helps you log requests, mark answered prayers with the date, and watch God's faithfulness accumulate over months and years.</p>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px">
+            <li style="display:flex;align-items:center;gap:12px;font-size:0.95rem;color:#374151"><span style="font-size:1.1rem">&#128591;</span> Categorize by Personal, Family, Church, Nation, Healing</li>
+            <li style="display:flex;align-items:center;gap:12px;font-size:0.95rem;color:#374151"><span style="font-size:1.1rem">&#9989;</span> Mark prayers answered with date and testimony</li>
+            <li style="display:flex;align-items:center;gap:12px;font-size:0.95rem;color:#374151"><span style="font-size:1.1rem">&#128202;</span> Dashboard: Total, Active, and Answered prayer stats</li>
+            <li style="display:flex;align-items:center;gap:12px;font-size:0.95rem;color:#374151"><span style="font-size:1.1rem">&#128214;</span> Attach a scripture to stand on for each request</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <!-- BUILT DIFFERENT DARK SECTION -->
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <section style="padding:100px 24px;background:#0a0a0a;text-align:center">
+      <div style="max-width:800px;margin:0 auto">
+        <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#38bdf8;margin-bottom:20px">Why Scripture Studio</div>
+        <h2 style="font-family:Georgia,serif;font-size:3.4rem;font-weight:800;color:white;margin:0 0 22px;line-height:1.1">Built different.<br>For those called differently.</h2>
+        <p style="color:#9ca3af;font-size:1.05rem;line-height:1.75;max-width:560px;margin:0 auto 40px">Most apps were built by developers. Scripture Studio was built by someone who understands what ministry actually demands.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:left;margin-top:48px">
+          <div style="border:1px solid #1f2937;border-radius:14px;padding:22px">
+            <div style="font-size:1.8rem;margin-bottom:12px">&#9989;</div>
+            <div style="font-weight:700;color:white;margin-bottom:8px;font-size:0.95rem">Ministry-First Design</div>
+            <div style="color:#6b7280;font-size:0.85rem;line-height:1.6">Every feature was designed around how pastors and teachers actually work — not how developers think they do.</div>
+          </div>
+          <div style="border:1px solid #1f2937;border-radius:14px;padding:22px">
+            <div style="font-size:1.8rem;margin-bottom:12px">&#128214;</div>
+            <div style="font-weight:700;color:white;margin-bottom:8px;font-size:0.95rem">Deep Biblical Tooling</div>
+            <div style="color:#6b7280;font-size:0.85rem;line-height:1.6">Commentaries, reading plans, word studies, and Bible maps — all in one place, not scattered across six apps.</div>
+          </div>
+          <div style="border:1px solid #1f2937;border-radius:14px;padding:22px">
+            <div style="font-size:1.8rem;margin-bottom:12px">&#127908;</div>
+            <div style="font-weight:700;color:white;margin-bottom:8px;font-size:0.95rem">From Study to Pulpit</div>
+            <div style="color:#6b7280;font-size:0.85rem;line-height:1.6">Your study notes flow directly into your sermon outline. Nothing is ever lost, and nothing has to be retyped.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <!-- CTA BANNER: YOUR BEST SERMONS -->
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <section style="padding:110px 24px;background:radial-gradient(ellipse at center,#0f2044 0%,#080d1a 100%);text-align:center">
+      <div style="max-width:800px;margin:0 auto">
+        <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#38bdf8;margin-bottom:20px">Begin Today</div>
+        <h2 style="font-family:Georgia,serif;font-size:4rem;font-weight:800;color:white;margin:0 0 32px;line-height:1.1">Your best sermons<br>are still ahead of you.</h2>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <a href="https://scripturestudio.outseta.com/auth?widgetMode=register#o-anonymous" style="background:#2563eb;color:white;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:700;font-size:1rem;display:inline-block;transition:background 0.2s" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">Start Your Free Trial</a>
+          <a href="#pricing" style="background:rgba(255,255,255,0.08);color:white;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:1rem;display:inline-block;border:1px solid rgba(255,255,255,0.15)" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">View Pricing</a>
+        </div>
+        <p style="color:#6b7280;font-size:0.88rem;margin-top:18px">7-day free trial &middot; No credit card required &middot; Cancel anytime</p>
+      </div>
+    </section>
+
+    
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="section-container">
+            <div class="section-header">
+                <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:#2563eb;margin-bottom:20px">Simple Pricing</div>
+                <h2 style="font-family:Georgia,serif;font-size:3.4rem;font-weight:800;color:#111827;line-height:1.1;margin:0 0 20px">Invest in your calling.</h2>
+                <p style="color:#6b7280;font-size:1.05rem;max-width:520px;margin:0 auto;line-height:1.7">7-day free trial. Cancel anytime. No hidden fees. One subscription covers every device you own.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Foundation</h3>
+                    <div class="price">$12.99<span>/mo</span></div>
+                    <div class="annual">or $99.99/year (save 36%)</div>
+                    <ul class="pricing-features">
+                        <li><i data-lucide="check"></i> Bible Reader (13 versions)</li>
+                        <li><i data-lucide="check"></i> Basic Sermon Builder</li>
+                        <li><i data-lucide="check"></i> Study Notes & Bookmarks</li>
+                        <li><i data-lucide="check"></i> Prayer Journal</li>
+                        <li><i data-lucide="check"></i> Cross-References</li>
+                    </ul>
+                    <a href="https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=BWzLAaQE#o-anonymous" class="btn btn-secondary" target="_blank" rel="noopener">Start Free Trial</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3>Ministry</h3>
+                    <div class="price">$24.99<span>/mo</span></div>
+                    <div class="annual">or $199.99/year (save 33%)</div>
+                    <ul class="pricing-features">
+                        <li><i data-lucide="check"></i> Everything in Foundation</li>
+                        <li><i data-lucide="check"></i> Sermon Studio Generator</li>
+                        <li><i data-lucide="check"></i> Bishop's Commentary</li>
+                        <li><i data-lucide="check"></i> Word Study & Lexicon</li>
+                        <li><i data-lucide="check"></i> Illustration Library</li>
+                        <li><i data-lucide="check"></i> Ministry Calendar</li>
+                    </ul>
+                    <a href="https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=ZmNJDpm2#o-anonymous" class="btn btn-primary" target="_blank" rel="noopener">Start Free Trial</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Pastor Pro</h3>
+                    <div class="price">$49.99<span>/mo</span></div>
+                    <div class="annual">or $399.99/year (save 33%)</div>
+                    <ul class="pricing-features">
+                        <li><i data-lucide="check"></i> Everything in Ministry</li>
+                        <li><i data-lucide="check"></i> Congregation Management</li>
+                        <li><i data-lucide="check"></i> Advanced Analytics</li>
+                        <li><i data-lucide="check"></i> Bible Courses Builder</li>
+                        <li><i data-lucide="check"></i> Priority Support</li>
+                        <li><i data-lucide="check"></i> Team Collaboration</li>
+                    </ul>
+                    <a href="https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=7maerMmE#o-anonymous" class="btn btn-secondary" target="_blank" rel="noopener">Start Free Trial</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Ready to Transform Your Ministry?</h2>
+            <p>Join thousands of pastors and ministry leaders using Scripture Studio.</p>
+            <button class="btn" href="https://scripturestudio.outseta.com/auth?widgetMode=register#o-anonymous">Start Your Free 7-Day Trial</button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+
+    <!-- POLICIES -->
+    <!-- POLICY MODAL -->
+    <div id="policy-modal" style="display:none;position:fixed;inset:0;z-index:99998;background:rgba(15,23,42,0.7);backdrop-filter:blur(6px);overflow-y:auto;padding:2rem 1rem">
+        <div style="max-width:880px;margin:0 auto;background:white;border-radius:20px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.4)">
+            <!-- Modal header -->
+            <div style="background:linear-gradient(135deg,#1e3a5f,#1e40af);padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center">
+                <div>
+                    <h2 style="color:white;font-size:1.3rem;font-weight:800;margin:0">Policies &amp; Legal</h2>
+                    <p style="color:#93c5fd;font-size:0.82rem;margin:4px 0 0">Scripture Studio &mdash; Please read carefully before using the Service</p>
+                </div>
+                <button onclick="closePolicyModal()" style="background:rgba(255,255,255,0.15);border:none;border-radius:50%;width:38px;height:38px;font-size:1.4rem;cursor:pointer;color:white;line-height:38px;text-align:center;transition:background 0.2s" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">&times;</button>
+            </div>
+            <!-- Tabs -->
+            <div style="padding:0 2rem;background:#f8fafc;border-bottom:1px solid #e2e8f0">
+                <div class="policy-tabs" style="border-bottom:none;margin-bottom:0">
+                    <button class="policy-tab-btn active" onclick="switchPolicy('terms',this)">Terms of Service</button>
+                    <button class="policy-tab-btn" onclick="switchPolicy('billing',this)">Billing &amp; Subscriptions</button>
+                    <button class="policy-tab-btn" onclick="switchPolicy('refunds',this)">Refund Policy</button>
+                    <button class="policy-tab-btn" onclick="switchPolicy('privacy',this)">Privacy Policy</button>
+                    <button class="policy-tab-btn" onclick="switchPolicy('disclaimer',this)">Disclaimer</button>
+                </div>
+            </div>
+            <!-- Content -->
+            <div style="padding:2rem">
+
+                <!-- Terms -->
+                <div class="policy-panel active" id="policy-terms">
+                    <div class="policy-card">
+                        <h2>Terms of Service</h2>
+                        <p class="policy-updated">Last updated: April 2026</p>
+                        <p>By accessing or using Scripture Studio, you agree to be bound by these Terms of Service. If you do not agree, do not use the Service.</p>
+                        <h3>1. Use of Service</h3>
+                        <p>Scripture Studio is a subscription-based Bible study and sermon preparation platform for pastors, ministers, teachers, and students of the Word. You agree to use the Service solely for lawful, ministry-related purposes and not to reproduce, resell, or redistribute any content without written permission.</p>
+                        <h3>2. Account Responsibility</h3>
+                        <p>You are responsible for maintaining the confidentiality of your account credentials and for all activity under your account. Notify us immediately at support@scripturestudio.com if you suspect unauthorized access.</p>
+                        <h3>3. Intellectual Property</h3>
+                        <p>All content, features, and functionality of Scripture Studio are the exclusive property of Scripture Studio and protected by applicable copyright and intellectual property laws.</p>
+                        <h3>4. Termination</h3>
+                        <p>We reserve the right to suspend or terminate your account at our sole discretion if you violate these Terms or engage in conduct harmful to the Service or its users.</p>
+                        <h3>5. Governing Law</h3>
+                        <p>These Terms shall be governed by the laws of the State of Tennessee, without regard to conflict of law provisions.</p>
+                        <h3>6. Contact</h3>
+                        <p>Questions? Contact us at <strong>support@scripturestudio.com</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Billing -->
+                <div class="policy-panel" id="policy-billing">
+                    <div class="policy-card">
+                        <h2>Billing &amp; Subscription Policy</h2>
+                        <p class="policy-updated">Last updated: April 2026</p>
+                        <div class="policy-highlight">Your credit card will be charged automatically on a recurring basis until you cancel your subscription. There are no automatic stops &mdash; cancellation is your responsibility.</div>
+                        <h3>Recurring Billing</h3>
+                        <p>By subscribing, you authorize Scripture Studio to charge your payment method automatically at the start of each billing cycle &mdash; every 30 days for monthly plans or every 365 days for annual plans &mdash; until you cancel.</p>
+                        <h3>Billing Cycle</h3>
+                        <p>Your billing cycle begins on the date you first subscribe. Each subsequent charge occurs on the same calendar date each month. If that date does not exist in a given month, billing occurs on the last day of that month.</p>
+                        <h3>Failed Payments &amp; Account Lockout</h3>
+                        <p>If a payment fails, we will attempt to re-charge your card up to three times over seven days. You will receive an email reminder after each failed attempt. If payment is not collected, your account will be <strong>automatically locked</strong> and you will lose access to all Scripture Studio features until the outstanding balance is resolved. Your data is preserved for up to 30 days.</p>
+                        <h3>Price Changes</h3>
+                        <p>Scripture Studio reserves the right to change subscription pricing with at least 14 days notice sent to your registered email address. Continued use after a price change constitutes acceptance of the new pricing.</p>
+                        <h3>Cancellation</h3>
+                        <p>You may cancel at any time through your account settings or by contacting support. Cancellation stops future charges but does not entitle you to a refund for the current billing period unless the Refund Policy applies.</p>
+                    </div>
+                </div>
+
+                <!-- Refunds -->
+                <div class="policy-panel" id="policy-refunds">
+                    <div class="policy-card">
+                        <h2>Refund Policy</h2>
+                        <p class="policy-updated">Last updated: April 2026</p>
+                        <div class="policy-alert">No Refund After the 7-Day Window: If you do not cancel your subscription within 7 days following your 30-day billing anniversary each month, no refund will be issued for that billing period. All charges after this window are final and non-refundable.</div>
+                        <h3>30-Day Satisfaction Period</h3>
+                        <p>We offer a 30-day satisfaction period from your initial purchase date. If you are not satisfied for any reason, contact us at <strong>support@scripturestudio.com</strong> within 30 days of your original sign-up for a full refund.</p>
+                        <h3>Monthly Renewal Cancellation Window</h3>
+                        <p>After your initial 30-day period, your subscription renews monthly. To avoid being charged for the next cycle, you must cancel no later than 7 days after the start of each new 30-day billing period. Cancellations after this window take effect at the end of that billing cycle with no refund.</p>
+                        <h3>Example</h3>
+                        <p>If your billing date is the 1st of each month, your cancellation window closes on the 7th. Canceling on the 8th or later means your subscription remains active through that month with no refund.</p>
+                        <h3>Non-Refundable Circumstances</h3>
+                        <ul>
+                            <li>Cancellations made after the 7-day window each billing period</li>
+                            <li>Partial month usage after the cancellation window has passed</li>
+                            <li>Account suspensions due to Terms of Service violations</li>
+                            <li>Annual plan purchases more than 30 days after the purchase date</li>
+                        </ul>
+                        <h3>How to Request a Refund</h3>
+                        <p>Email <strong>support@scripturestudio.com</strong> with your account email, purchase date, and reason. Eligible refunds are processed within 5 to 10 business days to your original payment method.</p>
+                    </div>
+                </div>
+
+                <!-- Privacy -->
+                <div class="policy-panel" id="policy-privacy">
+                    <div class="policy-card">
+                        <h2>Privacy Policy</h2>
+                        <p class="policy-updated">Last updated: April 2026</p>
+                        <p>Scripture Studio is committed to protecting your privacy. This explains what we collect, how we use it, and how we protect it.</p>
+                        <h3>Information We Collect</h3>
+                        <ul>
+                            <li><strong>Account Information:</strong> Name, email address, and payment details provided at signup</li>
+                            <li><strong>Usage Data:</strong> Pages visited, features used, and session duration to improve the Service</li>
+                            <li><strong>User Content:</strong> Sermons, notes, and journal entries you create (stored locally on your device)</li>
+                            <li><strong>Device Information:</strong> Browser type, operating system, and IP address for security</li>
+                        </ul>
+                        <h3>How We Use Your Information</h3>
+                        <ul>
+                            <li>To create and manage your subscription account</li>
+                            <li>To process payments and send billing notifications</li>
+                            <li>To send service updates and support responses</li>
+                            <li>To improve and personalize your experience</li>
+                        </ul>
+                        <h3>We Do Not Sell Your Data</h3>
+                        <p>Scripture Studio does not sell, rent, or trade your personal information to third parties. Ever.</p>
+                        <h3>Data Security</h3>
+                        <p>We use industry-standard encryption. Payments are processed through PCI-compliant providers and we never store your full credit card number.</p>
+                        <h3>Your Rights</h3>
+                        <p>You may request access to, correction of, or deletion of your data at any time by contacting <strong>support@scripturestudio.com</strong>.</p>
+                        <h3>Cookies</h3>
+                        <p>We use essential cookies to keep you logged in and remember your preferences. No advertising or tracking cookies.</p>
+                    </div>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="policy-panel" id="policy-disclaimer">
+                    <div class="policy-card">
+                        <h2>Disclaimer</h2>
+                        <p class="policy-updated">Last updated: April 2026</p>
+                        <h3>Biblical &amp; Theological Content</h3>
+                        <p>Scripture Studio provides Bible study tools, sermon outlines, commentaries, and related content as ministry aids only. All generated content is intended to supplement &mdash; not replace &mdash; personal prayer, study, and the guidance of the Holy Spirit. Scripture Studio does not claim theological infallibility in any generated content.</p>
+                        <h3>No Professional Advice</h3>
+                        <p>Nothing within Scripture Studio constitutes professional legal, financial, medical, or counseling advice. All content is for general ministry and educational purposes only.</p>
+                        <h3>Accuracy of Bible Text</h3>
+                        <p>Bible text is retrieved from third-party APIs and provided as-is. Always verify important passages against a trusted printed Bible.</p>
+                        <h3>Service Availability</h3>
+                        <p>Scripture Studio is provided as-is and as-available. We do not guarantee uninterrupted or error-free service.</p>
+                        <h3>Limitation of Liability</h3>
+                        <p>To the fullest extent permitted by law, Scripture Studio and its founders, officers, and employees shall not be liable for any indirect, incidental, special, or consequential damages arising out of your use of the Service.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Center Modal -->
+    <div id="helpcenter-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(15,23,42,0.78);backdrop-filter:blur(6px);overflow-y:auto;padding:2rem 1rem">
+      <div style="max-width:760px;margin:0 auto;background:white;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,0.45)">
+        <div style="background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%);padding:26px 32px;display:flex;justify-content:space-between;align-items:center">
+          <div style="display:flex;align-items:center;gap:14px">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" style="width:44px;height:44px;flex-shrink:0"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.12)"/><rect x="37" y="13" width="6" height="30" rx="2" fill="#f59e0b"/><rect x="25" y="23" width="30" height="6" rx="2" fill="#f59e0b"/><path d="M 40 61 C 34 54, 17 47, 12 35 L 12 27 C 17 39, 33 47, 40 53 Z" fill="white"/><path d="M 40 61 C 46 54, 63 47, 68 35 L 68 27 C 63 39, 47 47, 40 53 Z" fill="rgba(255,255,255,0.82)"/></svg>
+            <div><h2 style="color:white;margin:0;font-size:1.35rem;font-weight:700">Help Center</h2><p style="color:#bfdbfe;margin:0;font-size:0.82rem">Scripture Studio Support &amp; Guides</p></div>
+          </div>
+          <button onclick="closeResourceModal('helpcenter')" style="background:rgba(255,255,255,0.15);border:none;border-radius:50%;width:36px;height:36px;font-size:1.3rem;cursor:pointer;color:white;display:flex;align-items:center;justify-content:center">&times;</button>
+        </div>
+        <div style="padding:20px 32px;background:#f8fafc;border-bottom:1px solid #e2e8f0">
+          <input type="text" placeholder="Search help articles, guides, FAQs..." style="width:100%;padding:10px 16px;border:1px solid #e2e8f0;border-radius:8px;font-size:0.9rem;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='#2563eb'" onblur="this.style.borderColor='#e2e8f0'">
+        </div>
+        <div style="padding:28px 32px">
+          <h3 style="color:#1e3a8a;font-size:1rem;font-weight:700;margin:0 0 16px;text-transform:uppercase;letter-spacing:0.05em">Quick Start Guides</h3>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
+            <!-- Guide: Getting Started -->
+            <div id="guide-gs" style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden">
+              <div onclick="toggleGuide('gs')" style="display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;background:white;transition:background 0.2s" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'">
+                <span style="font-size:1.3rem">&#128218;</span>
+                <div style="flex:1"><div style="font-weight:600;color:#1e293b;font-size:0.9rem">Getting Started</div><div style="color:#64748b;font-size:0.78rem">Set up your account and explore the main features in under 10 minutes.</div></div>
+                <span id="arrow-gs" style="color:#94a3b8;font-size:1.1rem;transition:transform 0.2s">&#9660;</span>
+              </div>
+              <div id="body-gs" style="display:none;padding:16px 18px;background:#f8fafc;border-top:1px solid #e2e8f0">
+                <ol style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px">
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Create your account</strong> — click Start Free Trial, choose your plan, and verify your email. Your 7-day trial begins immediately.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Open the Bible Reader</strong> — navigate to any book and chapter using the dropdowns at the top. Pick your preferred translation from the 13 available.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Start a Reading Plan</strong> — go to Reading Plans, pick a 30, 60, 90, or 365-day plan, and click Begin. Your daily passage will be tracked automatically.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Create a Sermon</strong> — open Sermon Studio, hit New Sermon, and use the Generator or blank outline to start building your message.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Explore Commentaries</strong> — load any passage to see Bishop's Commentary, Matthew Henry, and Jamieson side-by-side with live Bible text in two translations.</li>
+                </ol>
+              </div>
+            </div>
+            <!-- Guide: Bible Reader -->
+            <div id="guide-br" style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden">
+              <div onclick="toggleGuide('br')" style="display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;background:white;transition:background 0.2s" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'">
+                <span style="font-size:1.3rem">&#128214;</span>
+                <div style="flex:1"><div style="font-weight:600;color:#1e293b;font-size:0.9rem">Bible Reader</div><div style="color:#64748b;font-size:0.78rem">Compare 13 translations, navigate chapters, and read with commentaries side-by-side.</div></div>
+                <span id="arrow-br" style="color:#94a3b8;font-size:1.1rem">&#9660;</span>
+              </div>
+              <div id="body-br" style="display:none;padding:16px 18px;background:#f8fafc;border-top:1px solid #e2e8f0">
+                <ol style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px">
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Choose your translation</strong> — select from KJV, NKJV, ASV, WEB, ESV, NIV, NASB, NLT, CSB, NRSV, AMP, MSG, or TPT using the translation dropdown.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Navigate the passage</strong> — use the Book and Chapter dropdowns at the top of the reader. Bible text loads live from a real-time API.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Use previous/next arrows</strong> — move chapter by chapter without returning to the dropdowns.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Open Commentaries</strong> — go to the Commentaries page, click Current Passage, and your active chapter loads instantly with side-by-side Bible comparison.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Highlight &amp; note</strong> — open Study Notes and type your reflections on any passage. Notes are saved automatically.</li>
+                </ol>
+              </div>
+            </div>
+            <!-- Guide: Sermon Studio -->
+            <div id="guide-ss" style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden">
+              <div onclick="toggleGuide('ss')" style="display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;background:white;transition:background 0.2s" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'">
+                <span style="font-size:1.3rem">&#127908;</span>
+                <div style="flex:1"><div style="font-weight:600;color:#1e293b;font-size:0.9rem">Sermon Studio</div><div style="color:#64748b;font-size:0.78rem">Build outlines, generate sermon starters, and organize your preaching notes.</div></div>
+                <span id="arrow-ss" style="color:#94a3b8;font-size:1.1rem">&#9660;</span>
+              </div>
+              <div id="body-ss" style="display:none;padding:16px 18px;background:#f8fafc;border-top:1px solid #e2e8f0">
+                <ol style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px">
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Create a new sermon</strong> — click New Sermon in Sermon Studio. Give it a title, a key scripture reference, and an optional theme.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Use the Generator</strong> — click Sermon Studio Generator to get an AI-assisted sermon outline based on your scripture and theme. Edit any section freely.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Build your outline</strong> — add an Introduction, Main Points, and Conclusion. Use the text editor to write full manuscript notes under each point.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Add illustrations</strong> — browse the Illustration Library for stories, quotes, and examples that fit your message. Drop them into any outline point.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Save &amp; revisit</strong> — all sermons save automatically. Access past sermons from your Sermon Library at any time.</li>
+                </ol>
+              </div>
+            </div>
+            <!-- Guide: Reading Plans -->
+            <div id="guide-rp" style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden">
+              <div onclick="toggleGuide('rp')" style="display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;background:white;transition:background 0.2s" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'">
+                <span style="font-size:1.3rem">&#128336;</span>
+                <div style="flex:1"><div style="font-weight:600;color:#1e293b;font-size:0.9rem">Reading Plans</div><div style="color:#64748b;font-size:0.78rem">Start a 30, 60, 90, or 365-day plan and track your daily reading progress.</div></div>
+                <span id="arrow-rp" style="color:#94a3b8;font-size:1.1rem">&#9660;</span>
+              </div>
+              <div id="body-rp" style="display:none;padding:16px 18px;background:#f8fafc;border-top:1px solid #e2e8f0">
+                <ol style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px">
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Pick your plan</strong> — choose from 6 plans: Read Through the Bible (365 days), New Testament (90 days), Psalms &amp; Proverbs (30 days), Gospels (60 days), Epistles (30 days), or Wisdom Books (45 days).</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Begin the plan</strong> — click Begin Plan. Your starting passage appears immediately as "Today's Reading."</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Mark each day complete</strong> — after reading, click Mark Complete. The plan advances to the next day's passage automatically.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Track your streak</strong> — your progress percentage and current day are displayed on the plan card so you always know where you stand.</li>
+                  <li style="color:#374151;font-size:0.87rem;line-height:1.6"><strong>Run multiple plans</strong> — you can have more than one plan active at a time. Each tracks independently.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <h3 style="color:#1e3a8a;font-size:1rem;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:0.05em">Frequently Asked Questions</h3>
+          <div id="hc-faqs">
+            <div style="border-bottom:1px solid #f1f5f9;padding:14px 0"><div onclick="toggleFaq(this)" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer"><span style="font-weight:600;color:#1e293b;font-size:0.92rem">What Bible translations are available?</span><span style="color:#64748b;font-size:1.2rem;font-weight:300;transition:transform 0.2s">+</span></div><div style="display:none;padding-top:10px;color:#475569;font-size:0.88rem;line-height:1.7">Scripture Studio supports KJV, NKJV, ASV, WEB, ESV, NIV, NASB, NLT, CSB, NRSV, AMP, MSG, and TPT. Bible text is loaded in real time so you always have the most accurate text.</div></div>
+            <div style="border-bottom:1px solid #f1f5f9;padding:14px 0"><div onclick="toggleFaq(this)" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer"><span style="font-weight:600;color:#1e293b;font-size:0.92rem">Is my data saved automatically?</span><span style="color:#64748b;font-size:1.2rem;font-weight:300">+</span></div><div style="display:none;padding-top:10px;color:#475569;font-size:0.88rem;line-height:1.7">Yes. Sermon drafts, study notes, prayer journal entries, and reading plan progress all save automatically to your browser. Cloud sync is on the roadmap for a future update.</div></div>
+            <div style="border-bottom:1px solid #f1f5f9;padding:14px 0"><div onclick="toggleFaq(this)" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer"><span style="font-weight:600;color:#1e293b;font-size:0.92rem">How do I cancel my subscription?</span><span style="color:#64748b;font-size:1.2rem;font-weight:300">+</span></div><div style="display:none;padding-top:10px;color:#475569;font-size:0.88rem;line-height:1.7">You can cancel anytime from your account settings. If you cancel before your 7-day trial ends, you will not be charged. Please review our Refund Policy for details on post-trial cancellations.</div></div>
+            <div style="border-bottom:1px solid #f1f5f9;padding:14px 0"><div onclick="toggleFaq(this)" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer"><span style="font-weight:600;color:#1e293b;font-size:0.92rem">Can I compare two Bible translations at once?</span><span style="color:#64748b;font-size:1.2rem;font-weight:300">+</span></div><div style="display:none;padding-top:10px;color:#475569;font-size:0.88rem;line-height:1.7">Yes. The Commentaries section has a built-in side-by-side view. Select Version A and Version B from the dropdowns, load any passage, and both appear simultaneously.</div></div>
+            <div style="padding:14px 0"><div onclick="toggleFaq(this)" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer"><span style="font-weight:600;color:#1e293b;font-size:0.92rem">How do I contact support?</span><span style="color:#64748b;font-size:1.2rem;font-weight:300">+</span></div><div style="display:none;padding-top:10px;color:#475569;font-size:0.88rem;line-height:1.7">Email us anytime at <a href="mailto:support@scripturestudio.com" style="color:#2563eb;font-weight:600">support@scripturestudio.com</a>. We typically respond within one business day.</div></div>
+          </div>
+          <div style="margin-top:24px;background:#f0f9ff;border-radius:10px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <div><div style="font-weight:700;color:#1e3a8a;margin-bottom:4px">Still need help?</div><div style="color:#475569;font-size:0.85rem">Our support team is ready to assist you.</div></div>
+            <a href="mailto:support@scripturestudio.com" style="background:#1e3a8a;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.88rem;white-space:nowrap">Email Support</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Modal -->
+    <div id="blog-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(15,23,42,0.78);backdrop-filter:blur(6px);overflow-y:auto;padding:2rem 1rem">
+      <div style="max-width:800px;margin:0 auto;background:white;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,0.45)">
+        <div style="background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%);padding:26px 32px;display:flex;justify-content:space-between;align-items:center">
+          <div style="display:flex;align-items:center;gap:14px">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" style="width:44px;height:44px;flex-shrink:0"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.12)"/><rect x="37" y="13" width="6" height="30" rx="2" fill="#f59e0b"/><rect x="25" y="23" width="30" height="6" rx="2" fill="#f59e0b"/><path d="M 40 61 C 34 54, 17 47, 12 35 L 12 27 C 17 39, 33 47, 40 53 Z" fill="white"/><path d="M 40 61 C 46 54, 63 47, 68 35 L 68 27 C 63 39, 47 47, 40 53 Z" fill="rgba(255,255,255,0.82)"/></svg>
+            <div><h2 style="color:white;margin:0;font-size:1.35rem;font-weight:700">Scripture Studio Blog</h2><p style="color:#bfdbfe;margin:0;font-size:0.82rem">Ministry Insights, Sermon Prep &amp; Study Tips</p></div>
+          </div>
+          <button onclick="closeResourceModal('blog')" style="background:rgba(255,255,255,0.15);border:none;border-radius:50%;width:36px;height:36px;font-size:1.3rem;cursor:pointer;color:white;display:flex;align-items:center;justify-content:center">&times;</button>
+        </div>
+        <div style="padding:28px 32px">
+          <div style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border-radius:12px;padding:22px 24px;margin-bottom:24px;border-left:4px solid #1e3a8a">
+            <span style="background:#1e3a8a;color:white;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.05em;text-transform:uppercase">Featured</span>
+            <h3 style="color:#1e293b;font-size:1.15rem;font-weight:700;margin:10px 0 8px">From Text to Pulpit: A Modern Preacher's Workflow</h3>
+            <p style="color:#475569;font-size:0.88rem;line-height:1.7;margin:0 0 12px">Discover how pastors and teachers are using Scripture Studio to cut sermon prep time in half while going deeper into the Word than ever before. A complete workflow from first reading to final delivery.</p>
+            <div style="display:flex;align-items:center;gap:16px;font-size:0.8rem;color:#64748b;flex-wrap:wrap">
+              <span>&#128197; April 14, 2026</span>
+              <span style="background:#e0f2fe;color:#0369a1;padding:2px 8px;border-radius:10px;font-weight:600">Sermon Prep</span>
+              <span>8 min read</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <!-- Blog: 5 Ways -->
+            <div id="blog-b1" style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden">
+              <div onclick="toggleBlog('b1')" style="padding:16px;cursor:pointer;background:white;transition:background 0.2s" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='white'">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                  <div><span style="background:#dcfce7;color:#166534;font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:10px">Ministry Tips</span><h4 style="color:#1e293b;font-size:0.92rem;font-weight:700;margin:10px 0 6px">5 Ways to Deepen Your Daily Bible Study</h4><p style="color:#64748b;font-size:0.82rem;line-height:1.6;margin:0 0 8px">Small habits that lead to profound transformation in how you engage with Scripture every morning.</p><div style="font-size:0.78rem;color:#94a3b8">April 7, 2026 &middot; 5 min read</div></div>
+                  <span id="barrow-b1" style="color:#94a3b8;font-size:1rem;margin-left:12px;flex-shrink:0;margin-top:4px">&#9660;</span>
+                </div>
+              </div>
+              <div id="bbody-b1" style="display:none;padding:16px 18px;background:#f8fafc;border-top:1px solid #e2e8f0;color:#374151;font-size:0.88rem;line-height:1.75">
+                <p style="margin:0 0 12px">The most transformative preachers aren't necessarily the most gifted — they're the most disciplined. Here are five habits that will change the depth of your engagement with Scripture.</p>
+                <p style="margin:0 0 8px"><strong>1. Read before you research.</strong> Before opening a commentary or concordance, sit with the text long enough to let it ask you questions. Most preachers reach for tools before they've heard the Word itself.</p>
+                <p style="margin:0 0 8px"><strong>2. Pray the passage.</strong> Take the text's language and turn it into petition. If the passage says "The Lord is my shepherd," let that become your prayer. You'll preach what you've prayed.</p>
+                <p style="margin:0 0 8px"><strong>3. Write one sentence.</strong> Before moving to your outline, write one sentence that captures what you believe God is saying through this passage. This disciplines your thinking and sharpens your message.</p>
+                <p style="margin:0 0 8px"><strong>4. Compare translations.</strong> Reading the same passage in three translations will often unlock meaning that a single version obscures. Scripture Studio's 13-translation reader makes this effortless.</p>
+                <p style="margin:0">strong>5. Read it again tomorrow.</strong> Return to the passage the next day before you've written anything. You'll see something you missed. This second reading is often where sermons are born.</p>
+              </div>
+            </div>
+            <!-- Blog: Psalms -->
+            <div id="blog-b2" style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden">
+              <div onclick="toggleBlog('b2')" style="padding:16px;cursor:pointer;background:white;transition:background 0.2s" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='white'">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                  <div><span style="background:#fef9c3;color:#92400e;font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:10px">Scripture Study</span><h4 style="color:#1e293b;font-size:0.92rem;font-weight:700;margin:10px 0 6px">Understanding the Psalms: A Pastoral Guide</h4><p style="color:#64748b;font-size:0.82rem;line-height:1.6;margin:0 0 8px">How to read, teach, and apply the Psalms in contemporary ministry settings with clarity and depth.</p><div style="font-size:0.78rem;color:#94a3b8">March 28, 2026 &middot; 7 min read</div></div>
+                  <span id="barrow-b2" style="color:#94a3b8;font-size:1rem;margin-left:12px;flex-shrink:0;margin-top:4px">&#9660;</span>
+                </div>
+              </div>
+              <div id="bbody-b2" style="display:none;padding:16px 18px;background:#f8fafc;border-top:1px solid #e2e8f0;color:#374151;font-size:0.88rem;line-height:1.75">
+                <p style="margin:0 0 12px">The Psalms are simultaneously the most personal and the most universal book in the Bible. They give language to every human emotion — grief, rage, worship, doubt, gratitude — and they show us that God is big enough to hold all of it.</p>
+                <p style="margin:0 0 8px"><strong>Identify the Psalm type first.</strong> Is it a Psalm of lament? Praise? Wisdom? Ascent? Knowing the genre shapes how you read and teach it. Lament psalms, for example, always move toward trust even when they begin in despair.</p>
+                <p style="margin:0 0 8px"><strong>Read them aloud.</strong> The Psalms were written to be sung. Reading them aloud — even in private — recovers their rhythm and emotional weight in a way silent reading cannot.</p>
+                <p style="margin:0 0 8px"><strong>Let them teach your congregation to pray.</strong> One of the most powerful things you can do is assign a Psalm a week to your congregation and let them pray through it. Over time, you'll notice the language of the Psalms appearing in their own prayers.</p>
+                <p style="margin:0">Use Scripture Studio's Reading Plans to walk through the Psalms systematically. The 30-day Psalms &amp; Proverbs plan is a powerful foundation for any congregation's prayer life.</p>
+              </div>
+            </div>
+            <!-- Blog: Translation Comparison -->
+            <div id="blog-b3" style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden">
+              <div onclick="toggleBlog('b3')" style="padding:16px;cursor:pointer;background:white;transition:background 0.2s" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='white'">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                  <div><span style="background:#ede9fe;color:#5b21b6;font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:10px">Product Update</span><h4 style="color:#1e293b;font-size:0.92rem;font-weight:700;margin:10px 0 6px">New: Side-by-Side Translation Comparison</h4><p style="color:#64748b;font-size:0.82rem;line-height:1.6;margin:0 0 8px">Compare any two Bible translations in the Commentaries view for richer exegetical insight during study.</p><div style="font-size:0.78rem;color:#94a3b8">March 18, 2026 &middot; 3 min read</div></div>
+                  <span id="barrow-b3" style="color:#94a3b8;font-size:1rem;margin-left:12px;flex-shrink:0;margin-top:4px">&#9660;</span>
+                </div>
+              </div>
+              <div id="bbody-b3" style="display:none;padding:16px 18px;background:#f8fafc;border-top:1px solid #e2e8f0;color:#374151;font-size:0.88rem;line-height:1.75">
+                <p style="margin:0 0 12px">We just shipped one of the most-requested features since launch: side-by-side Bible translation comparison inside the Commentaries page.</p>
+                <p style="margin:0 0 8px"><strong>How it works:</strong> Open Commentaries, load any passage using the passage selector, and you'll see two translation dropdowns — Version A and Version B — above two scrollable panels. Each panel loads the live Bible text for that translation. Both fetch simultaneously so you're never waiting.</p>
+                <p style="margin:0 0 8px"><strong>Why it matters:</strong> Translation comparison is one of the most powerful tools in exegesis, and it's been historically buried behind expensive software or clunky tab-switching. Now it's right next to the commentary, so you can read what Bishop Clark, Matthew Henry, or Jamieson says about a passage while simultaneously seeing how different translators rendered it.</p>
+                <p style="margin:0">All 13 translations are available in both panels. The feature works with any passage from Genesis 1 through Revelation 22.</p>
+              </div>
+            </div>
+            <!-- Blog: Reading Plans -->
+            <div id="blog-b4" style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden">
+              <div onclick="toggleBlog('b4')" style="padding:16px;cursor:pointer;background:white;transition:background 0.2s" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='white'">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                  <div><span style="background:#dcfce7;color:#166534;font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:10px">Ministry Tips</span><h4 style="color:#1e293b;font-size:0.92rem;font-weight:700;margin:10px 0 6px">Reading Plans and Congregational Growth</h4><p style="color:#64748b;font-size:0.82rem;line-height:1.6;margin:0 0 8px">How structured reading plans build spiritual discipline and create shared language in your congregation.</p><div style="font-size:0.78rem;color:#94a3b8">March 10, 2026 &middot; 6 min read</div></div>
+                  <span id="barrow-b4" style="color:#94a3b8;font-size:1rem;margin-left:12px;flex-shrink:0;margin-top:4px">&#9660;</span>
+                </div>
+              </div>
+              <div id="bbody-b4" style="display:none;padding:16px 18px;background:#f8fafc;border-top:1px solid #e2e8f0;color:#374151;font-size:0.88rem;line-height:1.75">
+                <p style="margin:0 0 12px">One of the quietest but most powerful things a pastor can do for their congregation is give them a shared reading plan. When your people are all in the same passage, something remarkable happens to the culture of your church.</p>
+                <p style="margin:0 0 8px"><strong>Shared language emerges.</strong> When your congregation is all reading the same passage, the conversations that happen in the lobby, in small groups, and on social media begin to use the same vocabulary. The Word becomes communal.</p>
+                <p style="margin:0 0 8px"><strong>Accountability becomes natural.</strong> You don't have to engineer accountability when people are all on the same journey. The question "where are you in the plan?" becomes a natural part of church life.</p>
+                <p style="margin:0 0 8px"><strong>Your preaching is amplified.</strong> When your congregation has been in a passage all week before you preach it Sunday, they arrive prepared. They've wrestled with the text. Your sermon answers questions they've already been asking.</p>
+                <p style="margin:0">Scripture Studio includes six structured reading plans. Start one personally, then recommend it to your congregation. The results tend to compound.</p>
+              </div>
+            </div>
+          </div>
+          <div style="text-align:center;margin-top:22px"><a href="mailto:support@scripturestudio.com?subject=Blog%20Submission" style="color:#2563eb;font-size:0.85rem;font-weight:600;text-decoration:none">Have a ministry story to share? Reach out &#8594;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tutorials Modal -->
+    <div id="tutorials-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(15,23,42,0.78);backdrop-filter:blur(6px);overflow-y:auto;padding:2rem 1rem">
+      <div style="max-width:760px;margin:0 auto;background:white;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,0.45)">
+        <div style="background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%);padding:26px 32px;display:flex;justify-content:space-between;align-items:center">
+          <div style="display:flex;align-items:center;gap:14px">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" style="width:44px;height:44px;flex-shrink:0"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.12)"/><rect x="37" y="13" width="6" height="30" rx="2" fill="#f59e0b"/><rect x="25" y="23" width="30" height="6" rx="2" fill="#f59e0b"/><path d="M 40 61 C 34 54, 17 47, 12 35 L 12 27 C 17 39, 33 47, 40 53 Z" fill="white"/><path d="M 40 61 C 46 54, 63 47, 68 35 L 68 27 C 63 39, 47 47, 40 53 Z" fill="rgba(255,255,255,0.82)"/></svg>
+            <div><h2 style="color:white;margin:0;font-size:1.35rem;font-weight:700">Video Tutorials</h2><p style="color:#bfdbfe;margin:0;font-size:0.82rem">Step-by-step guides for every feature</p></div>
+          </div>
+          <button onclick="closeResourceModal('tutorials')" style="background:rgba(255,255,255,0.15);border:none;border-radius:50%;width:36px;height:36px;font-size:1.3rem;cursor:pointer;color:white;display:flex;align-items:center;justify-content:center">&times;</button>
+        </div>
+        <div style="padding:28px 32px">
+          <div style="background:#f0f9ff;border-radius:12px;padding:18px 20px;margin-bottom:24px">
+            <h3 style="color:#1e3a8a;font-size:0.9rem;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:0.05em">&#9989; Getting Started Checklist</h3>
+            <label style="display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer;font-size:0.9rem;color:#1e293b;border-bottom:1px solid #e0f2fe"><input type="checkbox" style="width:16px;height:16px;accent-color:#1e3a8a"> Create your account &amp; log in</label>
+            <label style="display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer;font-size:0.9rem;color:#1e293b;border-bottom:1px solid #e0f2fe"><input type="checkbox" style="width:16px;height:16px;accent-color:#1e3a8a"> Open the Bible reader and navigate to a passage</label>
+            <label style="display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer;font-size:0.9rem;color:#1e293b;border-bottom:1px solid #e0f2fe"><input type="checkbox" style="width:16px;height:16px;accent-color:#1e3a8a"> Start a Reading Plan</label>
+            <label style="display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer;font-size:0.9rem;color:#1e293b;border-bottom:1px solid #e0f2fe"><input type="checkbox" style="width:16px;height:16px;accent-color:#1e3a8a"> Create your first Sermon outline</label>
+            <label style="display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer;font-size:0.9rem;color:#1e293b"><input type="checkbox" style="width:16px;height:16px;accent-color:#1e3a8a"> Explore Commentaries with side-by-side Bible comparison</label>
+          </div>
+          <h3 style="color:#1e3a8a;font-size:1rem;font-weight:700;margin:0 0 16px;text-transform:uppercase;letter-spacing:0.05em">Video Walkthroughs</h3>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div onclick="openVideoDemo('Getting Started with Scripture Studio','A complete walkthrough of Scripture Studio from account setup to your first sermon outline. Covers the Bible Reader, Reading Plans, Commentaries, Sermon Builder, and Prayer Journal.','5','#1e3a8a')" style="display:flex;align-items:center;gap:16px;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='#2563eb';this.style.background='#f8fafc'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='white'"><div style="width:52px;height:52px;background:linear-gradient(135deg,#1e3a8a,#2563eb);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="color:white;font-size:1.3rem">&#9654;</span></div><div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.92rem;margin-bottom:3px">Getting Started with Scripture Studio</div><div style="color:#64748b;font-size:0.82rem">A complete tour of every feature, perfect for your first session.</div></div><div style="font-size:0.8rem;color:#94a3b8;white-space:nowrap">5 min</div></div>
+            <div onclick="openVideoDemo('Setting Up Your Reading Plan','Learn how to choose from our curated Bible reading plans, set daily reminders, track your progress chapter by chapter, and build a consistent daily reading habit that transforms your spiritual life.','3','#047857')" style="display:flex;align-items:center;gap:16px;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='#2563eb';this.style.background='#f8fafc'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='white'"><div style="width:52px;height:52px;background:linear-gradient(135deg,#047857,#10b981);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="color:white;font-size:1.3rem">&#9654;</span></div><div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.92rem;margin-bottom:3px">Setting Up Your Reading Plan</div><div style="color:#64748b;font-size:0.82rem">Choose a plan, track your progress, and build a lasting daily reading habit.</div></div><div style="font-size:0.8rem;color:#94a3b8;white-space:nowrap">3 min</div></div>
+            <div onclick="openVideoDemo('Bible Translation Comparison Tool','See how to load any Scripture passage and instantly compare 13 translations side by side — KJV, NKJV, NIV, ESV, NASB, NLT, and more. Perfect for sermon prep, Bible study, and discovering the richness of God's Word across translations.','4','#7c3aed')" style="display:flex;align-items:center;gap:16px;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='#2563eb';this.style.background='#f8fafc'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='white'"><div style="width:52px;height:52px;background:linear-gradient(135deg,#7c3aed,#a78bfa);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="color:white;font-size:1.3rem">&#9654;</span></div><div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.92rem;margin-bottom:3px">Bible Translation Comparison Tool</div><div style="color:#64748b;font-size:0.82rem">Load any passage and compare KJV, NIV, ESV, and more side by side.</div></div><div style="font-size:0.8rem;color:#94a3b8;white-space:nowrap">4 min</div></div>
+            <div onclick="openVideoDemo('Building Your First Sermon Outline','Walk through the complete Sermon Builder — entering your Scripture text, choosing a sermon type (3-Point, Narrative, Topical), developing your three points with illustrations and applications, scoring your outline, and saving it to your sermon library.','7','#b45309')" style="display:flex;align-items:center;gap:16px;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='#2563eb';this.style.background='#f8fafc'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='white'"><div style="width:52px;height:52px;background:linear-gradient(135deg,#b45309,#f59e0b);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="color:white;font-size:1.3rem">&#9654;</span></div><div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.92rem;margin-bottom:3px">Building Your First Sermon Outline</div><div style="color:#64748b;font-size:0.82rem">Use the Sermon Studio Generator to draft, structure, and refine your message.</div></div><div style="font-size:0.8rem;color:#94a3b8;white-space:nowrap">7 min</div></div>
+            <div onclick="openVideoDemo('Prayer Journal &amp; Study Notes','Discover how to log daily prayers with dates and categories, write personal Bible study notes tied to specific passages, mark prayers as answered, and build a spiritual journal that becomes a record of God's faithfulness in your life.','3','#0369a1')" style="display:flex;align-items:center;gap:16px;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='#2563eb';this.style.background='#f8fafc'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='white'"><div style="width:52px;height:52px;background:linear-gradient(135deg,#0369a1,#38bdf8);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="color:white;font-size:1.3rem">&#9654;</span></div><div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.92rem;margin-bottom:3px">Prayer Journal &amp; Study Notes</div><div style="color:#64748b;font-size:0.82rem">Keep personal reflections, prayer requests, and study insights all in one place.</div></div><div style="font-size:0.8rem;color:#94a3b8;white-space:nowrap">3 min</div></div>
+          </div>
+          <div style="margin-top:22px;text-align:center;color:#64748b;font-size:0.85rem">More tutorials coming soon. <a href="mailto:support@scripturestudio.com?subject=Tutorial%20Request" style="color:#2563eb;font-weight:600;text-decoration:none">Request a topic &#8594;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-rc-logo" style="margin-bottom:0.75rem"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" style="width:54px;height:54px"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.07)"/><circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/><line x1="40" y1="9" x2="40" y2="4" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round"/><line x1="52" y1="13" x2="57" y2="9" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round"/><line x1="28" y1="13" x2="23" y2="9" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round"/><rect x="37" y="13" width="6" height="30" rx="2" fill="#f59e0b"/><rect x="25" y="23" width="30" height="6" rx="2" fill="#f59e0b"/><circle cx="40" cy="16" r="4" fill="#fde68a" opacity="0.5"/><path d="M 40 61 C 34 54, 17 47, 12 35 L 12 27 C 17 39, 33 47, 40 53 Z" fill="rgba(255,255,255,0.92)"/><path d="M 40 61 C 46 54, 63 47, 68 35 L 68 27 C 63 39, 47 47, 40 53 Z" fill="rgba(255,255,255,0.75)"/><line x1="20" y1="38" x2="35" y2="44" stroke="rgba(147,197,253,0.55)" stroke-width="1.3" stroke-linecap="round"/><line x1="18" y1="45" x2="33" y2="50" stroke="rgba(147,197,253,0.55)" stroke-width="1.3" stroke-linecap="round"/><line x1="60" y1="38" x2="45" y2="44" stroke="rgba(147,197,253,0.55)" stroke-width="1.3" stroke-linecap="round"/><line x1="62" y1="45" x2="47" y2="50" stroke="rgba(147,197,253,0.55)" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+                <h3>Scripture Studio</h3>
+                <p>Professional Bible study and sermon preparation for modern ministry.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#why">Why Us</a>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <a href="#" onclick="openResourceModal('helpcenter');return false">Help Center</a>
+                <a href="#" onclick="openResourceModal('blog');return false">Blog</a>
+                <a href="#" onclick="openResourceModal('tutorials');return false">Tutorials</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="#" onclick="openPolicyModal('terms');return false">Terms of Service</a>
+                <a href="#" onclick="openPolicyModal('billing');return false">Billing Policy</a>
+                <a href="#" onclick="openPolicyModal('refunds');return false">Refund Policy</a>
+                <a href="#" onclick="openPolicyModal('privacy');return false">Privacy Policy</a>
+                <a href="#" onclick="openPolicyModal('disclaimer');return false">Disclaimer</a>
+                <a href="mailto:support@scripturestudio.com">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Scripture Studio. All rights reserved.</p>
+            <p style="margin-top:8px;font-size:0.78rem;opacity:0.65;font-style:italic">This website was designed, written, and created exclusively by Dr. Bishop Richard G. Clark &mdash; Pastor and Author</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+
+        function openPolicyModal(tab) {
+            var modal = document.getElementById('policy-modal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                if (tab) {
+                    var btn = document.querySelector('.policy-tab-btn[onclick*="' + tab + '"]');
+                    switchPolicy(tab, btn);
+                }
+                setTimeout(function(){ modal.scrollTop = 0; }, 10);
+            }
+        }
+        function closePolicyModal() {
+            var modal = document.getElementById('policy-modal');
+            if (modal) modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        // Close on backdrop click
+        document.addEventListener('click', function(e) {
+            var modal = document.getElementById('policy-modal');
+            if (e.target === modal) closePolicyModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePolicyModal();
+        });
+        function switchPolicy(tab, el) {
+            document.querySelectorAll('.policy-tab-btn').forEach(function(b){ b.classList.remove('active'); });
+            document.querySelectorAll('.policy-panel').forEach(function(p){ p.classList.remove('active'); });
+            if (el) el.classList.add('active');
+            var panel = document.getElementById('policy-' + tab);
+            if (panel) panel.classList.add('active');
+        }
+
+        lucide.createIcons();
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // Feature card click handler
+        function openResourceModal(name) {
+            var modal = document.getElementById(name + '-modal');
+            if (modal) { modal.style.display = 'block'; document.body.style.overflow = 'hidden'; setTimeout(function(){ modal.scrollTop = 0; }, 10); }
+        }
+        function closeResourceModal(name) {
+            var modal = document.getElementById(name + '-modal');
+            if (modal) { modal.style.display = 'none'; document.body.style.overflow = ''; }
+        }
+        ['helpcenter','blog','tutorials'].forEach(function(n){
+            document.addEventListener('click', function(e){
+                var m = document.getElementById(n+'-modal');
+                if (m && e.target === m) closeResourceModal(n);
+            });
+        });
+        function toggleGuide(id) {
+            var body = document.getElementById('body-' + id);
+            var arrow = document.getElementById('arrow-' + id);
+            if (!body) return;
+            var open = body.style.display !== 'none';
+            body.style.display = open ? 'none' : 'block';
+            if (arrow) arrow.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+        function toggleBlog(id) {
+            var body = document.getElementById('bbody-' + id);
+            var arrow = document.getElementById('barrow-' + id);
+            if (!body) return;
+            var open = body.style.display !== 'none';
+            body.style.display = open ? 'none' : 'block';
+            if (arrow) arrow.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+        function toggleFaq(el) {
+            var answer = el.nextElementSibling;
+            var arrow = el.querySelector('span:last-child');
+            if (answer.style.display === 'none') { answer.style.display = 'block'; if (arrow) arrow.textContent = '-'; }
+            else { answer.style.display = 'none'; if (arrow) arrow.textContent = '+'; }
+        }
+        function scrollToFeature(featureId) {
+            // Could link to app or show modal - for now scroll to pricing
+            document.querySelector('#pricing').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+    <script>
+    function switchHeroTab(tab, el) {
+        // Update nav items
+        var navItems = el.parentElement.querySelectorAll('.preview-nav-item');
+        navItems.forEach(function(n) { n.classList.remove('active'); });
+        el.classList.add('active');
+        // Update panels
+        var panels = document.querySelectorAll('.preview-panel');
+        panels.forEach(function(p) { p.classList.remove('active'); });
+        var target = document.getElementById('hero-panel-' + tab);
+        if (target) target.classList.add('active');
+    }
+    </script>
+
+
+    <!-- Video Demo Modal -->
+    <div id="video-demo-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.82);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:1rem" onclick="if(event.target===this)closeVideoDemo()">
+      <div style="max-width:680px;width:100%;background:white;border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.55)">
+        <div id="vdm-header" style="background:linear-gradient(135deg,#1e3a8a,#2563eb);padding:22px 28px;display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <h2 id="vdm-title" style="color:white;margin:0 0 4px;font-size:1.2rem;font-weight:700"></h2>
+            <span id="vdm-duration" style="background:rgba(255,255,255,0.2);color:white;font-size:0.75rem;padding:2px 10px;border-radius:10px;font-weight:600"></span>
+          </div>
+          <button onclick="closeVideoDemo()" style="background:rgba(255,255,255,0.15);border:none;border-radius:50%;width:34px;height:34px;font-size:1.2rem;cursor:pointer;color:white;display:flex;align-items:center;justify-content:center;flex-shrink:0">&times;</button>
+        </div>
+        <!-- Simulated video player -->
+        <div id="vdm-player" style="background:#0f0f1a;position:relative;padding-top:56.25%;overflow:hidden">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px">
+            <div id="vdm-play-ring" style="width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s" onmouseover="this.style.background='rgba(255,255,255,0.22)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'" onclick="playVideoDemo()">
+              <span id="vdm-play-icon" style="color:white;font-size:2rem;margin-left:4px">&#9654;</span>
+            </div>
+            <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin:0">Click to play preview</p>
+            <div id="vdm-progress-wrap" style="display:none;width:80%;max-width:320px">
+              <div style="background:rgba(255,255,255,0.15);border-radius:4px;height:4px;overflow:hidden;margin-bottom:8px">
+                <div id="vdm-progress-bar" style="height:100%;background:#3b82f6;width:0%;transition:width 0.5s linear;border-radius:4px"></div>
+              </div>
+              <p id="vdm-progress-text" style="color:rgba(255,255,255,0.55);font-size:0.75rem;text-align:center;margin:0">0:00</p>
+            </div>
+          </div>
+        </div>
+        <div style="padding:22px 28px">
+          <h3 style="color:#1e293b;font-size:0.9rem;font-weight:700;margin:0 0 10px;text-transform:uppercase;letter-spacing:0.04em">What You Will Learn</h3>
+          <p id="vdm-desc" style="color:#475569;line-height:1.75;font-size:0.93rem;margin:0 0 18px"></p>
+          <div style="display:flex;gap:10px">
+            <a href="https://scripturestudio.com" target="_blank" style="flex:1;background:#1e3a8a;color:white;text-align:center;padding:11px;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;display:block">Open Scripture Studio &#8594;</a>
+            <button onclick="closeVideoDemo()" style="padding:11px 18px;border:1px solid #e2e8f0;border-radius:8px;background:white;color:#64748b;font-size:0.9rem;cursor:pointer">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+        var vdmTimer = null;
+        var vdmSecs  = 0;
+        var vdmTotal = 0;
+
+        window.openVideoDemo = function(title, desc, mins, color) {
+            var modal = document.getElementById('video-demo-modal');
+            document.getElementById('vdm-title').textContent = title.replace(/&amp;/g,'&');
+            document.getElementById('vdm-desc').textContent  = desc;
+            document.getElementById('vdm-duration').textContent = mins + ' min tutorial';
+            document.getElementById('vdm-header').style.background = 'linear-gradient(135deg,' + color + ',' + color + 'cc)';
+            // Reset player
+            document.getElementById('vdm-play-ring').style.display = 'flex';
+            document.getElementById('vdm-play-icon').innerHTML = '&#9654;';
+            document.getElementById('vdm-progress-wrap').style.display = 'none';
+            document.getElementById('vdm-progress-bar').style.width = '0%';
+            document.getElementById('vdm-progress-text').textContent = '0:00';
+            if (vdmTimer) clearInterval(vdmTimer);
+            vdmSecs  = 0;
+            vdmTotal = parseInt(mins) * 60;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.playVideoDemo = function() {
+            document.getElementById('vdm-play-ring').style.display = 'none';
+            document.getElementById('vdm-progress-wrap').style.display = 'block';
+            if (vdmTimer) clearInterval(vdmTimer);
+            vdmTimer = setInterval(function() {
+                vdmSecs++;
+                var pct = Math.min(100, (vdmSecs / vdmTotal) * 100);
+                document.getElementById('vdm-progress-bar').style.width = pct + '%';
+                var m = Math.floor(vdmSecs/60);
+                var s = vdmSecs % 60;
+                document.getElementById('vdm-progress-text').textContent = m + ':' + (s<10?'0':'') + s + ' / ' + Math.floor(vdmTotal/60) + ':00';
+                if (vdmSecs >= vdmTotal) {
+                    clearInterval(vdmTimer);
+                    document.getElementById('vdm-progress-text').textContent = 'Complete!';
+                }
+            }, 1000);
+        };
+
+        window.closeVideoDemo = function() {
+            document.getElementById('video-demo-modal').style.display = 'none';
+            document.body.style.overflow = '';
+            if (vdmTimer) clearInterval(vdmTimer);
+        };
+
+        document.addEventListener('keydown', function(e){
+            if (e.key === 'Escape') window.closeVideoDemo();
+        });
+    })();
+    </script>
+
+</body>
+</html>
