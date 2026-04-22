@@ -4,7 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scripture Studio - Professional Bible Study & Sermon Preparation</title>
-    
+    <meta name="description" content="Professional Bible study and sermon preparation platform with 13 translations, AI assistance, and expert commentary from Dr. Richard G. Clark. Built for pastors, teachers, and ministry leaders.">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="Scripture Studio - Professional Bible Study & Sermon Preparation">
+    <meta property="og:description" content="Professional Bible study and sermon preparation platform with 13 translations, AI assistance, and expert commentary. Built for pastors and ministry leaders.">
+    <meta property="og:image" content="https://scripturestudio.app/author-photo.jpg">
+    <meta property="og:url" content="https://scripturestudio.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Scripture Studio">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Scripture Studio - Professional Bible Study & Sermon Preparation">
+    <meta name="twitter:description" content="Bible study and sermon prep platform with 13 translations, AI assistance, and expert commentary from Dr. Richard G. Clark.">
+    <meta name="twitter:image" content="https://scripturestudio.app/author-photo.jpg">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://scripturestudio.app/">
+
     <!-- Outseta -->
     <script>
         var o_options = {
@@ -410,60 +428,205 @@
         }
         
         /* Features Section */
+        /* ── Features Section ── */
         .features-section {
             padding: 6rem 2rem;
             background: #f8fafc;
         }
-        
-        .features-grid {
+
+        /* Hero spotlight row */
+        .features-hero {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
+            margin-bottom: 3.5rem;
         }
-        
-        .feature-card {
+
+        .feature-hero-card {
             background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 20px rgba(30,64,175,0.06);
             transition: all 0.3s;
             cursor: pointer;
-            border: 1px solid #e5e7eb;
-            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .feature-card:hover {
-            border-color: #1e40af;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.1);
+
+        .feature-hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1e40af, #3b82f6);
+            border-radius: 16px 16px 0 0;
         }
-        
-        .feature-icon {
-            width: 50px;
-            height: 50px;
+
+        .feature-hero-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(30,64,175,0.14);
+            border-color: #bfdbfe;
+        }
+
+        .feature-hero-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .feature-hero-icon i {
+            width: 28px;
+            height: 28px;
+            color: #1e40af;
+        }
+
+        .feature-hero-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 0.6rem;
+        }
+
+        .feature-hero-card p {
+            font-size: 0.88rem;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .feature-hero-badge {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #1e40af;
             background: #eff6ff;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        /* Category groups */
+        .features-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .feature-category {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+        }
+
+        .feature-category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.1rem 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .feature-category-header.blue  { background: linear-gradient(90deg,#eff6ff,#f8fafc); }
+        .feature-category-header.purple{ background: linear-gradient(90deg,#f5f3ff,#f8fafc); }
+        .feature-category-header.green { background: linear-gradient(90deg,#f0fdf4,#f8fafc); }
+        .feature-category-header.amber { background: linear-gradient(90deg,#fffbeb,#f8fafc); }
+
+        .cat-icon {
+            width: 36px;
+            height: 36px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
+            flex-shrink: 0;
         }
-        
-        .feature-icon i {
-            width: 24px;
-            height: 24px;
-            color: #1e40af;
+
+        .cat-icon.blue   { background:#dbeafe; }
+        .cat-icon.purple { background:#ede9fe; }
+        .cat-icon.green  { background:#dcfce7; }
+        .cat-icon.amber  { background:#fef3c7; }
+
+        .cat-icon i { width:18px; height:18px; }
+        .cat-icon.blue   i { color:#1e40af; }
+        .cat-icon.purple i { color:#7c3aed; }
+        .cat-icon.green  i { color:#16a34a; }
+        .cat-icon.amber  i { color:#d97706; }
+
+        .feature-category-header h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin: 0;
         }
-        
-        .feature-card h4 {
-            font-size: 1rem;
+
+        .feature-category-header span {
+            font-size: 0.78rem;
+            color: #9ca3af;
+            margin-left: auto;
+            font-weight: 500;
+        }
+
+        .feature-category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            border-right: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .feature-item:hover { background: #f8fafc; }
+
+        .feature-item-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .feature-item-icon.blue   { background:#eff6ff; }
+        .feature-item-icon.purple { background:#f5f3ff; }
+        .feature-item-icon.green  { background:#f0fdf4; }
+        .feature-item-icon.amber  { background:#fffbeb; }
+
+        .feature-item-icon i { width:15px; height:15px; }
+        .feature-item-icon.blue   i { color:#1e40af; }
+        .feature-item-icon.purple i { color:#7c3aed; }
+        .feature-item-icon.green  i { color:#16a34a; }
+        .feature-item-icon.amber  i { color:#d97706; }
+
+        .feature-item-text h5 {
+            font-size: 0.85rem;
             font-weight: 600;
             color: #1a1a2e;
-            margin-bottom: 0.5rem;
+            margin: 0 0 0.2rem;
         }
-        
-        .feature-card p {
-            font-size: 0.85rem;
-            color: #6b7280;
+
+        .feature-item-text p {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            margin: 0;
+            line-height: 1.4;
         }
         
 
@@ -678,8 +841,11 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .features-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .features-hero {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .feature-category-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .pricing-grid {
@@ -709,7 +875,10 @@
                 grid-template-columns: 1fr;
             }
             
-            .features-grid {
+            .features-hero {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .feature-category-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
@@ -929,8 +1098,11 @@
                 grid-template-columns: 1fr !important;
             }
 
-            /* Features grid → 1 col on phone */
-            .features-grid {
+            /* Features → 1 col on phone */
+            .features-hero {
+                grid-template-columns: 1fr !important;
+            }
+            .feature-category-grid {
                 grid-template-columns: 1fr !important;
             }
 
@@ -1245,7 +1417,7 @@
         <h2 style="font-family:Georgia,serif;font-size:2.8rem;font-weight:800;color:#111827;margin:0 0 14px;line-height:1.2">The Push You Needed</h2>
         <p style="font-style:italic;color:#6b7280;font-size:1.05rem;margin:0 0 48px">When God Shoves You Toward Your Destiny</p>
         <div style="display:flex;align-items:center;justify-content:center;gap:56px;flex-wrap:wrap">
-          <img src="app/cover-v2.png" alt="The Push You Needed" style="width:200px;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,0.18)">
+          <img src="app/cover-v2.jpg" alt="The Push You Needed" style="width:200px;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,0.18)">
           <div style="max-width:420px;text-align:left">
             <p style="color:#374151;font-size:1rem;line-height:1.8;margin:0 0 28px">A 125-page, 8-chapter book for anyone who needed one more push. Based on 1 Samuel 16:1 — what feels like rejection is often redirection. Richard G. Clark writes with the conviction that God's timing is never late, and your season hasn't passed.</p>
             <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
@@ -1430,123 +1602,159 @@
                 <h2>23 Powerful Features</h2>
                 <p>Everything you need for effective ministry, all in one platform.</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card" onclick="scrollToFeature('bible')">
-                    <div class="feature-icon"><i data-lucide="book-open"></i></div>
-                    <h4>Bible Reader</h4>
-                    <p>13 translations with instant switching — KJV, NIV, ESV, NLT, AMP & more</p>
+
+            <!-- Hero Spotlight: Top 4 Features -->
+            <div class="features-hero">
+                <div class="feature-hero-card" onclick="scrollToFeature('bible')">
+                    <div class="feature-hero-icon"><i data-lucide="book-open"></i></div>
+                    <h3>Bible Reader</h3>
+                    <p>13 translations with instant switching — KJV, NIV, ESV, NLT, AMP & more. Read, search, and study side by side.</p>
+                    <span class="feature-hero-badge">Core Feature</span>
                 </div>
-                <div class="feature-card" onclick="scrollToFeature('sermon')">
-                    <div class="feature-icon"><i data-lucide="file-text"></i></div>
-                    <h4>Sermon Builder</h4>
-                    <p>Rich text editor with auto-save</p>
+                <div class="feature-hero-card" onclick="scrollToFeature('sermon')">
+                    <div class="feature-hero-icon"><i data-lucide="file-text"></i></div>
+                    <h3>Sermon Builder</h3>
+                    <p>Rich text editor with auto-save, outline structure, and scripture integration. Your whole sermon in one place.</p>
+                    <span class="feature-hero-badge">Core Feature</span>
                 </div>
-                <div class="feature-card" onclick="scrollToFeature('ai-sermon')">
-                    <div class="feature-icon"><i data-lucide="sparkles"></i></div>
-                    <h4>Sermon Studio Generator</h4>
-                    <p>Structured outlines in seconds</p>
+                <div class="feature-hero-card" onclick="scrollToFeature('ai-sermon')">
+                    <div class="feature-hero-icon"><i data-lucide="sparkles"></i></div>
+                    <h3>Sermon Studio AI</h3>
+                    <p>Generate structured sermon outlines, points, and scripture suggestions in seconds. Preach with confidence.</p>
+                    <span class="feature-hero-badge">AI Powered</span>
                 </div>
-                <div class="feature-card" onclick="scrollToFeature('commentary')">
-                    <div class="feature-icon"><i data-lucide="message-circle"></i></div>
-                    <h4>Bishop's Commentary</h4>
-                    <p>Bishop Clark's expository insights</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="bookmark"></i></div>
-                    <h4>Bookmarks</h4>
-                    <p>Save & organize key verses</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="highlighter"></i></div>
-                    <h4>Highlighting</h4>
-                    <p>Color-code your studies</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="sticky-note"></i></div>
-                    <h4>Study Notes</h4>
-                    <p>Attach notes to any verse</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="git-branch"></i></div>
-                    <h4>Cross-References</h4>
-                    <p>Discover connected passages</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="search"></i></div>
-                    <h4>Word Study</h4>
-                    <p>Greek & Hebrew analysis</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="languages"></i></div>
-                    <h4>Lexicon</h4>
-                    <p>Original language definitions</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="book-copy"></i></div>
-                    <h4>Concordance</h4>
-                    <p>Find every occurrence</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="map"></i></div>
-                    <h4>Bible Maps</h4>
-                    <p>Interactive geography</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="clock"></i></div>
-                    <h4>Timeline</h4>
-                    <p>Biblical chronology</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="image"></i></div>
-                    <h4>Illustrations</h4>
-                    <p>Story & illustration library</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="heart"></i></div>
-                    <h4>Prayer Journal</h4>
-                    <p>Track prayers & answers</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="notebook"></i></div>
-                    <h4>Devotional Journal</h4>
-                    <p>Daily spiritual reflection</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="calendar"></i></div>
-                    <h4>Ministry Calendar</h4>
-                    <p>Schedule & planning</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="users"></i></div>
-                    <h4>Congregation</h4>
-                    <p>Member management</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="graduation-cap"></i></div>
-                    <h4>Bible Courses</h4>
-                    <p>Structured learning paths</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="trophy"></i></div>
-                    <h4>Reading Plans</h4>
-                    <p>Track your Bible journey</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="share-2"></i></div>
-                    <h4>Share & Export</h4>
-                    <p>Share insights & sermons</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="settings"></i></div>
-                    <h4>Settings</h4>
-                    <p>Customize your experience</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i data-lucide="help-circle"></i></div>
-                    <h4>Help Center</h4>
-                    <p>Guides & support</p>
+                <div class="feature-hero-card" onclick="scrollToFeature('commentary')">
+                    <div class="feature-hero-icon"><i data-lucide="message-circle"></i></div>
+                    <h3>Bishop's Commentary</h3>
+                    <p>Expository insights and verse-by-verse commentary from Dr. Richard G. Clark — built right into your study.</p>
+                    <span class="feature-hero-badge">Exclusive</span>
                 </div>
             </div>
+
+            <!-- Category Groups -->
+            <div class="features-categories">
+
+                <!-- Bible Study Tools -->
+                <div class="feature-category">
+                    <div class="feature-category-header blue">
+                        <div class="cat-icon blue"><i data-lucide="book-open"></i></div>
+                        <h4>Bible Study Tools</h4>
+                        <span>7 features</span>
+                    </div>
+                    <div class="feature-category-grid">
+                        <div class="feature-item" onclick="scrollToFeature('bible')">
+                            <div class="feature-item-icon blue"><i data-lucide="bookmark"></i></div>
+                            <div class="feature-item-text"><h5>Bookmarks</h5><p>Save & organize key verses</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon blue"><i data-lucide="highlighter"></i></div>
+                            <div class="feature-item-text"><h5>Highlighting</h5><p>Color-code your studies</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon blue"><i data-lucide="sticky-note"></i></div>
+                            <div class="feature-item-text"><h5>Study Notes</h5><p>Attach notes to any verse</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon blue"><i data-lucide="git-branch"></i></div>
+                            <div class="feature-item-text"><h5>Cross-References</h5><p>Discover connected passages</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon blue"><i data-lucide="search"></i></div>
+                            <div class="feature-item-text"><h5>Word Study</h5><p>Greek & Hebrew analysis</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon blue"><i data-lucide="languages"></i></div>
+                            <div class="feature-item-text"><h5>Lexicon</h5><p>Original language definitions</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon blue"><i data-lucide="book-copy"></i></div>
+                            <div class="feature-item-text"><h5>Concordance</h5><p>Find every occurrence</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sermon Preparation -->
+                <div class="feature-category">
+                    <div class="feature-category-header purple">
+                        <div class="cat-icon purple"><i data-lucide="mic"></i></div>
+                        <h4>Sermon Preparation</h4>
+                        <span>4 features</span>
+                    </div>
+                    <div class="feature-category-grid">
+                        <div class="feature-item">
+                            <div class="feature-item-icon purple"><i data-lucide="map"></i></div>
+                            <div class="feature-item-text"><h5>Bible Maps</h5><p>Interactive geography</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon purple"><i data-lucide="clock"></i></div>
+                            <div class="feature-item-text"><h5>Timeline</h5><p>Biblical chronology</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon purple"><i data-lucide="image"></i></div>
+                            <div class="feature-item-text"><h5>Illustrations</h5><p>Story & illustration library</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon purple"><i data-lucide="share-2"></i></div>
+                            <div class="feature-item-text"><h5>Share & Export</h5><p>Share insights & sermons</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Devotion -->
+                <div class="feature-category">
+                    <div class="feature-category-header green">
+                        <div class="cat-icon green"><i data-lucide="heart"></i></div>
+                        <h4>Personal Devotion</h4>
+                        <span>4 features</span>
+                    </div>
+                    <div class="feature-category-grid">
+                        <div class="feature-item">
+                            <div class="feature-item-icon green"><i data-lucide="heart"></i></div>
+                            <div class="feature-item-text"><h5>Prayer Journal</h5><p>Track prayers & answers</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon green"><i data-lucide="notebook"></i></div>
+                            <div class="feature-item-text"><h5>Devotional Journal</h5><p>Daily spiritual reflection</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon green"><i data-lucide="graduation-cap"></i></div>
+                            <div class="feature-item-text"><h5>Bible Courses</h5><p>Structured learning paths</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon green"><i data-lucide="trophy"></i></div>
+                            <div class="feature-item-text"><h5>Reading Plans</h5><p>Track your Bible journey</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ministry Management -->
+                <div class="feature-category">
+                    <div class="feature-category-header amber">
+                        <div class="cat-icon amber"><i data-lucide="users"></i></div>
+                        <h4>Ministry Management</h4>
+                        <span>4 features</span>
+                    </div>
+                    <div class="feature-category-grid">
+                        <div class="feature-item">
+                            <div class="feature-item-icon amber"><i data-lucide="calendar"></i></div>
+                            <div class="feature-item-text"><h5>Ministry Calendar</h5><p>Schedule & planning</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon amber"><i data-lucide="users"></i></div>
+                            <div class="feature-item-text"><h5>Congregation</h5><p>Member management</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon amber"><i data-lucide="settings"></i></div>
+                            <div class="feature-item-text"><h5>Settings</h5><p>Customize your experience</p></div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon amber"><i data-lucide="help-circle"></i></div>
+                            <div class="feature-item-text"><h5>Help Center</h5><p>Guides & support</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- end categories -->
         </div>
     </section>
     <!-- ══════════════════════════════════════════════════════════════════ -->
@@ -1841,7 +2049,7 @@
         <div class="section-container">
             <h2>Ready to Transform Your Ministry?</h2>
             <p>Join thousands of pastors and ministry leaders using Scripture Studio.</p>
-            <button class="btn" href="https://scripturestudio.outseta.com/auth?widgetMode=register#o-anonymous">Start Your Free 7-Day Trial</button>
+            <a href="https://scripturestudio.outseta.com/auth?widgetMode=register#o-anonymous" class="btn">Start Your Free 7-Day Trial</a>
         </div>
     </section>
     
