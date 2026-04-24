@@ -3456,48 +3456,19 @@
                 </div>
 
                 <div class="page" id="page-word-studio-1b">
-                    <!-- COSMIC AURORA HERO — WORD STUDIO 1B -->
-                    <div style="position:relative;border-radius:20px;overflow:hidden;margin-bottom:16px;min-height:260px;background:#04060e">
-                      <!-- Deep base -->
-                      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,#060c1a 0%,#04060e 100%)"></div>
-                      <!-- AURORA ORB 1 — electric cyan, top-left -->
-                      <div style="position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,255,0.45) 0%,transparent 70%);filter:blur(60px);top:-140px;left:-80px;animation:ws1bOrb1 14s ease-in-out infinite alternate"></div>
-                      <!-- AURORA ORB 2 — deep violet, top-right -->
-                      <div style="position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(130,0,255,0.4) 0%,transparent 70%);filter:blur(65px);top:-100px;right:-60px;animation:ws1bOrb2 19s ease-in-out infinite alternate-reverse"></div>
-                      <!-- AURORA ORB 3 — emerald green, bottom-left -->
-                      <div style="position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(0,210,120,0.32) 0%,transparent 70%);filter:blur(55px);bottom:-90px;left:10%;animation:ws1bOrb3 12s ease-in-out infinite alternate"></div>
-                      <!-- AURORA ORB 4 — indigo-blue, bottom-right -->
-                      <div style="position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(40,60,255,0.35) 0%,transparent 70%);filter:blur(60px);bottom:-100px;right:5%;animation:ws1bOrb4 16s ease-in-out infinite alternate-reverse"></div>
-                      <!-- AURORA ORB 5 — soft magenta accent center -->
-                      <div style="position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,0,180,0.18) 0%,transparent 70%);filter:blur(40px);top:25%;left:45%;animation:ws1bOrb1 9s ease-in-out infinite alternate-reverse"></div>
-                      <!-- FLOATING GREEK/HEBREW GLYPHS -->
-                      <div style="position:absolute;top:18px;right:28px;font-size:4.5rem;color:rgba(0,200,255,0.08);font-weight:900;letter-spacing:-0.05em;pointer-events:none;line-height:1;animation:ws1bGlyph1 8s ease-in-out infinite alternate">&#955;&#972;&#947;&#959;&#962;</div>
-                      <div style="position:absolute;bottom:12px;left:28px;font-size:3rem;color:rgba(130,0,255,0.1);font-weight:700;pointer-events:none;line-height:1;animation:ws1bGlyph2 11s ease-in-out infinite alternate-reverse">&#1513;&#1500;&#1493;&#1501;</div>
-                      <!-- Vignette -->
-                      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,0.65) 100%);pointer-events:none"></div>
-                      <!-- Subtle grid lines -->
-                      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(0,200,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none"></div>
-                      <!-- CONTENT -->
+                    <!-- WORD STUDIO 1B — CANVAS MOTION -->
+                    <div style="position:relative;overflow:hidden;margin-bottom:16px;height:280px;background:#04060e">
+                      <canvas id="studio1bCanvas" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
                       <div style="position:relative;z-index:2;padding:36px 32px">
-                        <button onclick="navigateTo('dashboard')" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);border-radius:980px;padding:6px 14px;font-size:0.74rem;font-weight:600;cursor:pointer;margin-bottom:18px;display:inline-flex;align-items:center;gap:6px;backdrop-filter:blur(8px)">&#8592; The Study</button>
-                        <div style="font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(0,200,255,0.7);margin-bottom:8px;display:flex;align-items:center;gap:8px">
-                          <span style="display:inline-block;width:20px;height:1px;background:rgba(0,200,255,0.5)"></span>Deep Word Research
-                        </div>
-                        <h2 style="font-size:2.4rem;font-weight:900;color:#fff;letter-spacing:-0.04em;margin:0 0 8px;line-height:1;text-shadow:0 2px 24px rgba(0,0,0,0.6)">Word Studio <span style="color:#00c8ff">1B</span></h2>
+                        <button onclick="navigateTo('dashboard')" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.7);border-radius:4px;padding:6px 14px;font-size:0.74rem;font-weight:600;cursor:pointer;margin-bottom:18px;display:inline-flex;align-items:center;gap:6px">&#8592; The Study</button>
+                        <div style="font-size:0.58rem;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(0,210,255,0.85);margin-bottom:8px">&#9670; Deep Word Research</div>
+                        <h2 style="font-size:2.4rem;font-weight:900;color:#fff;letter-spacing:-0.04em;margin:0 0 8px;line-height:1;text-shadow:0 0 40px rgba(0,200,255,0.4)">Word Studio <span style="color:#00c8ff">1B</span></h2>
                         <p style="font-size:0.9rem;color:rgba(255,255,255,0.5);margin:0 0 22px;max-width:480px;line-height:1.65">Look up any word &mdash; get its full definition, biblical context, original language roots, and save it to your personal word library.</p>
                         <div style="display:flex;gap:10px">
-                          <input id="wsWordInput" placeholder="Type any word: grace, covenant, redemption, sanctify..." style="flex:1;border:none;border-radius:12px;padding:13px 16px;font-size:0.9rem;color:#1d1d1f;background:rgba(255,255,255,0.95)" onkeydown="if(event.key==='Enter')wsLookup()" />
-                          <button onclick="wsLookup()" style="background:#00c8ff;color:#04060e;border:none;border-radius:12px;padding:12px 22px;font-size:0.85rem;font-weight:800;cursor:pointer;white-space:nowrap;letter-spacing:-0.01em">Look Up Word</button>
+                          <input id="wsWordInput" placeholder="Type any word: grace, covenant, redemption, sanctify..." style="flex:1;border:none;border-radius:4px;padding:13px 16px;font-size:0.9rem;color:#1d1d1f;background:rgba(255,255,255,0.95)" onkeydown="if(event.key==='Enter')wsLookup()" />
+                          <button onclick="wsLookup()" style="background:#00c8ff;color:#04060e;border:none;border-radius:4px;padding:12px 22px;font-size:0.85rem;font-weight:800;cursor:pointer;white-space:nowrap">Look Up Word</button>
                         </div>
                       </div>
-                      <style>
-                        @keyframes ws1bOrb1{0%{transform:translate(0,0) scale(1)}100%{transform:translate(45px,30px) scale(1.15)}}
-                        @keyframes ws1bOrb2{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-35px,45px) scale(1.1)}}
-                        @keyframes ws1bOrb3{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,-30px) scale(1.2)}}
-                        @keyframes ws1bOrb4{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-25px,-35px) scale(1.12)}}
-                        @keyframes ws1bGlyph1{0%{opacity:0.6;transform:translateY(0)}100%{opacity:1;transform:translateY(-8px)}}
-                        @keyframes ws1bGlyph2{0%{opacity:0.7;transform:translateY(0)}100%{opacity:1;transform:translateY(6px)}}
-                      </style>
                     </div>
                     <div class="panel">
                         <div class="panel-body">
@@ -3630,61 +3601,18 @@
 
                 <!-- SERMON STUDIO 1A -->
                 <div class="page" id="page-sermon-studio-1a">
-                    <!-- CINEMATIC AURORA HERO — STUDIO 1A -->
-                    <div style="position:relative;border-radius:20px;overflow:hidden;margin-bottom:20px;min-height:240px;background:#060608">
-                      <!-- Deep base -->
-                      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,#0d0610 0%,#060608 100%)"></div>
-                      <!-- AURORA ORB 1 — deep crimson, top-left drift -->
-                      <div style="position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(220,30,30,0.55) 0%,transparent 70%);filter:blur(55px);top:-160px;left:-100px;animation:ss1aOrb1 13s ease-in-out infinite alternate"></div>
-                      <!-- AURORA ORB 2 — electric blue, top-right -->
-                      <div style="position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(0,90,255,0.5) 0%,transparent 70%);filter:blur(65px);top:-120px;right:-80px;animation:ss1aOrb2 17s ease-in-out infinite alternate-reverse"></div>
-                      <!-- AURORA ORB 3 — amber gold, bottom-center -->
-                      <div style="position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,155,0,0.38) 0%,transparent 70%);filter:blur(50px);bottom:-100px;left:35%;animation:ss1aOrb3 11s ease-in-out infinite alternate"></div>
-                      <!-- AURORA ORB 4 — violet accent, bottom-right -->
-                      <div style="position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(160,0,255,0.3) 0%,transparent 70%);filter:blur(45px);bottom:-60px;right:8%;animation:ss1aOrb4 20s ease-in-out infinite alternate-reverse"></div>
-                      <!-- AURORA ORB 5 — warm white center bloom -->
-                      <div style="position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,220,180,0.12) 0%,transparent 70%);filter:blur(30px);top:20%;left:40%;animation:ss1aOrb3 8s ease-in-out infinite alternate-reverse"></div>
-                      <!-- SCANLINE overlay — cinematic film grain feel -->
-                      <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.12) 3px,rgba(0,0,0,0.12) 4px);pointer-events:none"></div>
-                      <!-- Vignette edges -->
-                      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,0.6) 100%);pointer-events:none"></div>
-                      <!-- AUDIO METER BARS — bottom right -->
-                      <div style="position:absolute;bottom:18px;right:24px;display:flex;align-items:flex-end;gap:3px;opacity:0.55">
-                        <div style="width:4px;background:#ff3b30;border-radius:2px 2px 0 0;animation:ss1aM1 0.55s ease-in-out infinite alternate"></div>
-                        <div style="width:4px;background:#ff9f0a;border-radius:2px 2px 0 0;animation:ss1aM2 0.75s ease-in-out infinite alternate"></div>
-                        <div style="width:4px;background:#30d158;border-radius:2px 2px 0 0;animation:ss1aM3 0.48s ease-in-out infinite alternate"></div>
-                        <div style="width:4px;background:#30d158;border-radius:2px 2px 0 0;animation:ss1aM4 0.9s ease-in-out infinite alternate"></div>
-                        <div style="width:4px;background:#0ea5e9;border-radius:2px 2px 0 0;animation:ss1aM2 0.65s ease-in-out infinite alternate"></div>
-                        <div style="width:4px;background:#30d158;border-radius:2px 2px 0 0;animation:ss1aM1 1.1s ease-in-out infinite alternate"></div>
-                        <div style="width:4px;background:#ff9f0a;border-radius:2px 2px 0 0;animation:ss1aM3 0.42s ease-in-out infinite alternate"></div>
-                        <div style="width:4px;background:#ff3b30;border-radius:2px 2px 0 0;animation:ss1aM4 0.7s ease-in-out infinite alternate"></div>
-                        <div style="width:4px;background:#30d158;border-radius:2px 2px 0 0;animation:ss1aM2 0.58s ease-in-out infinite alternate"></div>
-                        <div style="width:4px;background:#0ea5e9;border-radius:2px 2px 0 0;animation:ss1aM1 0.83s ease-in-out infinite alternate"></div>
-                        <div style="width:4px;background:#30d158;border-radius:2px 2px 0 0;animation:ss1aM3 0.5s ease-in-out infinite alternate"></div>
-                        <div style="width:4px;background:#ff9f0a;border-radius:2px 2px 0 0;animation:ss1aM4 0.95s ease-in-out infinite alternate"></div>
-                      </div>
-                      <span style="position:absolute;bottom:22px;right:122px;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.3);text-transform:uppercase">Level</span>
-                      <!-- CONTENT -->
+                    <!-- CANVAS MOTION HERO — STUDIO 1A -->
+                    <div style="position:relative;overflow:hidden;margin-bottom:20px;height:280px;background:#060608">
+                      <canvas id="studio1aCanvas" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
                       <div style="position:relative;z-index:2;padding:36px 32px">
-                        <button onclick="navigateTo('dashboard')" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.65);border-radius:980px;padding:6px 14px;font-size:0.74rem;font-weight:600;cursor:pointer;margin-bottom:20px;display:inline-flex;align-items:center;gap:6px;backdrop-filter:blur(8px)">&#8592; The Study</button>
+                        <button onclick="navigateTo('dashboard')" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.7);border-radius:4px;padding:6px 14px;font-size:0.74rem;font-weight:600;cursor:pointer;margin-bottom:20px;display:inline-flex;align-items:center;gap:6px">&#8592; The Study</button>
                         <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-                          <div style="width:9px;height:9px;background:#ff3b30;border-radius:50%;animation:ss1aPulse 1.4s ease-in-out infinite;box-shadow:0 0 12px rgba(255,59,48,0.8)"></div>
-                          <span style="font-size:0.58rem;font-weight:800;letter-spacing:0.22em;color:rgba(255,120,100,0.85);text-transform:uppercase">On Air &nbsp;·&nbsp; Sermon Studio</span>
+                          <div id="onAirDot" style="width:9px;height:9px;background:#ff3b30;border-radius:2px;box-shadow:0 0 12px rgba(255,59,48,0.9)"></div>
+                          <span style="font-size:0.58rem;font-weight:800;letter-spacing:0.22em;color:rgba(255,120,100,0.9);text-transform:uppercase">On Air &nbsp;·&nbsp; Sermon Studio</span>
                         </div>
-                        <h2 style="font-size:2.4rem;font-weight:900;color:#fff;letter-spacing:-0.04em;margin:0 0 8px;line-height:1;text-shadow:0 2px 20px rgba(0,0,0,0.5)">Studio <span style="color:#ff6b4a">1A</span></h2>
+                        <h2 style="font-size:2.4rem;font-weight:900;color:#fff;letter-spacing:-0.04em;margin:0 0 8px;line-height:1;text-shadow:0 0 40px rgba(255,80,40,0.5)">Studio <span style="color:#ff6b4a">1A</span></h2>
                         <p style="font-size:0.9rem;color:rgba(255,255,255,0.5);margin:0;max-width:460px;line-height:1.65">Schedule your sermons in advance &mdash; the current week&rsquo;s message loads automatically every Monday for your congregation.</p>
                       </div>
-                      <style>
-                        @keyframes ss1aOrb1{0%{transform:translate(0,0) scale(1)}100%{transform:translate(50px,35px) scale(1.18)}}
-                        @keyframes ss1aOrb2{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-40px,50px) scale(1.12)}}
-                        @keyframes ss1aOrb3{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-35px,-25px) scale(1.22)}}
-                        @keyframes ss1aOrb4{0%{transform:translate(0,0) scale(1)}100%{transform:translate(25px,-40px) scale(1.08)}}
-                        @keyframes ss1aPulse{0%,100%{opacity:1;box-shadow:0 0 12px rgba(255,59,48,0.9),0 0 28px rgba(255,59,48,0.4)}50%{opacity:0.35;box-shadow:0 0 4px rgba(255,59,48,0.4)}}
-                        @keyframes ss1aM1{0%{height:10px}100%{height:38px}}
-                        @keyframes ss1aM2{0%{height:22px}100%{height:50px}}
-                        @keyframes ss1aM3{0%{height:32px}100%{height:14px}}
-                        @keyframes ss1aM4{0%{height:6px}100%{height:46px}}
-                      </style>
                     </div>
                     <div class="panel" style="border-radius:16px">
                         <div class="panel-body">
@@ -3858,8 +3786,8 @@
                 'personal-diary':       function() { _diaryScriptIdx = new Date().getDate() % DIARY_SCRIPTURES.length; renderDiaryScripture(); loadDiary('all'); },
                 'homegoing-builder':    function() { loadHomegoingSection('message', document.querySelector('.hg-tab')); },
                 'commentaries':         function() { populateCommentaryBooks(); setTimeout(function(){ var ref = AppState.currentBook + ' ' + AppState.currentChapter; if(ref.trim() !== '') { loadCommentaryBibleText(ref); loadCommentary('bishops', document.querySelector('.commentary-tab.active')); } }, 80); },
-                'development-studio':   function() { loadDevStudio('templates', document.querySelector('.dev-tab')); },'group-study': function() { setTimeout(function(){ var t=document.querySelector('.gs-tab'); if(t) t.classList.add('active'); loadGroupStudy('create', null); }, 50); },'word-studio-1b': function() { wsLoadSavedWords(); },
-                'sermon-studio-1a': function() { ss1aRender(); },
+                'development-studio':   function() { loadDevStudio('templates', document.querySelector('.dev-tab')); },'group-study': function() { setTimeout(function(){ var t=document.querySelector('.gs-tab'); if(t) t.classList.add('active'); loadGroupStudy('create', null); }, 50); },'word-studio-1b': function() { wsLoadSavedWords(); setTimeout(initStudio1BCanvas,80); },
+                'sermon-studio-1a': function() { ss1aRender(); setTimeout(initStudio1ACanvas,80); },
                 'book-society':     function() { bsRender(); },
                 'reading-room':     function() { rrRender(); },
                 'lexicon':              function() { searchLexicon(); },
@@ -3887,6 +3815,175 @@
         function toggleSidebar() {
             const s = document.querySelector('.sidebar');
             s.style.transform = s.style.transform === 'translateX(-100%)' ? 'translateX(0)' : 'translateX(-100%)';
+        }
+
+        // ============================================================
+        // STUDIO CANVAS ANIMATIONS
+        // ============================================================
+        var _s1aRaf = null;
+        function initStudio1ACanvas() {
+            var canvas = document.getElementById('studio1aCanvas');
+            if (!canvas) return;
+            canvas.width  = canvas.offsetWidth  || canvas.parentElement.offsetWidth;
+            canvas.height = canvas.offsetHeight || 280;
+            var ctx = canvas.getContext('2d');
+            var W = canvas.width, H = canvas.height;
+            if (_s1aRaf) { cancelAnimationFrame(_s1aRaf); _s1aRaf = null; }
+            var t = 0;
+            // 5 sweeping light beams — each has a pivot and swing speed
+            var beams = [
+                {px:0.12, swing:0.18, speed:0.55, r:230,g:40,b:30,  w:70},
+                {px:0.30, swing:0.22, speed:0.38, r:255,g:130,b:0,  w:55},
+                {px:0.50, swing:0.16, speed:0.65, r:50, g:90, b:255,w:65},
+                {px:0.70, swing:0.20, speed:0.44, r:170,g:0,  b:255,w:50},
+                {px:0.88, swing:0.14, speed:0.58, r:230,g:40,b:30,  w:60}
+            ];
+            // ON AIR dot pulse
+            var dot = document.getElementById('onAirDot');
+            function drawFrame() {
+                W = canvas.width; H = canvas.height;
+                // Black base
+                ctx.fillStyle = '#060406';
+                ctx.fillRect(0,0,W,H);
+                // Draw each sweeping beam
+                beams.forEach(function(b,i) {
+                    var cx = b.px * W + Math.sin(t * b.speed + i) * b.swing * W;
+                    var topW = b.w * 0.15;
+                    var botW = b.w;
+                    var grad = ctx.createLinearGradient(cx, 0, cx, H);
+                    grad.addColorStop(0,   'rgba('+b.r+','+b.g+','+b.b+',0.85)');
+                    grad.addColorStop(0.3, 'rgba('+b.r+','+b.g+','+b.b+',0.35)');
+                    grad.addColorStop(1,   'rgba('+b.r+','+b.g+','+b.b+',0.0)');
+                    ctx.beginPath();
+                    ctx.moveTo(cx - topW, 0);
+                    ctx.lineTo(cx + topW, 0);
+                    ctx.lineTo(cx + botW, H);
+                    ctx.lineTo(cx - botW, H);
+                    ctx.closePath();
+                    ctx.fillStyle = grad;
+                    ctx.fill();
+                });
+                // Floor glow strip
+                var fg = ctx.createLinearGradient(0, H*0.78, 0, H);
+                fg.addColorStop(0, 'rgba(230,40,30,0)');
+                fg.addColorStop(1, 'rgba(230,40,30,0.12)');
+                ctx.fillStyle = fg;
+                ctx.fillRect(0, H*0.78, W, H*0.22);
+                // Scanlines
+                for (var y=0; y<H; y+=4) {
+                    ctx.fillStyle='rgba(0,0,0,0.18)';
+                    ctx.fillRect(0,y,W,1);
+                }
+                // Audio meter bars (right side)
+                var bCount=28, bW=4, bGap=4, totalBW=bCount*(bW+bGap);
+                var sx=W-totalBW-16;
+                for (var i=0;i<bCount;i++) {
+                    var bh=Math.max(4, (Math.sin(t*9+i*0.9)*0.5+Math.sin(t*6+i*1.5)*0.3+0.5)*55+4);
+                    var col = i<9?'rgba(48,209,88,0.75)':i<20?'rgba(255,159,10,0.75)':'rgba(255,59,48,0.75)';
+                    ctx.fillStyle=col;
+                    ctx.fillRect(sx+i*(bW+bGap), H-14-bh, bW, bh);
+                }
+                ctx.fillStyle='rgba(255,255,255,0.25)';
+                ctx.font='bold 8px sans-serif';
+                ctx.fillText('LEVEL',sx-36,H-10);
+                // Vignette
+                var vig=ctx.createRadialGradient(W/2,H/2,W*0.25,W/2,H/2,W*0.75);
+                vig.addColorStop(0,'rgba(0,0,0,0)');
+                vig.addColorStop(1,'rgba(0,0,0,0.55)');
+                ctx.fillStyle=vig;
+                ctx.fillRect(0,0,W,H);
+                // ON AIR dot pulse via opacity
+                if (dot) dot.style.opacity = 0.3+0.7*Math.abs(Math.sin(t*2.2));
+                t += 0.022;
+                _s1aRaf = requestAnimationFrame(drawFrame);
+            }
+            drawFrame();
+        }
+
+        var _s1bRaf = null;
+        function initStudio1BCanvas() {
+            var canvas = document.getElementById('studio1bCanvas');
+            if (!canvas) return;
+            canvas.width  = canvas.offsetWidth  || canvas.parentElement.offsetWidth;
+            canvas.height = canvas.offsetHeight || 280;
+            var ctx = canvas.getContext('2d');
+            var W = canvas.width, H = canvas.height;
+            if (_s1bRaf) { cancelAnimationFrame(_s1bRaf); _s1bRaf = null; }
+            // Particle network
+            var COUNT = 70;
+            var glyphs = ['α','β','λ','Ω','θ','φ','ψ','ש','ל','מ','נ','ר'];
+            var pts = [];
+            for (var i=0;i<COUNT;i++) {
+                pts.push({
+                    x: Math.random()*W, y: Math.random()*H,
+                    vx:(Math.random()-0.5)*0.7, vy:(Math.random()-0.5)*0.7,
+                    r: Math.random()*2.2+0.8,
+                    glyph: Math.random()<0.12 ? glyphs[Math.floor(Math.random()*glyphs.length)] : null,
+                    hue: Math.random()<0.5 ? '0,200,255' : '160,0,255'
+                });
+            }
+            var t=0;
+            function drawFrame() {
+                W = canvas.width; H = canvas.height;
+                // Trailing fade (gives motion blur feel)
+                ctx.fillStyle='rgba(4,6,14,0.22)';
+                ctx.fillRect(0,0,W,H);
+                // Subtle colour wash
+                var wash=ctx.createRadialGradient(W*0.3+Math.sin(t*0.3)*W*0.1, H*0.5, 10, W*0.5, H*0.5, W*0.7);
+                wash.addColorStop(0,'rgba(0,150,255,0.04)');
+                wash.addColorStop(0.5,'rgba(120,0,255,0.03)');
+                wash.addColorStop(1,'rgba(0,200,100,0.02)');
+                ctx.fillStyle=wash;
+                ctx.fillRect(0,0,W,H);
+                // Move + wrap particles
+                pts.forEach(function(p){
+                    p.x+=p.vx; p.y+=p.vy;
+                    if(p.x<-10) p.x=W+10;
+                    if(p.x>W+10) p.x=-10;
+                    if(p.y<-10) p.y=H+10;
+                    if(p.y>H+10) p.y=-10;
+                });
+                // Draw connections
+                for(var i=0;i<COUNT;i++){
+                    for(var j=i+1;j<COUNT;j++){
+                        var dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
+                        var d=Math.sqrt(dx*dx+dy*dy);
+                        if(d<130){
+                            ctx.beginPath();
+                            ctx.moveTo(pts[i].x,pts[i].y);
+                            ctx.lineTo(pts[j].x,pts[j].y);
+                            var alpha=(1-d/130)*0.45;
+                            ctx.strokeStyle='rgba(0,200,255,'+alpha+')';
+                            ctx.lineWidth=0.6;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                // Draw particles + glyphs
+                pts.forEach(function(p){
+                    ctx.beginPath();
+                    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+                    ctx.fillStyle='rgba('+p.hue+',0.9)';
+                    ctx.shadowColor='rgba('+p.hue+',0.8)';
+                    ctx.shadowBlur=8;
+                    ctx.fill();
+                    ctx.shadowBlur=0;
+                    if(p.glyph){
+                        ctx.fillStyle='rgba(0,200,255,0.35)';
+                        ctx.font='13px serif';
+                        ctx.fillText(p.glyph,p.x+5,p.y-5);
+                    }
+                });
+                // Vignette
+                var vig=ctx.createRadialGradient(W/2,H/2,W*0.2,W/2,H/2,W*0.75);
+                vig.addColorStop(0,'rgba(0,0,0,0)');
+                vig.addColorStop(1,'rgba(0,0,10,0.65)');
+                ctx.fillStyle=vig;
+                ctx.fillRect(0,0,W,H);
+                t+=0.018;
+                _s1bRaf=requestAnimationFrame(drawFrame);
+            }
+            drawFrame();
         }
 
         // ============================================================
@@ -5301,19 +5398,31 @@
             var el = document.getElementById('dash-weather-text');
             if (!el) return;
             if (_weatherLoaded) return;
-            fetch('https://wttr.in/?format=3&lang=en')
+            // Use wttr.in plain text format — if response looks like HTML, bail
+            fetch('https://wttr.in/?format=%l:+%c+%t&lang=en', {headers:{Accept:'text/plain'}})
                 .then(function(r){ return r.text(); })
                 .then(function(txt){
-                    if (!txt || txt.length < 3) { el.textContent = '&#9728; Weather unavailable'; return; }
-                    // wttr.in format=3 → "City: ⛅ +72°F"
-                    var clean = txt.trim();
+                    var clean = (txt || '').trim();
+                    // Reject HTML responses (wttr.in returns full page when format fails)
+                    if (!clean || clean.length > 120 || clean.indexOf('<') !== -1) {
+                        var el2 = document.getElementById('dash-weather-text');
+                        if (el2) el2.textContent = dashGreeting();
+                        return;
+                    }
                     var el2 = document.getElementById('dash-weather-text');
                     if (el2) { el2.textContent = clean; _weatherLoaded = true; }
                 })
                 .catch(function(){
                     var el2 = document.getElementById('dash-weather-text');
-                    if (el2) el2.textContent = '☀ Weather unavailable';
+                    if (el2) el2.textContent = dashGreeting();
                 });
+        }
+
+        function dashGreeting() {
+            var h = new Date().getHours();
+            if (h < 12) return '🌅 Good morning, Pastor';
+            if (h < 17) return '☀️ Good afternoon, Pastor';
+            return '🌙 Good evening, Pastor';
         }
 
         function loadDashboard() {
