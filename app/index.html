@@ -1864,7 +1864,7 @@
                     </div>
                     <div class="nav-item" data-page="maps">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
-                        <span>Bible Maps</span>
+                        <span>Biblical Lands</span>
                     </div>
                     <div class="nav-item" data-page="timeline">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -1985,7 +1985,7 @@
                     </div>
                     <div class="nav-item" data-page="congregation">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                        <span>Congregation</span>
+                        <span>My Flock</span>
                     </div>
                     <div class="nav-item" data-page="settings">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
@@ -2050,106 +2050,137 @@
             <div class="content-area">
                 <!-- Dashboard Page -->
                 <div class="page active" id="page-dashboard">
-                    <div class="dashboard-grid">
-                        <div class="stat-card">
-                            <div class="stat-card-header">
-                                <div class="stat-card-icon blue">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                                </div>
-                            </div>
-                            <div class="stat-value" id="statChapters">0</div>
-                            <div class="stat-label">Chapters Read</div>
+
+                    <!-- VERSE OF THE DAY HERO -->
+                    <div id="dash-votd" style="background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 50%,#0f172a 100%);border-radius:16px;padding:28px 32px;margin-bottom:20px;position:relative;overflow:hidden">
+                      <div style="position:absolute;inset:0;background:repeating-linear-gradient(120deg,transparent,transparent 80px,rgba(99,102,241,0.04) 80px,rgba(99,102,241,0.04) 81px);pointer-events:none"></div>
+                      <div style="position:relative;z-index:1">
+                        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px">
+                          <div>
+                            <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:#818cf8;margin-bottom:4px">&#10024; Verse of the Day</div>
+                            <div id="dash-date" style="font-size:0.85rem;color:rgba(255,255,255,0.45)"></div>
+                          </div>
+                          <button onclick="nextVotd()" style="background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);color:#a5b4fc;font-size:0.75rem;font-weight:600;padding:6px 14px;border-radius:20px;cursor:pointer">Next Verse &#8594;</button>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-card-header">
-                                <div class="stat-card-icon green">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                </div>
-                            </div>
-                            <div class="stat-value" id="statStreak">0</div>
-                            <div class="stat-label">Day Streak</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-card-header">
-                                <div class="stat-card-icon purple">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                </div>
-                            </div>
-                            <div class="stat-value" id="statSermons">0</div>
-                            <div class="stat-label">Sermons</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-card-header">
-                                <div class="stat-card-icon orange">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
-                                </div>
-                            </div>
-                            <div class="stat-value" id="statPrayers">0</div>
-                            <div class="stat-label">Prayer Entries</div>
-                        </div>
+                        <blockquote id="dash-verse-text" style="font-family:Georgia,serif;font-size:1.35rem;font-style:italic;color:#f1f5f9;line-height:1.7;margin:0 0 10px;border-left:3px solid #6366f1;padding-left:18px"></blockquote>
+                        <div id="dash-verse-ref" style="font-size:0.82rem;font-weight:700;color:#818cf8;letter-spacing:0.04em"></div>
+                      </div>
                     </div>
 
-                    <div class="grid-2">
-                        <div class="panel">
-                            <div class="panel-header">
-                                <h3 class="panel-title">Quick Actions</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="quick-actions">
-                                    <div class="quick-action-btn" onclick="navigateTo('bible-reader')">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                                        <span>Read Bible</span>
-                                    </div>
-                                    <div class="quick-action-btn" onclick="navigateTo('sermon-builder')">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                        <span>New Sermon</span>
-                                    </div>
-                                    <div class="quick-action-btn" onclick="navigateTo('prayer-journal')">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
-                                        <span>Prayer</span>
-                                    </div>
-                                    <div class="quick-action-btn" onclick="navigateTo('ai-sermon')">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4z"></path><path d="M12 18.5V22"></path></svg>
-                                        <span>AI Sermon</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel">
-                            <div class="panel-header">
-                                <h3 class="panel-title">Recent Activity</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="recentActivity">
-                                    <div class="empty-state">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                        <h3>No Recent Activity</h3>
-                                        <p>Start reading or creating to see your activity here</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- COMMAND BAR -->
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+                      <button onclick="navigateTo('bible-reader')" style="flex:1;min-width:120px;background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;border:none;border-radius:10px;padding:13px 16px;font-size:0.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(37,99,235,0.35)">&#128214; Open Bible</button>
+                      <button onclick="navigateTo('sermon-builder')" style="flex:1;min-width:120px;background:linear-gradient(135deg,#7c3aed,#8b5cf6);color:#fff;border:none;border-radius:10px;padding:13px 16px;font-size:0.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(124,58,237,0.35)">&#9997;&#65039; Build Sermon</button>
+                      <button onclick="navigateTo('prayer-journal')" style="flex:1;min-width:120px;background:linear-gradient(135deg,#be123c,#e11d48);color:#fff;border:none;border-radius:10px;padding:13px 16px;font-size:0.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(190,18,60,0.35)">&#10084;&#65039; Prayer Journal</button>
+                      <button onclick="navigateTo('ai-sermon')" style="flex:1;min-width:120px;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border:none;border-radius:10px;padding:13px 16px;font-size:0.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(14,165,233,0.35)">&#127775; AI Sermon Studio</button>
+                      <button onclick="navigateTo('word-study')" style="flex:1;min-width:120px;background:linear-gradient(135deg,#065f46,#059669);color:#fff;border:none;border-radius:10px;padding:13px 16px;font-size:0.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(5,150,105,0.35)">&#128220; Word Study</button>
+                      <button onclick="navigateTo('personal-diary')" style="flex:1;min-width:120px;background:linear-gradient(135deg,#92400e,#d97706);color:#fff;border:none;border-radius:10px;padding:13px 16px;font-size:0.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(217,119,6,0.35)">&#128214; My Diary</button>
                     </div>
 
-                    <div class="panel">
-                        <div class="panel-header">
-                            <h3 class="panel-title">Today\'s Reading</h3>
-                            <button class="btn btn-primary btn-sm" onclick="navigateTo('reading-plans')">View Plans</button>
-                        </div>
-                        <div class="panel-body">
-                            <div class="reading-plan-card">
-                                <h3>Bible in a Year</h3>
-                                <p>Day 1 of 365</p>
-                                <div class="reading-plan-progress">
-                                    <div class="reading-plan-progress-bar" style="width: 0.3%"></div>
-                                </div>
-                                <div class="today-reading">
-                                    <strong>Today\'s Reading:</strong> Genesis 1-3, Psalm 1
-                                </div>
-                            </div>
-                        </div>
+                    <!-- STATS ROW -->
+                    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px">
+                      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;border-top:3px solid #3b82f6">
+                        <div style="font-size:0.68rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Chapters Read</div>
+                        <div class="stat-value" id="statChapters" style="font-size:2rem;font-weight:800;color:#1e40af;line-height:1">0</div>
+                        <div style="font-size:0.72rem;color:#64748b;margin-top:4px">Bible chapters completed</div>
+                      </div>
+                      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;border-top:3px solid #10b981">
+                        <div style="font-size:0.68rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Day Streak</div>
+                        <div class="stat-value" id="statStreak" style="font-size:2rem;font-weight:800;color:#065f46;line-height:1">0</div>
+                        <div style="font-size:0.72rem;color:#64748b;margin-top:4px">Consecutive days active</div>
+                      </div>
+                      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;border-top:3px solid #8b5cf6">
+                        <div style="font-size:0.68rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Sermons Built</div>
+                        <div class="stat-value" id="statSermons" style="font-size:2rem;font-weight:800;color:#6d28d9;line-height:1">0</div>
+                        <div style="font-size:0.72rem;color:#64748b;margin-top:4px">Sermons created</div>
+                      </div>
+                      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;border-top:3px solid #f59e0b">
+                        <div style="font-size:0.68rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px">Prayer Entries</div>
+                        <div class="stat-value" id="statPrayers" style="font-size:2rem;font-weight:800;color:#92400e;line-height:1">0</div>
+                        <div style="font-size:0.72rem;color:#64748b;margin-top:4px">Prayers recorded</div>
+                      </div>
                     </div>
+
+                    <!-- MAIN GRID -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+
+                      <!-- TODAY'S FOCUS -->
+                      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden">
+                        <div style="background:linear-gradient(135deg,#1e3a5f,#2d5986);padding:14px 18px;display:flex;align-items:center;justify-content:space-between">
+                          <span style="font-size:0.82rem;font-weight:700;color:#fff">&#128197; Today\'s Reading Plan</span>
+                          <button onclick="navigateTo('reading-plans')" style="background:rgba(255,255,255,0.15);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:0.72rem;cursor:pointer">View Plans</button>
+                        </div>
+                        <div style="padding:18px">
+                          <div style="font-size:1rem;font-weight:700;color:#1e3a5f;margin-bottom:4px">Bible in a Year</div>
+                          <div style="font-size:0.8rem;color:#64748b;margin-bottom:12px">Day 1 of 365</div>
+                          <div style="background:#f1f5f9;border-radius:6px;height:6px;margin-bottom:12px"><div style="background:linear-gradient(90deg,#3b82f6,#6366f1);height:6px;border-radius:6px;width:0.3%"></div></div>
+                          <div style="background:#f0f9ff;border-left:3px solid #3b82f6;border-radius:0 8px 8px 0;padding:10px 14px">
+                            <div style="font-size:0.72rem;font-weight:700;color:#1e40af;margin-bottom:4px">TODAY\'S READING</div>
+                            <div style="font-size:0.9rem;color:#1e293b;font-weight:600">Genesis 1–3 &nbsp;·&nbsp; Psalm 1</div>
+                          </div>
+                          <button onclick="navigateTo('bible-reader')" style="width:100%;margin-top:12px;background:#2563eb;color:#fff;border:none;border-radius:8px;padding:10px;font-size:0.82rem;font-weight:700;cursor:pointer">Open in Bible Reader &#8594;</button>
+                        </div>
+                      </div>
+
+                      <!-- MINISTRY TOOLS -->
+                      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden">
+                        <div style="background:linear-gradient(135deg,#1e293b,#334155);padding:14px 18px">
+                          <span style="font-size:0.82rem;font-weight:700;color:#fff">&#128640; Ministry Tools</span>
+                        </div>
+                        <div style="padding:14px">
+                          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                            ${[
+                              ['sermon-builder','#dbeafe','#1d4ed8','&#9997;&#65039;','Sermon Builder'],
+                              ['ai-sermon','#e0f2fe','#0369a1','&#127775;','AI Sermon Studio'],
+                              ['bible-study-builder','#dcfce7','#166534','&#128218;','Bible Study Builder'],
+                              ['topical-finder','#fef9c3','#92400e','&#128269;','Topical Finder'],
+                              ['word-study','#f0fdf4','#065f46','&#128220;','Word Study'],
+                              ['lexicon','#faf5ff','#7c3aed','&#955;','Lexicon'],
+                              ['concordance','#fff7ed','#9a3412','&#128195;','Concordance'],
+                              ['illustrations','#fdf2f8','#86198f','&#127775;','Illustrations'],
+                              ['quotes','#f0f9ff','#0369a1','&#8220;','Quotes Library'],
+                              ['hymnal','#fef9c3','#78350f','&#9835;','Hymnal'],
+                              ['sermon-evaluator','#f0fdf4','#14532d','&#9989;','Sermon Evaluator'],
+                              ['development-studio','#1e293b','#94a3b8','&#128187;','Dev Studio'],
+                            ].map(function(t){ return '<button onclick="navigateTo(\''+t[0]+'\')" style="background:'+t[1]+';border:none;border-radius:8px;padding:10px;text-align:left;cursor:pointer;transition:opacity 0.15s" onmouseover="this.style.opacity=\'0.8\'" onmouseout="this.style.opacity=\'1\'"><div style="font-size:1rem;margin-bottom:3px">'+t[3]+'</div><div style="font-size:0.68rem;font-weight:700;color:'+t[2]+'">'+t[4]+'</div></button>'; }).join('')}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- BOTTOM ROW -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+                      <!-- DEVOTIONAL THOUGHT -->
+                      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden">
+                        <div style="background:linear-gradient(135deg,#78350f,#92400e);padding:14px 18px">
+                          <span style="font-size:0.82rem;font-weight:700;color:#fff">&#128161; Devotional Thought</span>
+                        </div>
+                        <div style="padding:18px" id="dash-devotional">
+                          <div style="font-size:0.95rem;font-style:italic;color:#374151;line-height:1.75;margin-bottom:12px" id="dash-dev-text"></div>
+                          <div style="font-size:0.75rem;font-weight:700;color:#92400e" id="dash-dev-author"></div>
+                          <div style="margin-top:14px;padding-top:14px;border-top:1px solid #f1f5f9;display:flex;gap:8px;align-items:center">
+                            <button onclick="nextDevotional()" style="background:rgba(146,64,14,0.08);border:1px solid rgba(146,64,14,0.2);color:#92400e;border-radius:8px;padding:7px 14px;font-size:0.75rem;font-weight:700;cursor:pointer">Next &#8594;</button>
+                            <button onclick="navigateTo('devotional')" style="background:#92400e;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:0.78rem;font-weight:700;cursor:pointer">Open Devotionals &#8594;</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- RECENT ACTIVITY -->
+                      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden">
+                        <div style="background:linear-gradient(135deg,#1e293b,#334155);padding:14px 18px">
+                          <span style="font-size:0.82rem;font-weight:700;color:#fff">&#128336; Recent Activity</span>
+                        </div>
+                        <div style="padding:14px" id="recentActivity">
+                          <div style="text-align:center;padding:20px;color:#94a3b8">
+                            <div style="font-size:2rem;margin-bottom:8px">&#128336;</div>
+                            <div style="font-size:0.85rem;font-weight:600;color:#64748b;margin-bottom:4px">Your activity appears here</div>
+                            <div style="font-size:0.78rem;color:#94a3b8">Start reading, praying, or building to see your history</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                 </div>
 
                 <!-- Bible Reader Page -->
@@ -2528,37 +2559,22 @@
                     </div>
                 </div>
 
-                <!-- Bible Maps Page -->
+                <!-- Biblical Lands & Geography Page -->
                 <div class="page" id="page-maps">
                     <div class="panel">
                         <div class="panel-header">
                             <button class="btn btn-secondary" onclick="navigateTo('dashboard')" style="display:flex;align-items:center;gap:6px;margin-bottom:12px"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg> Back to Dashboard</button>
-                            <h3 class="panel-title">Bible Maps</h3>
+                            <h3 class="panel-title">&#127759; Biblical Lands &amp; Geography</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="grid-3" style="margin-bottom:20px">
-                                <div class="stat-card map-card" style="cursor:pointer;border:2px solid #e2e8f0;transition:border-color 0.2s" onclick="showMapDetail('ancient-israel')">
-                                    <div style="font-size:1.5rem;margin-bottom:6px">🏔</div>
-                                    <h4>Ancient Israel</h4>
-                                    <p style="font-size:0.85rem;color:#64748b">The Promised Land and tribal territories</p>
-                                </div>
-                                <div class="stat-card map-card" style="cursor:pointer;border:2px solid #e2e8f0;transition:border-color 0.2s" onclick="showMapDetail('exodus-route')">
-                                    <div style="font-size:1.5rem;margin-bottom:6px">🌵</div>
-                                    <h4>The Exodus Route</h4>
-                                    <p style="font-size:0.85rem;color:#64748b">Israel\'s journey from Egypt to Canaan</p>
-                                </div>
-                                <div class="stat-card map-card" style="cursor:pointer;border:2px solid #e2e8f0;transition:border-color 0.2s" onclick="showMapDetail('paul-journeys')">
-                                    <div style="font-size:1.5rem;margin-bottom:6px">⚓</div>
-                                    <h4>Paul\'s Journeys</h4>
-                                    <p style="font-size:0.85rem;color:#64748b">Missionary travels of the Apostle Paul</p>
-                                </div>
-                                <div class="stat-card map-card" style="cursor:pointer;border:2px solid #e2e8f0;transition:border-color 0.2s" onclick="showMapDetail('jerusalem')">
-                                    <div style="font-size:1.5rem;margin-bottom:6px">🕍</div>
-                                    <h4>Jerusalem — Time of Jesus</h4>
-                                    <p style="font-size:0.85rem;color:#64748b">Key Gospel locations in the holy city</p>
-                                </div>
+                            <!-- Quick-access tabs -->
+                            <div class="tabs" style="margin-bottom:18px" id="mapsTabBar">
+                                <button class="tab maps-tab active" onclick="showLandsSection('cities',this)">Holy Cities</button>
+                                <button class="tab maps-tab" onclick="showLandsSection('regions',this)">Regions</button>
+                                <button class="tab maps-tab" onclick="showLandsSection('routes',this)">Key Routes</button>
+                                <button class="tab maps-tab" onclick="showLandsSection('waters',this)">Waters &amp; Mountains</button>
                             </div>
-                            <div id="mapDetail" style="margin-top:8px"></div>
+                            <div id="landsContent"></div>
                         </div>
                     </div>
                 </div>
@@ -2568,46 +2584,114 @@
                     <div class="panel">
                         <div class="panel-header">
                             <button class="btn btn-secondary" onclick="navigateTo('dashboard')" style="display:flex;align-items:center;gap:6px;margin-bottom:12px"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg> Back to Dashboard</button>
-                            <h3 class="panel-title">Bible Timeline</h3>
+                            <h3 class="panel-title">&#128336; Biblical Timeline</h3>
                         </div>
                         <div class="panel-body">
-                            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                                <div class="list-item" style="border-left: 4px solid #3b82f6;">
-                                    <div class="list-item-content">
-                                        <div class="list-item-title">Creation</div>
-                                        <div class="list-item-subtitle">Beginning of Time - Genesis 1-2</div>
-                                    </div>
+                            <!-- Era Legend -->
+                            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px">
+                                <span style="background:#dbeafe;color:#1e40af;font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px">&#9632; Primeval History</span>
+                                <span style="background:#dcfce7;color:#166534;font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px">&#9632; Patriarchs</span>
+                                <span style="background:#fef3c7;color:#92400e;font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px">&#9632; Israel &amp; Kings</span>
+                                <span style="background:#f3e8ff;color:#6b21a8;font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px">&#9632; Prophets &amp; Exile</span>
+                                <span style="background:#fee2e2;color:#991b1b;font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px">&#9632; Life of Christ</span>
+                                <span style="background:#e0f2fe;color:#0c4a6e;font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px">&#9632; Early Church</span>
+                            </div>
+                            <div style="position:relative;padding-left:28px;border-left:3px solid #e2e8f0;display:flex;flex-direction:column;gap:0">
+
+                                <!-- PRIMEVAL -->
+                                <div style="margin-bottom:6px;margin-left:-40px;background:#dbeafe;color:#1e40af;font-size:0.7rem;font-weight:800;padding:3px 12px 3px 40px;letter-spacing:0.06em;text-transform:uppercase">Primeval History</div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#3b82f6;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #3b82f6"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">Creation</div><div style="font-size:0.78rem;color:#6366f1;font-weight:600;margin:2px 0">In the Beginning</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">God creates the heavens, earth, and humanity in six days. Adam and Eve placed in the Garden of Eden.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Genesis 1–2</div></div>
                                 </div>
-                                <div class="list-item" style="border-left: 4px solid #22c55e;">
-                                    <div class="list-item-content">
-                                        <div class="list-item-title">The Flood</div>
-                                        <div class="list-item-subtitle">~2348 BC - Genesis 6-9</div>
-                                    </div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#3b82f6;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #3b82f6"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">The Fall</div><div style="font-size:0.78rem;color:#6366f1;font-weight:600;margin:2px 0">Sin Enters the World</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">Adam and Eve disobey God. Sin and death enter creation. The first promise of a Redeemer given.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Genesis 3 &nbsp;·&nbsp; Protoevangelium (Gen. 3:15)</div></div>
                                 </div>
-                                <div class="list-item" style="border-left: 4px solid #f59e0b;">
-                                    <div class="list-item-content">
-                                        <div class="list-item-title">Call of Abraham</div>
-                                        <div class="list-item-subtitle">~2091 BC - Genesis 12</div>
-                                    </div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#3b82f6;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #3b82f6"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">The Great Flood</div><div style="font-size:0.78rem;color:#6366f1;font-weight:600;margin:2px 0">~2348 BC</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">God judges the earth by flood. Noah and his family preserved. The rainbow covenant established.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Genesis 6–9</div></div>
                                 </div>
-                                <div class="list-item" style="border-left: 4px solid #a855f7;">
-                                    <div class="list-item-content">
-                                        <div class="list-item-title">The Exodus</div>
-                                        <div class="list-item-subtitle">~1446 BC - Exodus 12</div>
-                                    </div>
+
+                                <!-- PATRIARCHS -->
+                                <div style="margin-bottom:6px;margin-top:8px;margin-left:-40px;background:#dcfce7;color:#166534;font-size:0.7rem;font-weight:800;padding:3px 12px 3px 40px;letter-spacing:0.06em;text-transform:uppercase">Patriarchal Era</div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#22c55e;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #22c55e"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">Call of Abraham</div><div style="font-size:0.78rem;color:#16a34a;font-weight:600;margin:2px 0">~2091 BC</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">God calls Abram from Ur. The Abrahamic Covenant: land, seed, and blessing to all nations.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Genesis 12 &nbsp;·&nbsp; Romans 4</div></div>
                                 </div>
-                                <div class="list-item" style="border-left: 4px solid #ef4444;">
-                                    <div class="list-item-content">
-                                        <div class="list-item-title">Birth of Christ</div>
-                                        <div class="list-item-subtitle">~4 BC - Matthew 1, Luke 2</div>
-                                    </div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#22c55e;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #22c55e"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">Isaac, Jacob &amp; Joseph</div><div style="font-size:0.78rem;color:#16a34a;font-weight:600;margin:2px 0">~2066–1806 BC</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">The covenant line passes through Isaac and Jacob (Israel). Joseph sold into Egypt — God's sovereign plan unfolds.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Genesis 21–50</div></div>
                                 </div>
-                                <div class="list-item" style="border-left: 4px solid #06b6d4;">
-                                    <div class="list-item-content">
-                                        <div class="list-item-title">Crucifixion & Resurrection</div>
-                                        <div class="list-item-subtitle">~30 AD - Matthew 27-28</div>
-                                    </div>
+
+                                <!-- ISRAEL & KINGS -->
+                                <div style="margin-bottom:6px;margin-top:8px;margin-left:-40px;background:#fef3c7;color:#92400e;font-size:0.7rem;font-weight:800;padding:3px 12px 3px 40px;letter-spacing:0.06em;text-transform:uppercase">Israel &amp; the Kingdom</div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#f59e0b;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #f59e0b"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">The Exodus</div><div style="font-size:0.78rem;color:#d97706;font-weight:600;margin:2px 0">~1446 BC</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">Moses leads Israel out of Egyptian bondage. The Ten Plagues, Passover, and crossing of the Red Sea.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Exodus 1–15 &nbsp;·&nbsp; Hebrews 11:29</div></div>
                                 </div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#f59e0b;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #f59e0b"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">The Law at Sinai</div><div style="font-size:0.78rem;color:#d97706;font-weight:600;margin:2px 0">~1446 BC</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">God gives Moses the Ten Commandments and the Mosaic Covenant. The Tabernacle constructed for worship.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Exodus 19–40</div></div>
+                                </div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#f59e0b;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #f59e0b"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">Conquest of Canaan</div><div style="font-size:0.78rem;color:#d97706;font-weight:600;margin:2px 0">~1406 BC</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">Joshua leads Israel into the Promised Land. The fall of Jericho. Tribal territories distributed.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Joshua 1–24</div></div>
+                                </div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#f59e0b;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #f59e0b"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">Kingdom of David &amp; Solomon</div><div style="font-size:0.78rem;color:#d97706;font-weight:600;margin:2px 0">~1010–931 BC</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">David unites Israel and establishes Jerusalem. Solomon builds the Temple. The Davidic Covenant promises an eternal throne.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">2 Samuel 7 &nbsp;·&nbsp; 1 Kings 6</div></div>
+                                </div>
+
+                                <!-- PROPHETS & EXILE -->
+                                <div style="margin-bottom:6px;margin-top:8px;margin-left:-40px;background:#f3e8ff;color:#6b21a8;font-size:0.7rem;font-weight:800;padding:3px 12px 3px 40px;letter-spacing:0.06em;text-transform:uppercase">Prophets &amp; Exile</div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#a855f7;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #a855f7"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">Division of the Kingdom</div><div style="font-size:0.78rem;color:#9333ea;font-weight:600;margin:2px 0">~931 BC</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">Israel splits into Northern (Israel) and Southern (Judah) kingdoms. A succession of mostly wicked kings follows.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">1 Kings 12</div></div>
+                                </div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#a855f7;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #a855f7"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">Babylonian Exile</div><div style="font-size:0.78rem;color:#9333ea;font-weight:600;margin:2px 0">~605–538 BC</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">Nebuchadnezzar destroys Jerusalem and the Temple. Judah taken captive to Babylon. Daniel and Ezekiel minister in exile.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">2 Kings 25 &nbsp;·&nbsp; Daniel 1</div></div>
+                                </div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#a855f7;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #a855f7"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">The Return &amp; Restoration</div><div style="font-size:0.78rem;color:#9333ea;font-weight:600;margin:2px 0">~538–430 BC</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">Cyrus of Persia decrees Israel's return. Ezra restores the Law; Nehemiah rebuilds Jerusalem's walls. Malachi is the last OT prophet.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Ezra 1 &nbsp;·&nbsp; Nehemiah &nbsp;·&nbsp; Malachi</div></div>
+                                </div>
+
+                                <!-- LIFE OF CHRIST -->
+                                <div style="margin-bottom:6px;margin-top:8px;margin-left:-40px;background:#fee2e2;color:#991b1b;font-size:0.7rem;font-weight:800;padding:3px 12px 3px 40px;letter-spacing:0.06em;text-transform:uppercase">Life of Christ</div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#ef4444;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #ef4444"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">Birth of Jesus</div><div style="font-size:0.78rem;color:#dc2626;font-weight:600;margin:2px 0">~4 BC &nbsp;·&nbsp; Bethlehem</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">The Word made flesh. Born of a virgin in Bethlehem. Announced by angels, visited by shepherds and magi.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Matthew 1–2 &nbsp;·&nbsp; Luke 2 &nbsp;·&nbsp; John 1:14</div></div>
+                                </div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#ef4444;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #ef4444"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">Ministry of Jesus</div><div style="font-size:0.78rem;color:#dc2626;font-weight:600;margin:2px 0">~AD 27–30 &nbsp;·&nbsp; Galilee &amp; Judea</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">Three years of teaching, healing, and miracles. The Sermon on the Mount, parables, and calling of the twelve disciples.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Matthew 5–7 &nbsp;·&nbsp; Mark &nbsp;·&nbsp; Luke &nbsp;·&nbsp; John</div></div>
+                                </div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#ef4444;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #ef4444"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">The Crucifixion</div><div style="font-size:0.78rem;color:#dc2626;font-weight:600;margin:2px 0">~AD 30 &nbsp;·&nbsp; Golgotha, Jerusalem</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">Jesus is betrayed, tried, crucified, and buried. The veil of the Temple torn in two. Redemption accomplished.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Matthew 27 &nbsp;·&nbsp; Romans 5:8 &nbsp;·&nbsp; Isaiah 53</div></div>
+                                </div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#ef4444;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #ef4444"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">The Resurrection</div><div style="font-size:0.78rem;color:#dc2626;font-weight:600;margin:2px 0">~AD 30 &nbsp;·&nbsp; The Empty Tomb</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">Jesus rises bodily from the dead on the third day. He appears to more than 500 witnesses. The foundation of Christian faith.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Matthew 28 &nbsp;·&nbsp; 1 Corinthians 15:3–8</div></div>
+                                </div>
+
+                                <!-- EARLY CHURCH -->
+                                <div style="margin-bottom:6px;margin-top:8px;margin-left:-40px;background:#e0f2fe;color:#0c4a6e;font-size:0.7rem;font-weight:800;padding:3px 12px 3px 40px;letter-spacing:0.06em;text-transform:uppercase">Early Church</div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#0ea5e9;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #0ea5e9"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">Day of Pentecost</div><div style="font-size:0.78rem;color:#0369a1;font-weight:600;margin:2px 0">~AD 30 &nbsp;·&nbsp; Jerusalem</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">The Holy Spirit descends on 120 disciples. Peter preaches; 3,000 saved. The Church is born.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Acts 2</div></div>
+                                </div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;border-bottom:1px solid #f1f5f9;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#0ea5e9;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #0ea5e9"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">Paul's Missionary Journeys</div><div style="font-size:0.78rem;color:#0369a1;font-weight:600;margin:2px 0">~AD 46–60</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">Three major missionary journeys across Asia Minor and Europe. Churches established in Corinth, Philippi, Ephesus, and beyond.</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Acts 13–28</div></div>
+                                </div>
+                                <div style="display:flex;gap:14px;padding:14px 0 14px 6px;position:relative">
+                                    <div style="position:absolute;left:-17px;top:18px;width:12px;height:12px;background:#0ea5e9;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #0ea5e9"></div>
+                                    <div style="flex:1"><div style="font-weight:700;color:#1e293b;font-size:0.95rem">Revelation &amp; The Promise</div><div style="font-size:0.78rem;color:#0369a1;font-weight:600;margin:2px 0">~AD 95 &nbsp;·&nbsp; Isle of Patmos</div><div style="font-size:0.82rem;color:#64748b;line-height:1.5">John receives visions of the risen Christ, the tribulation, and the new creation. Jesus declares: "I am coming soon."</div><div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">Revelation 1 &nbsp;·&nbsp; Revelation 22:20</div></div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -2658,33 +2742,20 @@
                     <div class="panel">
                         <div class="panel-header">
                             <button class="btn btn-secondary" onclick="navigateTo('dashboard')" style="display:flex;align-items:center;gap:6px;margin-bottom:12px"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg> Back to Dashboard</button>
-                            <h3 class="panel-title">Quotes Library</h3>
-                            <button class="btn btn-primary" onclick="showNewQuoteModal()">Add Quote</button>
+                            <h3 class="panel-title">&#128172; Quotes Library</h3>
+                            <button class="btn btn-primary" onclick="showNewQuoteModal()">+ Add Quote</button>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group">
-                                <input type="text" class="form-input" placeholder="Search quotes...">
+                            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px" id="quoteFilterBar">
+                                <button onclick="filterQuotes('all',this)" style="background:#1e3a5f;color:#fff;border:none;border-radius:20px;padding:6px 16px;font-size:0.78rem;font-weight:700;cursor:pointer" class="q-filter-btn active">All</button>
+                                <button onclick="filterQuotes('faith',this)" style="background:#f1f5f9;color:#475569;border:none;border-radius:20px;padding:6px 16px;font-size:0.78rem;font-weight:700;cursor:pointer" class="q-filter-btn">Faith</button>
+                                <button onclick="filterQuotes('preaching',this)" style="background:#f1f5f9;color:#475569;border:none;border-radius:20px;padding:6px 16px;font-size:0.78rem;font-weight:700;cursor:pointer" class="q-filter-btn">Preaching</button>
+                                <button onclick="filterQuotes('prayer',this)" style="background:#f1f5f9;color:#475569;border:none;border-radius:20px;padding:6px 16px;font-size:0.78rem;font-weight:700;cursor:pointer" class="q-filter-btn">Prayer</button>
+                                <button onclick="filterQuotes('scripture',this)" style="background:#f1f5f9;color:#475569;border:none;border-radius:20px;padding:6px 16px;font-size:0.78rem;font-weight:700;cursor:pointer" class="q-filter-btn">Scripture</button>
+                                <button onclick="filterQuotes('ministry',this)" style="background:#f1f5f9;color:#475569;border:none;border-radius:20px;padding:6px 16px;font-size:0.78rem;font-weight:700;cursor:pointer" class="q-filter-btn">Ministry</button>
+                                <button onclick="filterQuotes('grace',this)" style="background:#f1f5f9;color:#475569;border:none;border-radius:20px;padding:6px 16px;font-size:0.78rem;font-weight:700;cursor:pointer" class="q-filter-btn">Grace</button>
                             </div>
-                            <div id="quotesList">
-                                <div class="journal-entry">
-                                    <div class="journal-entry-content" style="font-style: italic;">
-                                        "The Bible is not merely a book to be read, but a life to be lived."
-                                    </div>
-                                    <div class="journal-entry-date" style="margin-top: 0.5rem;">&#8212; Charles Spurgeon</div>
-                                </div>
-                                <div class="journal-entry">
-                                    <div class="journal-entry-content" style="font-style: italic;">
-                                        "A thorough knowledge of the Bible is worth more than a college education."
-                                    </div>
-                                    <div class="journal-entry-date" style="margin-top: 0.5rem;">&#8212; Theodore Roosevelt</div>
-                                </div>
-                                <div class="journal-entry">
-                                    <div class="journal-entry-content" style="font-style: italic;">
-                                        "The Christian does not think God will love us because we are good, but that God will make us good because He loves us."
-                                    </div>
-                                    <div class="journal-entry-date" style="margin-top: 0.5rem;">&#8212; C.S. Lewis</div>
-                                </div>
-                            </div>
+                            <div id="quotesList" style="display:grid;grid-template-columns:1fr 1fr;gap:14px"></div>
                         </div>
                     </div>
                 </div>
@@ -2909,15 +2980,25 @@
 
                 <!-- Notes Page -->
                 <div class="page" id="page-notes">
-                    <div class="panel">
-                        <div class="panel-header">
-                            <h3 class="panel-title">Notes</h3>
-                            <button class="btn btn-primary" onclick="showNewNoteModal()">New Note</button>
-                        </div>
-                        <div class="panel-body">
-                            <div id="notesList">
-                                <!-- Notes loaded dynamically -->
+                    <!-- Notepad header bar -->
+                    <div style="background:linear-gradient(135deg,#1e3a5f,#1e40af);padding:16px 24px;border-radius:12px 12px 0 0;display:flex;align-items:center;justify-content:space-between">
+                        <div style="display:flex;align-items:center;gap:10px">
+                            <span style="font-size:1.3rem">&#128220;</span>
+                            <div>
+                                <div style="font-size:1rem;font-weight:800;color:#fff;letter-spacing:0.01em">My Notes</div>
+                                <div style="font-size:0.72rem;color:rgba(255,255,255,0.55)" id="notesCountLabel">Scripture notes &amp; study thoughts</div>
                             </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="showNewNoteModal()" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:0.82rem">+ New Note</button>
+                    </div>
+                    <!-- Notepad body: lined paper look -->
+                    <div style="background:#fffef5;border:1px solid #e2d89a;border-top:none;border-radius:0 0 12px 12px;min-height:500px;position:relative;overflow:hidden">
+                        <!-- Red margin line -->
+                        <div style="position:absolute;left:56px;top:0;bottom:0;width:2px;background:rgba(220,50,50,0.18);pointer-events:none;z-index:1"></div>
+                        <!-- Horizontal lines via repeating gradient -->
+                        <div style="position:absolute;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(to bottom, transparent 0px, transparent 31px, rgba(100,149,237,0.18) 31px, rgba(100,149,237,0.18) 32px)"></div>
+                        <div id="notesList" style="position:relative;z-index:2;padding:12px 20px 20px 68px;min-height:480px">
+                            <!-- Notes loaded dynamically -->
                         </div>
                     </div>
                 </div>
@@ -2953,7 +3034,7 @@
                 <div class="page" id="page-congregation">
                     <div class="panel">
                         <div class="panel-header">
-                            <h3 class="panel-title">Congregation Management</h3>
+                            <h3 class="panel-title">&#128106; My Flock</h3>
                             <button class="btn btn-primary" onclick="showNewMemberModal()">Add Member</button>
                         </div>
                         <div class="panel-body">
@@ -3183,9 +3264,19 @@
 
                 <!-- ===== PERSONAL DIARY ===== -->
                 <div class="page" id="page-personal-diary">
+                    <!-- Rotating Scripture Inspiration Banner -->
+                    <div id="diaryScriptureBanner" style="background:linear-gradient(135deg,#1e1b4b 0%,#312e81 50%,#1e1b4b 100%);border-radius:12px;padding:18px 22px;margin-bottom:16px;position:relative;overflow:hidden;cursor:pointer" onclick="nextDiaryScripture()" title="Click for next scripture">
+                        <div style="position:absolute;right:18px;top:50%;transform:translateY(-50%);opacity:0.2;font-size:4rem;font-family:Georgia,serif;line-height:1;pointer-events:none">&#10077;</div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+                            <span style="font-size:0.65rem;font-weight:800;color:rgba(165,180,252,0.7);text-transform:uppercase;letter-spacing:0.1em;background:rgba(99,102,241,0.2);padding:3px 10px;border-radius:20px">Today&rsquo;s Inspiration</span>
+                            <span style="font-size:0.65rem;color:rgba(165,180,252,0.5)">tap for next</span>
+                        </div>
+                        <div id="diary-script-text" style="font-family:Georgia,serif;font-size:1.05rem;font-style:italic;color:#e0e7ff;line-height:1.65;margin-bottom:8px"></div>
+                        <div id="diary-script-ref" style="font-size:0.75rem;font-weight:700;color:#818cf8;letter-spacing:0.05em"></div>
+                    </div>
                     <div class="panel">
                         <div class="panel-header">
-                            <h3 class="panel-title">Personal Diary</h3>
+                            <h3 class="panel-title">&#128221; Personal Diary</h3>
                             <button class="btn btn-primary" onclick="showNewDiaryModal()">New Entry</button>
                         </div>
                         <div class="panel-body">
@@ -3569,8 +3660,8 @@
             'reading-plans':'Reading Plans','word-study':'Word Study','lexicon':'Lexicon',
             'concordance':'Concordance','prayer-journal':'Prayer Journal','devotional':'Devotional Journal',
             'bookmarks':'Bookmarks','highlights':'Highlights','notes':'Notes',
-            'calendar':'Ministry Calendar','congregation':'Congregation Management','settings':'Settings',
-            'maps':'Bible Maps','timeline':'Biblical Timeline','illustrations':'Illustrations',
+            'calendar':'Ministry Calendar','congregation':'My Flock','settings':'Settings',
+            'maps':'Biblical Lands & Geography','timeline':'Biblical Timeline','illustrations':'Illustrations',
             'courses':'Bible Courses','share':'Share & Export',
             'sermon-evaluator':'Sermon Evaluator',
             'preaching-calendar':'Preaching Calendar',
@@ -3615,10 +3706,12 @@
                     var sd = document.getElementById('sermonDate');
                     if (sd && !sd.value) sd.value = new Date().toISOString().split('T')[0];
                 },
+                'quotes':               function() { loadQuotesPage(); },
+                'maps':                 function() { loadMapsPage(); },
                 'illustrations':        function() { loadIllustrations('all'); },
                 'preaching-calendar':   function() { loadPreachingCalendar('upcoming'); },
                 'bible-study-builder':  function() { loadStudies('all'); },
-                'personal-diary':       function() { loadDiary('all'); },
+                'personal-diary':       function() { _diaryScriptIdx = new Date().getDate() % DIARY_SCRIPTURES.length; renderDiaryScripture(); loadDiary('all'); },
                 'homegoing-builder':    function() { loadHomegoingSection('message', document.querySelector('.hg-tab')); },
                 'commentaries':         function() { populateCommentaryBooks(); setTimeout(function(){ var ref = AppState.currentBook + ' ' + AppState.currentChapter; if(ref.trim() !== '') { loadCommentaryBibleText(ref); loadCommentary('bishops', document.querySelector('.commentary-tab.active')); } }, 80); },
                 'development-studio':   function() { loadDevStudio('templates', document.querySelector('.dev-tab')); },'group-study': function() { setTimeout(function(){ var t=document.querySelector('.gs-tab'); if(t) t.classList.add('active'); loadGroupStudy('create', null); }, 50); },'word-studio-1b': function() { wsLoadSavedWords(); },
@@ -4123,19 +4216,29 @@
             const notes = getNotes();
             const list = document.getElementById('notesList');
             if (!list) return;
+            var label = document.getElementById('notesCountLabel');
+            if (label) label.textContent = notes.length === 0 ? 'Scripture notes & study thoughts' : notes.length + ' note' + (notes.length === 1 ? '' : 's') + ' saved';
             if (notes.length === 0) {
-                list.innerHTML = '<div class="empty-state"><h3>No Notes</h3><p>Tap a verse in the Bible Reader and select "Note" to add a study note</p></div>';
+                list.innerHTML = '<div style="padding:40px 0;text-align:center;color:#a39f6a">' +
+                    '<div style="font-size:2.5rem;margin-bottom:12px">&#128220;</div>' +
+                    '<div style="font-size:1rem;font-weight:600;color:#78716c;margin-bottom:6px">Your notepad is empty</div>' +
+                    '<div style="font-size:0.85rem;color:#a8a29e">Click &ldquo;New Note&rdquo; or tap a verse in the Bible Reader to start writing</div></div>';
                 return;
             }
-            list.innerHTML = notes.map(n =>
-                '<div style="padding:1.25rem;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;margin-bottom:0.75rem;">' +
-                '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.5rem;">' +
-                '<div style="font-weight:600;color:#1e40af;">' + n.ref + '</div>' +
-                '<button onclick="deleteNote(' + n.id + ')" style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1.25rem;line-height:1;">&#215;</button></div>' +
-                (n.text ? '<div style="font-style:italic;color:#64748b;font-size:0.9rem;margin-bottom:0.5rem;">"' + n.text + '"</div>' : '') +
-                '<div style="color:#1e293b;line-height:1.7;">' + n.content + '</div>' +
-                '<div style="font-size:0.8rem;color:#94a3b8;margin-top:0.5rem;">' + new Date(n.date).toLocaleDateString() + '</div></div>'
-            ).join('');
+            list.innerHTML = notes.map(function(n) {
+                var dateStr = new Date(n.date).toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+                return '<div style="margin-bottom:8px;padding:14px 16px 10px;position:relative">' +
+                    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">' +
+                    '<span style="font-size:0.72rem;font-weight:800;color:#1e40af;text-transform:uppercase;letter-spacing:0.07em;background:rgba(30,64,175,0.08);padding:2px 8px;border-radius:10px">' + (n.ref || 'General Note') + '</span>' +
+                    '<div style="display:flex;align-items:center;gap:8px">' +
+                    '<span style="font-size:0.7rem;color:#a8a29e">' + dateStr + '</span>' +
+                    '<button onclick="deleteNote(' + n.id + ')" style="background:none;border:none;color:#d4a17a;cursor:pointer;font-size:1rem;line-height:1;padding:2px 4px" title="Delete note">&#215;</button>' +
+                    '</div></div>' +
+                    (n.text ? '<div style="font-size:0.83rem;font-style:italic;color:#78716c;margin-bottom:6px;padding-left:4px;border-left:2px solid #d4a17a">&ldquo;' + n.text + '&rdquo;</div>' : '') +
+                    '<div style="font-family:\'Georgia\',serif;font-size:0.95rem;color:#292524;line-height:2;white-space:pre-wrap">' + n.content + '</div>' +
+                    '<div style="border-bottom:1px solid rgba(100,149,237,0.18);margin-top:12px"></div>' +
+                    '</div>';
+            }).join('');
         }
 
         function showNewNoteModal() {
@@ -4919,7 +5022,87 @@
         // ============================================================
         // DASHBOARD
         // ============================================================
+        // ============================================================
+        // DASHBOARD — VERSE OF THE DAY & DEVOTIONALS
+        // ============================================================
+        var VOTD_LIST = [
+            {text:'For I know the plans I have for you, declares the LORD, plans for welfare and not for evil, to give you a future and a hope.', ref:'Jeremiah 29:11'},
+            {text:'I can do all things through him who strengthens me.', ref:'Philippians 4:13'},
+            {text:'Trust in the LORD with all your heart, and do not lean on your own understanding.', ref:'Proverbs 3:5'},
+            {text:'The LORD is my shepherd; I shall not want.', ref:'Psalm 23:1'},
+            {text:'And we know that for those who love God all things work together for good.', ref:'Romans 8:28'},
+            {text:'But they who wait for the LORD shall renew their strength; they shall mount up with wings like eagles.', ref:'Isaiah 40:31'},
+            {text:'Be strong and courageous. Do not fear or be in dread of them, for it is the LORD your God who goes with you.', ref:'Deuteronomy 31:6'},
+            {text:'The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly.', ref:'John 10:10'},
+            {text:'Fear not, for I am with you; be not dismayed, for I am your God; I will strengthen you, I will help you.', ref:'Isaiah 41:10'},
+            {text:'Your word is a lamp to my feet and a light to my path.', ref:'Psalm 119:105'},
+            {text:'Come to me, all who labor and are heavy laden, and I will give you rest.', ref:'Matthew 11:28'},
+            {text:'For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life.', ref:'John 3:16'},
+            {text:'No weapon that is fashioned against you shall succeed, and you shall refute every tongue that rises against you in judgment.', ref:'Isaiah 54:17'},
+            {text:'The steadfast love of the LORD never ceases; his mercies never come to an end; they are new every morning.', ref:'Lamentations 3:22–23'},
+            {text:'Cast your burden on the LORD, and he will sustain you; he will never permit the righteous to be moved.', ref:'Psalm 55:22'},
+            {text:'If God is for us, who can be against us?', ref:'Romans 8:31'},
+            {text:'Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.', ref:'Philippians 4:6'},
+            {text:'The LORD bless you and keep you; the LORD make his face shine on you and be gracious to you.', ref:'Numbers 6:24–25'},
+            {text:'He heals the brokenhearted and binds up their wounds.', ref:'Psalm 147:3'},
+            {text:'Greater is he who is in you than he who is in the world.', ref:'1 John 4:4'}
+        ];
+        var VOTD_DEVOTIONALS = [
+            {text:'Ministry is not a career — it is a calling. Show up today not because of what you will receive, but because of what He already gave.', author:'— Dr. Richard G. Clark'},
+            {text:'The preacher who kneels in private stands with authority in public. Never let the pulpit outpace the prayer closet.', author:'— Dr. Richard G. Clark'},
+            {text:'God does not call the equipped. He equips the called. Walk in your assignment with confidence, not credentials.', author:'— Dr. Richard G. Clark'},
+            {text:'Every sermon you preach is a seed. You may never see the harvest, but you are responsible for the planting.', author:'— Dr. Richard G. Clark'},
+            {text:'When you open Scripture, you are not handling a textbook — you are handling fire. Treat it with reverence. Deliver it with courage.', author:'— Dr. Richard G. Clark'},
+            {text:'The congregation does not need your performance. They need your presence — soaked in prayer and rooted in the Word.', author:'— Dr. Richard G. Clark'},
+            {text:'God is not moved by our ability. He is moved by our availability. Be available today.', author:'— Dr. Richard G. Clark'},
+            {text:'Shepherds smell like their sheep. Know your people. Walk with them. Love them like Christ loved the Church.', author:'— Dr. Richard G. Clark'}
+        ];
+        var _votdIndex = 0;
+        var _devIndex  = 0;
+
+        function initVotdIndex() {
+            var d = new Date();
+            _votdIndex = d.getDate() % VOTD_LIST.length;
+            _devIndex  = d.getDate() % VOTD_DEVOTIONALS.length;
+        }
+
+        function renderVotd() {
+            var v = VOTD_LIST[_votdIndex];
+            var vt = document.getElementById('dash-verse-text');
+            var vr = document.getElementById('dash-verse-ref');
+            if (vt) vt.textContent = '\u201c' + v.text + '\u201d';
+            if (vr) vr.textContent = v.ref;
+        }
+
+        function nextVotd() {
+            _votdIndex = (_votdIndex + 1) % VOTD_LIST.length;
+            renderVotd();
+        }
+
+        function renderDevotional() {
+            var dev = VOTD_DEVOTIONALS[_devIndex];
+            var dt = document.getElementById('dash-dev-text');
+            var da = document.getElementById('dash-dev-author');
+            if (dt) dt.textContent = '\u201c' + dev.text + '\u201d';
+            if (da) da.textContent = dev.author;
+        }
+
+        function nextDevotional() {
+            _devIndex = (_devIndex + 1) % VOTD_DEVOTIONALS.length;
+            renderDevotional();
+        }
+
         function loadDashboard() {
+            // Date display
+            var dd = document.getElementById('dash-date');
+            if (dd) {
+                var now = new Date();
+                dd.textContent = now.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+            }
+            // Verse of the day
+            initVotdIndex();
+            renderVotd();
+            renderDevotional();
             updateDashboardStats();
             loadRecentActivity();
         }
@@ -5030,11 +5213,32 @@
             const results = document.getElementById('wordStudyResults');
             if (!results) return;
             const definitions = {
-                'faith': { hebrew: 'אֱמוּנָה (emunah) — firmness, faithfulness, steadfastness', greek: 'πίστις (pistis) — trust, belief, confidence', definition: 'Complete trust and confidence in God; belief without direct proof.', verses: ['Hebrews 11:1 — "Now faith is the substance of things hoped for..."', 'Romans 1:17 — "The just shall live by faith."', 'James 2:17 — "Faith without works is dead."'], count: '336 occurrences in the Bible' },
-                'love': { hebrew: 'אַהֲבָה (ahavah) — deep affection, devotion', greek: 'ἀγάπη (agape) — unconditional love, divine love', definition: 'The highest form of affection; God\'s unconditional care for humanity.', verses: ['John 3:16 — "For God so loved the world..."', '1 Corinthians 13:4 — "Love is patient, love is kind..."', '1 John 4:8 — "God is love."'], count: '506 occurrences in the Bible' },
-                'grace': { hebrew: 'חֵן (chen) — favor, kindness', greek: 'χάρις (charis) — favor, blessing, gift', definition: 'Unmerited divine assistance given to humanity for regeneration and sanctification.', verses: ['Ephesians 2:8 — "For by grace you have been saved through faith..."', 'Romans 5:2 — "Access by faith into this grace..."', 'John 1:14 — "Full of grace and truth."'], count: '170 occurrences in the New Testament' },
-                'peace': { hebrew: 'שָׁלוֹם (shalom) — completeness, wholeness, well-being', greek: 'εἰρήνη (eirene) — harmony, tranquility', definition: 'A state of harmony with God and others; divine wholeness and well-being.', verses: ['Philippians 4:7 — "The peace of God which passes understanding..."', 'Isaiah 26:3 — "Perfect peace to those whose mind is stayed..."', 'John 14:27 — "Peace I leave with you, my peace I give..."'], count: '429 occurrences in the Bible' },
-                'holy': { hebrew: 'קָדוֹשׁ (qadosh) — sacred, set apart', greek: 'ἅγιος (hagios) — dedicated to God, consecrated', definition: 'Set apart for divine purposes; morally and spiritually perfect as an attribute of God.', verses: ['Isaiah 6:3 — "Holy, holy, holy is the Lord of hosts..."', '1 Peter 1:16 — "Be holy for I am holy."', 'Revelation 4:8 — "Holy, holy, holy Lord God Almighty."'], count: '611 occurrences in the Bible' }
+                'jesus': { hebrew: 'יֵשׁוּעַ (Yeshua) — God saves, salvation', greek: 'Ἰησοῦς (Iesous) — the LORD saves', definition: 'The eternal Son of God made flesh. The name Jesus means "God saves" — His identity and mission encoded in His name. He is fully God and fully man, the only Mediator between God and humanity. Every page of Scripture points to Him.', verses: ['Matthew 1:21 — "You shall call His name Jesus, for He shall save His people from their sins."', 'John 1:14 — "The Word became flesh and dwelt among us."', 'Philippians 2:9-11 — "At the name of Jesus every knee shall bow."', 'Acts 4:12 — "There is no other name under heaven by which we must be saved."'], count: 'Central figure of all 66 books of the Bible' },
+                'god': { hebrew: 'אֱלֹהִים (Elohim) — the Mighty One, the Creator', greek: 'Θεός (Theos) — God, deity, the Divine', definition: 'The self-existent, eternal, all-powerful Creator and Sustainer of all things. God is Spirit, infinite, holy, just, and loving. He exists in three Persons — Father, Son, and Holy Spirit — one God, co-equal and co-eternal. He is the beginning and end of all things.', verses: ['Genesis 1:1 — "In the beginning God created the heavens and the earth."', 'John 4:24 — "God is Spirit, and those who worship Him must worship in spirit and truth."', 'Deuteronomy 6:4 — "The LORD our God, the LORD is one."', '1 John 4:8 — "God is love."'], count: 'Appears over 4,000 times in the Bible' },
+                'holy spirit': { hebrew: 'רוּחַ הַקֹּדֶשׁ (Ruach HaKodesh) — the breath of holiness', greek: 'Πνεῦμα Ἅγιον (Pneuma Hagion) — Holy Breath, Holy Wind', definition: 'The third Person of the Trinity, fully God, co-equal with the Father and Son. The Holy Spirit convicts the world of sin, regenerates the believer, indwells permanently at conversion, empowers for ministry, guides into truth, intercedes in prayer, and distributes spiritual gifts. He is the promise of the Father sent on the Day of Pentecost.', verses: ['John 14:16 — "He will give you another Helper, that He may abide with you forever."', 'Acts 2:4 — "They were all filled with the Holy Spirit."', 'Romans 8:26 — "The Spirit Himself intercedes for us."', 'Galatians 5:22-23 — "The fruit of the Spirit is love, joy, peace..."'], count: 'Mentioned over 90 times in the New Testament alone' },
+                'blood': { hebrew: 'דָּם (dam) — blood, life-force, bloodshed', greek: 'αἷμα (haima) — blood, life, atoning sacrifice', definition: 'In Scripture, blood represents life itself — "the life of the flesh is in the blood" (Leviticus 17:11). The blood of Jesus is the atoning sacrifice that satisfies God\'s justice, cleanses sin, ratifies the New Covenant, and grants access to the presence of God. Without the shedding of blood there is no forgiveness.', verses: ['Leviticus 17:11 — "The life of the flesh is in the blood."', 'Hebrews 9:22 — "Without the shedding of blood there is no forgiveness."', 'Revelation 1:5 — "Freed us from our sins by His blood."', 'Ephesians 1:7 — "In Him we have redemption through His blood."'], count: '447 occurrences in the Bible' },
+                'death': { hebrew: 'מָוֶת (mavet) — death, dying, realm of the dead', greek: 'θάνατος (thanatos) — death, physical and spiritual separation', definition: 'Scripture teaches three dimensions of death: physical (separation of soul from body), spiritual (separation of the soul from God — the consequence of sin), and eternal (the "second death," final separation from God). Christ defeated all three through His death and resurrection. For the believer, physical death is no longer the final word.', verses: ['Romans 6:23 — "The wages of sin is death, but the gift of God is eternal life."', 'John 11:25 — "I am the resurrection and the life."', '1 Corinthians 15:55 — "O death, where is your sting?"', 'Revelation 21:4 — "There shall be no more death."'], count: '394 occurrences in the Bible' },
+                'life': { hebrew: 'חַיִּים (chayyim) — life, living, plural of vitality', greek: 'ζωή (zoe) — divine life, eternal life, life in its fullest', definition: 'The Bible distinguishes between bios (mere biological existence) and zoe (the divine, abundant life that belongs to God). Jesus came to give zoe — not just existence, but life overflowing. This life begins at spiritual rebirth and continues into eternity. It is qualitatively different from merely being alive.', verses: ['John 10:10 — "I came that they may have life and have it abundantly."', 'John 14:6 — "I am the way, the truth, and the life."', 'Romans 8:2 — "The law of the Spirit of life has set you free."', '1 John 5:12 — "Whoever has the Son has life."'], count: '967 occurrences throughout Scripture' },
+                'hurt': { hebrew: 'כָּאַב (ka\'av) — pain, grief, sorrow, anguish', greek: 'λύπη (lype) — pain, grief, sorrow, distress', definition: 'God does not ignore human pain. Scripture is saturated with honest cries of hurt — from Job\'s anguish to David\'s tears to Jesus weeping at Lazarus\' tomb. God meets us in our hurt, does not despise it, and promises that those who mourn will be comforted. The Psalms especially model bringing raw pain before God.', verses: ['Psalm 34:18 — "The LORD is close to the brokenhearted."', 'Matthew 5:4 — "Blessed are those who mourn, for they shall be comforted."', 'Romans 8:18 — "Our present sufferings are not worth comparing with the glory."', 'Revelation 21:4 — "He will wipe every tear from their eyes."'], count: 'Theme woven throughout Psalms, Job, and Lamentations' },
+                'sad': { hebrew: 'עָצֵב (atsev) — grieved, in pain, sorrowful', greek: 'περίλυπος (perilypos) — deeply grieved, surrounded by sorrow', definition: 'The Bible never commands us to fake happiness. David wrote psalms of deep sadness. Jesus was "a man of sorrows, acquainted with grief." Sadness is a God-given emotion that acknowledges loss and longing. Scripture gives permission to grieve — and promises that grief has an expiration date in God\'s economy.', verses: ['Isaiah 53:3 — "A man of sorrows and acquainted with grief."', 'Psalm 42:5 — "Why are you cast down, O my soul?"', 'John 11:35 — "Jesus wept."', 'Nehemiah 8:10 — "The joy of the LORD is your strength."'], count: 'Expressed honestly throughout the Psalms and Prophets' },
+                'faith': { hebrew: 'אֱמוּנָה (emunah) — firmness, faithfulness, steadfastness', greek: 'πίστις (pistis) — trust, belief, active reliance', definition: 'Faith is not blind wishful thinking — it is active trust in the character and promises of God based on evidence of who He has shown Himself to be. It is the channel through which grace flows into salvation. Without faith it is impossible to please God. Faith is both a gift and a response.', verses: ['Hebrews 11:1 — "Now faith is the substance of things hoped for, the evidence of things not seen."', 'Romans 1:17 — "The just shall live by faith."', 'Ephesians 2:8 — "By grace you have been saved through faith."', 'James 2:17 — "Faith without works is dead."'], count: '336 occurrences in the Bible' },
+                'love': { hebrew: 'אַהֲבָה (ahavah) — deep covenantal affection', greek: 'ἀγάπη (agape) — unconditional, self-giving divine love', definition: 'The highest form of love — chosen, sacrificial, and not based on the worth of the object. God IS love (1 John 4:8). This love was supremely demonstrated at Calvary. Agape does not merely feel warmly toward someone — it acts for their eternal good at great personal cost.', verses: ['John 3:16 — "For God so loved the world that He gave His only Son."', '1 Corinthians 13:4 — "Love is patient, love is kind."', '1 John 4:8 — "God is love."', 'Romans 5:8 — "While we were still sinners, Christ died for us."'], count: '506 occurrences in the Bible' },
+                'grace': { hebrew: 'חֵן (chen) — favor, graciousness, beauty of form', greek: 'χάρις (charis) — unearned favor, gift, divine empowerment', definition: 'Grace is God giving us what we do not deserve and could never earn. It is the engine of salvation and the atmosphere of the Christian life. Paul opens and closes every epistle with grace. Where sin increased, grace increased all the more. It is both the ground of our standing before God and the power for our walk with God.', verses: ['Ephesians 2:8 — "For by grace you have been saved through faith."', 'Romans 5:20 — "Where sin abounded, grace abounded much more."', '2 Corinthians 12:9 — "My grace is sufficient for you."', 'Titus 2:11 — "The grace of God has appeared bringing salvation to all."'], count: '170 occurrences in the New Testament' },
+                'peace': { hebrew: 'שָׁלוֹם (shalom) — wholeness, completeness, well-being', greek: 'εἰρήνη (eirene) — harmony, tranquility, the Hebrew shalom', definition: 'Shalom is far richer than the absence of conflict — it is the presence of everything that makes life full and whole. It encompasses physical health, right relationships, spiritual wholeness, and material provision. The peace Jesus gives is not the peace the world gives. It guards the heart even in the middle of storms.', verses: ['Philippians 4:7 — "The peace of God which passes understanding will guard your hearts."', 'Isaiah 26:3 — "Perfect peace to those whose mind is stayed on You."', 'John 14:27 — "Peace I leave with you; My peace I give to you."', 'Romans 5:1 — "We have peace with God through our Lord Jesus Christ."'], count: '429 occurrences in the Bible' },
+                'holy': { hebrew: 'קָדוֹשׁ (qadosh) — set apart, sacred, utterly other', greek: 'ἅγιος (hagios) — consecrated, dedicated to God', definition: 'Holiness is God\'s most essential attribute — it defines everything else about Him. He is wholly other, morally pure, and set apart from all that is sinful. Holiness is not simply moral goodness but the quality of being entirely set apart for God\'s purposes. Believers are called to reflect this holiness in daily life.', verses: ['Isaiah 6:3 — "Holy, holy, holy is the Lord of hosts."', '1 Peter 1:16 — "Be holy, for I am holy."', 'Hebrews 12:14 — "Without holiness no one will see the Lord."', 'Revelation 4:8 — "Holy, holy, holy Lord God Almighty."'], count: '611 occurrences in the Bible' },
+                'prayer': { hebrew: 'תְּפִלָּה (tefillah) — petition, intercession, communication with God', greek: 'προσευχή (proseuche) — prayer, worship, directed toward God', definition: 'Prayer is not a religious ritual — it is intimate conversation with the living God. It encompasses praise, confession, thanksgiving, and petition. The Bible commands persistent prayer, promises God hears, and guarantees that the prayers of the righteous are powerful and effective. Jesus modeled it constantly.', verses: ['Philippians 4:6 — "In everything by prayer and supplication, let your requests be made known to God."', 'James 5:16 — "The effective, fervent prayer of a righteous man avails much."', 'Matthew 7:7 — "Ask and it shall be given to you."', '1 Thessalonians 5:17 — "Pray without ceasing."'], count: 'Over 650 references to prayer throughout Scripture' },
+                'salvation': { hebrew: 'יְשׁוּעָה (yeshuah) — deliverance, rescue, victory', greek: 'σωτηρία (soteria) — salvation, deliverance, preservation', definition: 'Comprehensive divine rescue — from the penalty of sin (justification), from the power of sin (sanctification), and ultimately from the presence of sin (glorification). Salvation is by grace alone, through faith alone, in Christ alone. It is God\'s great redemptive purpose woven through every page of Scripture.', verses: ['Romans 10:9 — "If you confess with your mouth and believe in your heart, you will be saved."', 'Acts 4:12 — "There is salvation in no one else."', 'Ephesians 2:8-9 — "By grace you have been saved through faith."', 'John 3:17 — "God sent the Son not to condemn the world, but that the world might be saved."'], count: 'Central theme of all 66 books' },
+                'sin': { hebrew: 'חֵטְא (chet) — to miss the mark, to go wrong', greek: 'ἁμαρτία (hamartia) — missing the mark, lawlessness, rebellion', definition: 'Sin is any thought, word, deed, or disposition that falls short of or rebels against God\'s holy standard. It entered the world through Adam\'s disobedience and affects every human being. Sin is not merely making mistakes — it is fundamentally a relational breach with God. Its wages are death; its remedy is the blood of Christ.', verses: ['Romans 3:23 — "All have sinned and fall short of the glory of God."', 'Romans 6:23 — "The wages of sin is death."', '1 John 1:9 — "If we confess our sins, He is faithful and just to forgive us."', 'Isaiah 53:6 — "The LORD has laid on Him the iniquity of us all."'], count: 'Over 800 occurrences in the Bible' },
+                'forgiveness': { hebrew: 'סְלִיחָה (selichah) — pardon, forgiveness, release from guilt', greek: 'ἄφεσις (aphesis) — release, remission, cancellation of debt', definition: 'Forgiveness is the divine act of releasing a person from the guilt and penalty of their sin. God\'s forgiveness is not a casual overlooking of sin — it was purchased at the infinite cost of Christ\'s suffering and death. To be forgiven is to have the record wiped clean. Believers are also commanded to extend forgiveness to others.', verses: ['Ephesians 1:7 — "In Him we have redemption, the forgiveness of sins."', 'Psalm 103:12 — "As far as the east is from the west, so far has He removed our transgressions."', 'Colossians 2:13 — "He forgave us all our sins."', 'Matthew 6:14 — "If you forgive others their trespasses, your heavenly Father will also forgive you."'], count: '142 occurrences in the Bible' },
+                'wisdom': { hebrew: 'חָכְמָה (chokmah) — skill, expertise, practical wisdom', greek: 'σοφία (sophia) — wisdom, understanding, divine insight', definition: 'Biblical wisdom is not merely intelligence — it is the skill of living life as God designed it. It begins with the fear of the LORD and is demonstrated in right choices, pure speech, and godly relationships. God gives wisdom generously to those who ask. Jesus is the personification of divine Wisdom (1 Corinthians 1:30).', verses: ['Proverbs 1:7 — "The fear of the LORD is the beginning of wisdom."', 'James 1:5 — "If any of you lacks wisdom, ask God who gives generously."', '1 Corinthians 1:30 — "Christ Jesus became for us wisdom from God."', 'Proverbs 3:5-6 — "Trust in the LORD with all your heart."'], count: '222 occurrences in the Bible' },
+                'hope': { hebrew: 'תִּקְוָה (tikvah) — expectation, hope, a cord of hope', greek: 'ἐλπίς (elpis) — confident expectation, hope anchored in God', definition: 'Biblical hope is not wishful thinking — it is confident expectation rooted in the character and promises of God. It is an anchor for the soul. The Christian\'s hope is not in earthly circumstances but in the resurrection of Jesus Christ, the guarantee of our own resurrection and eternal life with God.', verses: ['Romans 8:24-25 — "Hope that is seen is not hope."', 'Hebrews 6:19 — "We have this hope as an anchor for the soul."', 'Romans 15:13 — "May the God of hope fill you with all joy and peace."', 'Jeremiah 29:11 — "I know the plans I have for you, plans for a future and a hope."'], count: '129 occurrences in the Bible' },
+                'worship': { hebrew: 'שָׁחָה (shachah) — to bow down, to prostrate before God', greek: 'προσκυνέω (proskuneo) — to kiss toward, to bow in reverence', definition: 'Worship is the total response of the whole person to the total revelation of God. It is not a style of music or a Sunday program — it is a posture of the heart that acknowledges God\'s supreme worth. Jesus declared that God seeks worshippers who worship in spirit and in truth. Everything in the Christian life is meant to be an act of worship.', verses: ['John 4:24 — "God is Spirit, and those who worship Him must worship in spirit and truth."', 'Romans 12:1 — "Present your bodies a living sacrifice — this is your spiritual worship."', 'Psalm 95:6 — "Come, let us bow down in worship."', 'Revelation 4:11 — "You are worthy, our Lord and God."'], count: 'Over 300 references throughout Scripture' },
+                'covenant': { hebrew: 'בְּרִית (berith) — binding agreement, solemn commitment', greek: 'διαθήκη (diatheke) — covenant, testament, will', definition: 'A covenant is a solemn, binding relationship established by God with His people, typically sealed with blood. The Bible traces five major covenants: Noahic, Abrahamic, Mosaic, Davidic, and New. Each progressively unfolds God\'s redemptive plan. The New Covenant, ratified in the blood of Christ, is the fulfillment of all that came before.', verses: ['Jeremiah 31:31 — "I will make a new covenant with the house of Israel."', 'Luke 22:20 — "This cup is the new covenant in my blood."', 'Genesis 9:13 — "I set my rainbow in the clouds as a sign of the covenant."', 'Hebrews 9:15 — "He is the mediator of a new covenant."'], count: '286 occurrences in the Bible' },
+                'redemption': { hebrew: 'גְּאֻלָּה (geullah) — kinsman-redeemer right, ransom price paid', greek: 'ἀπολύτρωσις (apolytrosis) — release by ransom payment', definition: 'Redemption means buying back what was lost. In the ancient world, a kinsman-redeemer (goel) paid the price to free a family member from debt or slavery. Jesus is the ultimate Kinsman-Redeemer who paid the infinite price of His own blood to purchase our freedom from sin\'s bondage, its penalty, and its power.', verses: ['Colossians 1:14 — "In Him we have redemption through His blood."', 'Galatians 3:13 — "Christ redeemed us from the curse of the law."', 'Ephesians 1:7 — "The forgiveness of sins according to the riches of His grace."', '1 Peter 1:18-19 — "Redeemed with the precious blood of Christ."'], count: '76 occurrences in the New Testament' },
+                'resurrection': { hebrew: 'תְּחִיַּת הַמֵּתִים (techiyat ha-metim) — rising of the dead', greek: 'ἀνάστασις (anastasis) — rising up, resurrection from the dead', definition: 'The resurrection of Jesus Christ is the foundation of the Christian faith — not a metaphor, not a spiritual symbol, but a bodily historical event. Without the resurrection, faith is futile and we are still in our sins (1 Corinthians 15:17). The risen Christ is the firstfruits guaranteeing the resurrection of all who believe.', verses: ['1 Corinthians 15:17 — "If Christ has not been raised, your faith is futile."', 'John 11:25 — "I am the resurrection and the life."', 'Romans 6:5 — "We will certainly also be united with Him in His resurrection."', '1 Thessalonians 4:16 — "The dead in Christ will rise first."'], count: '42 occurrences in the New Testament' },
+                'mercy': { hebrew: 'רַחֲמִים (rachamim) — tender mercies, womb-like compassion', greek: 'ἔλεος (eleos) — mercy, compassion, pity', definition: 'Mercy is God not giving us what we deserve — the withholding of deserved punishment. It flows from God\'s innermost compassion, described with the same Hebrew root as the word for "womb" — a tender, maternal kind of love. New every morning. Great. Everlasting. The steadfast mercy of God is the thread running through every covenant.', verses: ['Lamentations 3:22-23 — "His mercies are new every morning."', 'Psalm 136:1 — "His mercy endures forever."', 'Titus 3:5 — "He saved us according to His mercy."', 'Matthew 5:7 — "Blessed are the merciful, for they shall receive mercy."'], count: '276 occurrences in the Bible' },
+                'truth': { hebrew: 'אֱמֶת (emet) — truth, faithfulness, reliability, steadfastness', greek: 'ἀλήθεια (aletheia) — truth, reality, that which is not hidden', definition: 'Biblical truth is not merely factual accuracy — it is reality as God defines it. Jesus declared Himself to be the Truth — not merely truthful, but the very embodiment of reality. God\'s Word is truth. The Holy Spirit is the Spirit of truth who guides believers into all truth. Truth sets free those who receive and abide in it.', verses: ['John 8:32 — "The truth shall set you free."', 'John 14:6 — "I am the way, the truth, and the life."', 'John 17:17 — "Your word is truth."', 'Psalm 119:160 — "The entirety of Your word is truth."'], count: 'Over 200 occurrences in the New Testament alone' },
+                'repentance': { hebrew: 'נָחַם (nacham) / שׁוּב (shuv) — to turn, to return, to change course', greek: 'μετάνοια (metanoia) — change of mind and direction', definition: 'Repentance is not merely feeling sorry — it is a complete reversal of direction. Meta (change) + noia (mind/thinking). True repentance changes the mind about sin (recognizing it as God sees it), changes the will (deciding to turn away), and changes behavior (bearing fruit in keeping with repentance). It is the first word of the Gospel.', verses: ['Acts 3:19 — "Repent and turn back that your sins may be wiped out."', 'Mark 1:15 — "Repent and believe the good news."', 'Luke 15:7 — "There is joy in heaven over one sinner who repents."', '2 Corinthians 7:10 — "Godly sorrow produces repentance leading to salvation."'], count: '72 occurrences in the New Testament' }
             };
             const lw = word.toLowerCase();
             const data = definitions[lw] || {
@@ -5813,6 +6017,135 @@
         // ============================================================
         // ILLUSTRATIONS
         // ============================================================
+        // ============================================================
+        // BIBLICAL LANDS & GEOGRAPHY
+        // ============================================================
+        var LANDS_DATA = {
+            cities: [
+                {name:'Jerusalem', icon:'&#127963;', color:'#1e40af', bg:'#dbeafe', ref:'Psalm 122:6 &nbsp;·&nbsp; Matthew 5:35', desc:'The Holy City. Capital of the Davidic Kingdom, site of the Temple, and the location of Jesus\'s crucifixion, burial, and resurrection. Called the City of David, Zion, and the City of the Great King.'},
+                {name:'Bethlehem', icon:'&#127968;', color:'#166534', bg:'#dcfce7', ref:'Micah 5:2 &nbsp;·&nbsp; Luke 2:4', desc:'Birthplace of Jesus Christ and King David. Located 5 miles south of Jerusalem in Judah. Its name means "House of Bread." The Messiah\'s birthplace was prophesied 700 years in advance.'},
+                {name:'Nazareth', icon:'&#128578;', color:'#6b21a8', bg:'#f3e8ff', ref:'Luke 2:39 &nbsp;·&nbsp; John 1:46', desc:'Hometown of Jesus, where He grew up and began His ministry. Located in lower Galilee. "Can anything good come from Nazareth?" (John 1:46) — yet the Son of God called it home.'},
+                {name:'Capernaum', icon:'&#128216;', color:'#0c4a6e', bg:'#e0f2fe', ref:'Matthew 4:13 &nbsp;·&nbsp; Mark 2:1', desc:'Jesus\'s base of operations during His Galilean ministry. Located on the north shore of the Sea of Galilee. Many miracles happened here — the healing of Peter\'s mother-in-law, the paralytic lowered through the roof, and more.'},
+                {name:'Jericho', icon:'&#127963;', color:'#92400e', bg:'#fef3c7', ref:'Joshua 6:1 &nbsp;·&nbsp; Luke 19:1', desc:'The oldest walled city in history. Its walls fell at the sound of trumpets and a shout. Zacchaeus climbed a sycamore tree here to see Jesus. Located in the Jordan Valley, 850 ft below sea level — the lowest city on earth.'},
+                {name:'Babylon', icon:'&#9876;', color:'#7c2d12', bg:'#fee2e2', ref:'Daniel 1:1 &nbsp;·&nbsp; Revelation 17–18', desc:'Capital of the Babylonian Empire and the city of Israel\'s exile. Nebuchadnezzar\'s kingdom. Daniel, Shadrach, Meshach, and Abednego were captives here. Symbolizes worldly power and opposition to God throughout Scripture.'},
+                {name:'Antioch', icon:'&#127760;', color:'#0369a1', bg:'#e0f2fe', ref:'Acts 11:26 &nbsp;·&nbsp; Acts 13:1–3', desc:'The city where followers of Jesus were first called "Christians." The launching pad for Paul\'s three missionary journeys. A major center of the early Gentile church and headquarters for world missions.'},
+                {name:'Rome', icon:'&#127981;', color:'#374151', bg:'#f1f5f9', ref:'Romans 1:7 &nbsp;·&nbsp; Acts 28:16', desc:'Capital of the Roman Empire. Paul wrote his greatest epistle to the church here. He eventually arrived as a prisoner and tradition holds he was martyred in Rome. The Empire that crucified Christ became the vehicle for spreading the Gospel.'}
+            ],
+            regions: [
+                {name:'Canaan / The Promised Land', icon:'&#127975;', color:'#166534', bg:'#dcfce7', ref:'Genesis 12:7 &nbsp;·&nbsp; Deuteronomy 11:24', desc:'The land God promised to Abraham and his descendants — "a land flowing with milk and honey." Borders: from the Nile to the Euphrates. Today it corresponds roughly to modern Israel, the West Bank, Gaza, Lebanon, and parts of Jordan and Syria.'},
+                {name:'Galilee', icon:'&#127754;', color:'#0369a1', bg:'#e0f2fe', ref:'Isaiah 9:1 &nbsp;·&nbsp; Matthew 4:15', desc:'The northern region of Israel where Jesus spent most of His ministry — roughly 80% of it. Home to the Sea of Galilee, Nazareth, Capernaum, Cana, and the Mount of Beatitudes. A region often looked down upon, yet God chose it as the theater of the Messiah\'s work.'},
+                {name:'Judea', icon:'&#127963;', color:'#1e40af', bg:'#dbeafe', ref:'Matthew 3:1 &nbsp;·&nbsp; John 4:3', desc:'The southern region of Israel, including Jerusalem, Bethlehem, Jericho, and the Judean wilderness. Where Jesus was born, tempted, crucified, and resurrected. John the Baptist preached in its wilderness: "Repent, for the kingdom of heaven is at hand."'},
+                {name:'Egypt', icon:'&#129529;', color:'#92400e', bg:'#fef3c7', ref:'Genesis 12:10 &nbsp;·&nbsp; Hosea 11:1', desc:'The ancient superpower that enslaved Israel for 400 years. Abraham, Joseph, and the infant Jesus all fled there. God\'s greatest display of redemptive power — the Ten Plagues and the Exodus — happened here. "Out of Egypt I called my Son" (Hosea 11:1 / Matthew 2:15).'},
+                {name:'Sinai / The Wilderness', icon:'&#127964;', color:'#b45309', bg:'#fef9c3', ref:'Exodus 3:1 &nbsp;·&nbsp; Numbers 14:33', desc:'The desert peninsula where Israel wandered 40 years. Moses encountered the burning bush here. God gave the Law at Mount Sinai. A place of testing, provision (manna, water from rock), and divine revelation. Jesus also spent 40 days in the wilderness before His ministry.'}
+            ],
+            routes: [
+                {name:'The Exodus Route', icon:'&#127960;', color:'#d97706', bg:'#fef3c7', ref:'Exodus 13:17–18', desc:'From Goshen in Egypt → through the Red Sea → to Mount Sinai → to Kadesh Barnea → 40 years in the wilderness → across the Jordan River into Canaan. Approximately 400 miles of desert wandering that took 40 years due to Israel\'s unbelief.'},
+                {name:'Paul\'s First Missionary Journey', icon:'&#9875;', color:'#0369a1', bg:'#e0f2fe', ref:'Acts 13–14', desc:'Antioch (Syria) → Seleucia → Cyprus (Salamis, Paphos) → Perga (Pamphylia) → Pisidian Antioch → Iconium → Lystra → Derbe → return to Antioch. ~1,400 miles. Paul and Barnabas planted churches throughout Asia Minor.'},
+                {name:'Paul\'s Second Journey', icon:'&#9875;', color:'#166534', bg:'#dcfce7', ref:'Acts 15:36–18:22', desc:'Antioch → Syria/Cilicia → Lystra (Timothy joins) → Macedonia (Philippi, Thessalonica, Berea) → Athens → Corinth → Ephesus → Jerusalem → Antioch. ~2,800 miles. The Gospel enters Europe for the first time.'},
+                {name:'The Via Dolorosa', icon:'&#10016;', color:'#991b1b', bg:'#fee2e2', ref:'Luke 23:26–33 &nbsp;·&nbsp; John 19:17', desc:'The route Jesus walked from Pilate\'s judgment hall to Golgotha — approximately 600 meters through the streets of Jerusalem. The Church of the Holy Sepulchre marks the traditional site of the crucifixion and empty tomb. Fourteen stations mark key moments along the way.'},
+                {name:'The Patriarchal Road (Ridgeway)', icon:'&#128101;', color:'#6b21a8', bg:'#f3e8ff', ref:'Genesis 12–50', desc:'The ancient north-south highland route through Canaan traveled by Abraham, Isaac, and Jacob. Connected Shechem, Bethel, Hebron, and Beersheba — places where the patriarchs built altars and encountered God. This same road Jesus likely traveled.'}
+            ],
+            waters: [
+                {name:'The Jordan River', icon:'&#127754;', color:'#0369a1', bg:'#e0f2fe', ref:'Joshua 3:17 &nbsp;·&nbsp; Matthew 3:13', desc:'Israel\'s most sacred river — about 156 miles long. Israel crossed it miraculously when entering the Promised Land. Naaman the Syrian was healed by bathing in it seven times. Jesus was baptized in the Jordan by John the Baptist. Called "the River of God."'},
+                {name:'The Red Sea', icon:'&#127754;', color:'#991b1b', bg:'#fee2e2', ref:'Exodus 14:21 &nbsp;·&nbsp; Hebrews 11:29', desc:'The body of water God parted for the Exodus — Israel passed through on dry ground, Pharaoh\'s army was destroyed. A type of baptism and salvation throughout Scripture. Paul says "all were baptized into Moses in the cloud and in the sea" (1 Cor. 10:2).'},
+                {name:'The Sea of Galilee', icon:'&#127803;', color:'#0ea5e9', bg:'#e0f2fe', ref:'Matthew 4:18 &nbsp;·&nbsp; Mark 6:47–51', desc:'A freshwater lake, 13 miles long and 8 miles wide, sitting 695 feet below sea level. Jesus called His first disciples here. He calmed a storm here with a word. He walked on its waters. Peter fished here his whole life and met his Lord on its shores.'},
+                {name:'Mount Sinai (Horeb)', icon:'&#9968;', color:'#92400e', bg:'#fef3c7', ref:'Exodus 19:20 &nbsp;·&nbsp; 1 Kings 19:8', desc:'The Mountain of God where Moses received the Ten Commandments. God descended in fire, smoke, and thunder. Elijah fled here after his greatest spiritual crisis and heard God\'s still small voice. Also called Horeb. The exact location is debated but traditionally identified in the Sinai Peninsula.'},
+                {name:'Mount of Olives', icon:'&#127807;', color:'#166534', bg:'#dcfce7', ref:'Zechariah 14:4 &nbsp;·&nbsp; Luke 22:39', desc:'The hill east of Jerusalem across the Kidron Valley. Jesus gave His great Olivet Discourse here. He prayed in Gethsemane at its foot. He ascended into heaven from its summit. Zechariah prophesied that He will return and set His feet on this mountain again.'},
+                {name:'Mount Zion', icon:'&#127963;', color:'#7c2d12', bg:'#fee2e2', ref:'Psalm 48:2 &nbsp;·&nbsp; Hebrews 12:22', desc:'The hill in Jerusalem identified with the City of David and the Temple Mount. In Scripture "Zion" expands to mean all of Jerusalem, the dwelling place of God, the Church, and ultimately the heavenly Jerusalem. "God is in the midst of her; she shall not be moved" (Ps. 46:5).'}
+            ]
+        };
+
+        function showLandsSection(key, btn) {
+            document.querySelectorAll('.maps-tab').forEach(function(b){ b.classList.remove('active'); });
+            if (btn) btn.classList.add('active');
+            var data = LANDS_DATA[key] || [];
+            var el = document.getElementById('landsContent');
+            if (!el) return;
+            el.innerHTML = '<div style="display:grid;grid-template-columns:1fr;gap:14px">' +
+                data.map(function(item){
+                    return '<div style="background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;display:flex;gap:0">' +
+                        '<div style="background:' + item.bg + ';min-width:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 10px;border-right:1px solid rgba(0,0,0,0.05)">' +
+                        '<div style="font-size:1.8rem;margin-bottom:4px">' + item.icon + '</div>' +
+                        '</div>' +
+                        '<div style="padding:14px 18px;flex:1">' +
+                        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">' +
+                        '<span style="font-weight:800;font-size:0.95rem;color:' + item.color + '">' + item.name + '</span>' +
+                        '<span style="font-size:0.7rem;color:' + item.color + ';opacity:0.7;background:' + item.bg + ';padding:2px 8px;border-radius:10px">' + item.ref + '</span>' +
+                        '</div>' +
+                        '<p style="font-size:0.87rem;color:#374151;line-height:1.65;margin:0">' + item.desc + '</p>' +
+                        '</div></div>';
+                }).join('') + '</div>';
+        }
+
+        function loadMapsPage() {
+            showLandsSection('cities', document.querySelector('.maps-tab'));
+        }
+
+        // ============================================================
+        // QUOTES LIBRARY
+        // ============================================================
+        var BUILTIN_QUOTES = [
+            {text:'The Bible is not merely a book to be read, but a life to be lived.', author:'Charles Spurgeon', cat:'scripture', color:'#1e3a5f'},
+            {text:'A thorough knowledge of the Bible is worth more than a college education.', author:'Theodore Roosevelt', cat:'scripture', color:'#1e3a5f'},
+            {text:'The Christian does not think God will love us because we are good, but that God will make us good because He loves us.', author:'C.S. Lewis', cat:'grace', color:'#166534'},
+            {text:'No man ever believed the Bible with his whole heart without beginning immediately to try to live it.', author:'Woodrow Wilson', cat:'faith', color:'#1e40af'},
+            {text:'The Word of God is the anvil upon which the opinions of men are smashed.', author:'Charles Spurgeon', cat:'scripture', color:'#1e3a5f'},
+            {text:'Prayer is not asking. Prayer is putting oneself in the hands of God, at His disposition, and listening to His voice in the depth of our hearts.', author:'Mother Teresa', cat:'prayer', color:'#6b21a8'},
+            {text:'He is no fool who gives what he cannot keep to gain what he cannot lose.', author:'Jim Elliot', cat:'faith', color:'#1e40af'},
+            {text:'The more we depend on God, the more dependable we find He is.', author:'Cliff Richard', cat:'faith', color:'#1e40af'},
+            {text:'If there is no enemy within, the enemy outside can do us no harm.', author:'African Proverb', cat:'ministry', color:'#92400e'},
+            {text:'Preach the gospel at all times. Use words if necessary.', author:'Francis of Assisi', cat:'preaching', color:'#0c4a6e'},
+            {text:'The preacher who never preaches against sin will never save souls from it.', author:'Charles Spurgeon', cat:'preaching', color:'#0c4a6e'},
+            {text:'Until you have given up your self to Him you will not have a real self.', author:'C.S. Lewis', cat:'grace', color:'#166534'},
+            {text:'Prayer is the slender nerve that moveth the muscle of omnipotence.', author:'Charles Spurgeon', cat:'prayer', color:'#6b21a8'},
+            {text:'The sermon that comes from God returns to God.', author:'A.W. Tozer', cat:'preaching', color:'#0c4a6e'},
+            {text:'The Bible is not the light of the world — it is the light of the Church. The world does not read the Bible; the world reads Christians.', author:'Billy Graham', cat:'scripture', color:'#1e3a5f'},
+            {text:'You can never study the Bible too much. You can never pray too much. But you can preach too long.', author:'D.L. Moody', cat:'preaching', color:'#0c4a6e'},
+            {text:'Ministry is not a career — it is a calling. Show up today not because of what you will receive, but because of what He already gave.', author:'Dr. Richard G. Clark', cat:'ministry', color:'#7c2d12'},
+            {text:'When you open Scripture, you are not handling a textbook — you are handling fire. Treat it with reverence. Deliver it with courage.', author:'Dr. Richard G. Clark', cat:'preaching', color:'#0c4a6e'},
+            {text:'God\'s grace is not a reward for the deserving — it is the rescue of the drowning.', author:'Dr. Richard G. Clark', cat:'grace', color:'#166534'},
+            {text:'Faith is not the absence of doubt. Faith is choosing the truth of God\'s Word over the loudness of your feelings.', author:'Dr. Richard G. Clark', cat:'faith', color:'#1e40af'},
+            {text:'The congregation does not need your performance. They need your presence — soaked in prayer and rooted in the Word.', author:'Dr. Richard G. Clark', cat:'ministry', color:'#7c2d12'},
+            {text:'I have held many things in my hands, and I have lost them all; but whatever I have placed in God\'s hands, that I still possess.', author:'Corrie Ten Boom', cat:'faith', color:'#1e40af'},
+            {text:'You don\'t have a soul. You are a soul. You have a body.', author:'C.S. Lewis', cat:'faith', color:'#1e40af'}
+        ];
+
+        function renderQuotes(list) {
+            var el = document.getElementById('quotesList');
+            if (!el) return;
+            var colorMap = {'#1e3a5f':'#dbeafe','#166534':'#dcfce7','#1e40af':'#eff6ff','#6b21a8':'#f3e8ff','#92400e':'#fef3c7','#0c4a6e':'#e0f2fe','#7c2d12':'#fee2e2'};
+            el.innerHTML = list.map(function(q){
+                var bg = colorMap[q.color] || '#f8fafc';
+                return '<div style="background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e2e8f0;display:flex;flex-direction:column">' +
+                    '<div style="background:' + q.color + ';padding:10px 16px;display:flex;align-items:center;gap:8px">' +
+                    '<span style="font-size:1.3rem;opacity:0.8">&#10077;</span>' +
+                    '<span style="font-size:0.68rem;font-weight:800;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.06em">' + q.cat + '</span>' +
+                    '</div>' +
+                    '<div style="padding:16px 18px;flex:1">' +
+                    '<p style="font-family:Georgia,serif;font-size:0.9rem;font-style:italic;color:#1e293b;line-height:1.7;margin:0 0 12px">\u201c' + q.text + '\u201d</p>' +
+                    '<div style="font-size:0.75rem;font-weight:700;color:' + q.color + '">\u2014 ' + q.author + '</div>' +
+                    '</div></div>';
+            }).join('');
+        }
+
+        function filterQuotes(cat, btn) {
+            document.querySelectorAll('.q-filter-btn').forEach(function(b){
+                b.style.background = '#f1f5f9';
+                b.style.color = '#475569';
+            });
+            if (btn) { btn.style.background = '#1e3a5f'; btn.style.color = '#fff'; }
+            var list = cat === 'all' ? BUILTIN_QUOTES : BUILTIN_QUOTES.filter(function(q){ return q.cat === cat; });
+            renderQuotes(list);
+        }
+
+        function loadQuotesPage() {
+            renderQuotes(BUILTIN_QUOTES);
+        }
+
+        function showNewQuoteModal() {
+            showToast('To add quotes, use the Add Illustration feature and select "Quote" as the type.');
+        }
+
         function loadIllustrations(category, el) {
             var listEl = document.getElementById('illustrationsList');
             if (!listEl) return;
@@ -6333,6 +6666,38 @@
         // ============================================================
         // PERSONAL DIARY
         // ============================================================
+        // ============================================================
+        // PERSONAL DIARY — ROTATING SCRIPTURE BANNER
+        // ============================================================
+        var DIARY_SCRIPTURES = [
+            {text:'Create in me a clean heart, O God, and renew a right spirit within me.', ref:'Psalm 51:10'},
+            {text:'I can do all things through him who strengthens me.', ref:'Philippians 4:13'},
+            {text:'The LORD is my light and my salvation — whom shall I fear?', ref:'Psalm 27:1'},
+            {text:'Be still, and know that I am God.', ref:'Psalm 46:10'},
+            {text:'For his anger is but for a moment, and his favor is for a lifetime. Weeping may tarry for the night, but joy comes with the morning.', ref:'Psalm 30:5'},
+            {text:'You keep him in perfect peace whose mind is stayed on you, because he trusts in you.', ref:'Isaiah 26:3'},
+            {text:'The LORD is near to the brokenhearted and saves the crushed in spirit.', ref:'Psalm 34:18'},
+            {text:'Cast your burden on the LORD, and he will sustain you.', ref:'Psalm 55:22'},
+            {text:'He heals the brokenhearted and binds up their wounds.', ref:'Psalm 147:3'},
+            {text:'For I am sure that neither death nor life... will be able to separate us from the love of God in Christ Jesus our Lord.', ref:'Romans 8:38–39'},
+            {text:'Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.', ref:'Philippians 4:6'},
+            {text:'The steadfast love of the LORD never ceases; his mercies never come to an end; they are new every morning.', ref:'Lamentations 3:22–23'}
+        ];
+        var _diaryScriptIdx = 0;
+
+        function renderDiaryScripture() {
+            var s = DIARY_SCRIPTURES[_diaryScriptIdx];
+            var t = document.getElementById('diary-script-text');
+            var r = document.getElementById('diary-script-ref');
+            if (t) t.textContent = '\u201c' + s.text + '\u201d';
+            if (r) r.textContent = s.ref;
+        }
+
+        function nextDiaryScripture() {
+            _diaryScriptIdx = (_diaryScriptIdx + 1) % DIARY_SCRIPTURES.length;
+            renderDiaryScripture();
+        }
+
         function loadDiary(filter, el) {
             var el = document.getElementById('diaryList');
             if (!el) return;
@@ -6863,16 +7228,53 @@
                                 '</div></div>';
                         }).join('') + '</div>');
             } else {
-                el.innerHTML = '<div style="display:grid;gap:12px">' +
+                // Resources section
+                el.innerHTML =
+                    '<div style="background:linear-gradient(135deg,#1e293b,#334155);border-radius:12px;padding:20px;color:#e2e8f0;margin-bottom:18px">' +
+                    '<div style="font-size:0.75rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px">Ministry Resource Library</div>' +
+                    '<p style="font-size:0.88rem;color:#cbd5e1;margin:0">A curated collection of trusted tools, websites, and references for serious ministry work.</p>' +
+                    '</div>' +
+                    // BIBLE RESEARCH TOOLS
+                    '<div style="margin-bottom:20px">' +
+                    '<div style="font-size:0.7rem;font-weight:800;color:#1e40af;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #dbeafe">&#128214; Bible Research Tools</div>' +
+                    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
                     [
-                        {title:'Sermon Delivery Checklist', items:['Scripture memorized or marked','Illustrations rehearsed','Water on podium','Opening strong — first 60 seconds prepared','Timed run-through completed','Prayer before entering the pulpit']},
-                        {title:'Sunday Morning Prep', items:['All media/slides tested Saturday','Order of service confirmed with team','Mic and audio checked','Pulpit Bible open to text','Backup plan if tech fails']}
+                        {name:'Bible Gateway', desc:'KJV, NIV, ESV, NKJV & 50+ translations with parallel view', url:'https://www.biblegateway.com', color:'#1e40af'},
+                        {name:'Blue Letter Bible', desc:'Strongs concordance, Hebrew/Greek lexicons, commentaries', url:'https://www.blueletterbible.org', color:'#1e40af'},
+                        {name:'Bible Hub', desc:'Interlinear Bible, parallel commentaries, cross-references', url:'https://biblehub.com', color:'#1e40af'},
+                        {name:'Logos Bible Software', desc:'Professional-grade biblical research & sermon prep platform', url:'https://www.logos.com', color:'#1e40af'}
+                    ].map(function(r){
+                        return '<a href="' + r.url + '" target="_blank" style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px;text-decoration:none;display:block;transition:box-shadow 0.2s" onmouseover="this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.1)\'" onmouseout="this.style.boxShadow=\'none\'">' +
+                            '<div style="font-weight:700;color:' + r.color + ';font-size:0.88rem;margin-bottom:4px">' + r.name + ' &#8599;</div>' +
+                            '<div style="font-size:0.78rem;color:#64748b;line-height:1.4">' + r.desc + '</div></a>';
+                    }).join('') + '</div></div>' +
+                    // SERMON PREPARATION
+                    '<div style="margin-bottom:20px">' +
+                    '<div style="font-size:0.7rem;font-weight:800;color:#166534;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #dcfce7">&#128221; Sermon Preparation</div>' +
+                    '<div style="display:grid;gap:10px">' +
+                    [
+                        {title:'Sermon Delivery Checklist', items:['Scripture memorized or clearly marked in your Bible','Opening hook — first 60 seconds fully prepared','All illustrations rehearsed and timed','Word count reviewed (aim for 130 words/minute for pacing)','Timed run-through completed — know your landing point','Water on the podium','Prayer before entering the pulpit']},
+                        {title:'Sunday Morning Prep', items:['All slides/media tested on Saturday','Order of service confirmed with worship team','Mic, monitors, and sound board checked','Pulpit Bible open to your preaching text','Backup plan if technology fails','Printed manuscript or outline on the podium']}
                     ].map(function(r){
                         return '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:16px">' +
-                            '<h4 style="color:#1e293b;margin-bottom:10px">' + r.title + '</h4>' +
-                            r.items.map(function(item){ return '<div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid #f1f5f9"><input type="checkbox" style="margin-top:2px"><span style="font-size:0.9rem;color:#374151">' + item + '</span></div>'; }).join('') +
+                            '<h4 style="color:#1e293b;margin-bottom:10px;font-size:0.9rem">' + r.title + '</h4>' +
+                            r.items.map(function(item){ return '<div style="display:flex;gap:8px;padding:7px 0;border-bottom:1px solid #f8fafc;align-items:flex-start"><input type="checkbox" style="margin-top:3px;flex-shrink:0"><span style="font-size:0.85rem;color:#374151;line-height:1.45">' + item + '</span></div>'; }).join('') +
                             '</div>';
-                    }).join('') + '</div>';
+                    }).join('') + '</div></div>' +
+                    // GREEK & HEBREW
+                    '<div style="margin-bottom:20px">' +
+                    '<div style="font-size:0.7rem;font-weight:800;color:#6b21a8;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #f3e8ff">&#9997; Greek &amp; Hebrew Tools</div>' +
+                    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
+                    [
+                        {name:'Strong\'s Concordance', desc:'The foundational Hebrew & Greek word numbering system', url:'https://biblehub.com/strongs.htm', color:'#6b21a8'},
+                        {name:'HELPS Word Studies', desc:'Expanded definitions beyond Strong\'s with usage context', url:'https://biblehub.com/greek/helps_concordance.htm', color:'#6b21a8'},
+                        {name:'Interlinear Bible (BibleHub)', desc:'See original Greek/Hebrew word-for-word under English', url:'https://biblehub.com/interlinear/', color:'#6b21a8'},
+                        {name:'STEP Bible (Tyndale)', desc:'Free scholarly tools: syntax, grammar, original languages', url:'https://www.stepbible.org', color:'#6b21a8'}
+                    ].map(function(r){
+                        return '<a href="' + r.url + '" target="_blank" style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px;text-decoration:none;display:block" onmouseover="this.style.boxShadow=\'0 4px 12px rgba(0,0,0,0.1)\'" onmouseout="this.style.boxShadow=\'none\'">' +
+                            '<div style="font-weight:700;color:' + r.color + ';font-size:0.88rem;margin-bottom:4px">' + r.name + ' &#8599;</div>' +
+                            '<div style="font-size:0.78rem;color:#64748b;line-height:1.4">' + r.desc + '</div></a>';
+                    }).join('') + '</div></div>';
             }
         }
 
