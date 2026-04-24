@@ -458,6 +458,57 @@
         [data-theme="dark"] .parallel-verse { color:#cbd5e1; }
 
 
+
+        /* ── Word Inspector ── */
+        .wi-has {
+            border-bottom: 1.5px dotted #d4a820;
+            cursor: help;
+        }
+        .wi-has:hover {
+            background: rgba(212,168,32,0.12);
+            border-radius: 2px;
+        }
+        .wi-word { display: inline; }
+        #versesContainer.wi-active { cursor: default; }
+        .wi-popup {
+            position: fixed;
+            z-index: 9999;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.22), 0 0 0 1px rgba(0,0,0,0.06);
+            width: 320px;
+            max-height: 80vh;
+            overflow-y: auto;
+            font-family: inherit;
+        }
+        .wi-popup-header {
+            background: linear-gradient(135deg,#1e3a5f,#0f1e4a);
+            border-radius: 14px 14px 0 0;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .wi-entry {
+            padding: 14px 16px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .wi-entry:last-child { border-bottom: none; }
+        .wi-original {
+            font-size: 1.8rem;
+            line-height: 1.2;
+            margin-bottom: 4px;
+            font-family: 'Times New Roman', serif;
+        }
+        .wi-badge {
+            font-size: 0.6rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            padding: 3px 8px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
         /* ── Scripture Memory Module ── */
         .sm-card-scene { perspective: 1000px; width: 100%; }
         .sm-card {
@@ -2254,6 +2305,10 @@
                         <button class="btn btn-secondary" id="audioBibleBtn" onclick="audioBibleToggle()" title="Listen to this chapter aloud">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                             Listen
+                        </button>
+                        <button class="btn btn-secondary" id="wiBtn" onclick="wiToggle()" title="Word Inspector: tap any word for Greek/Hebrew meaning">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                            Inspect
                         </button>
                     </div>
 
@@ -10548,6 +10603,252 @@
         }
         // ════════════════════════════════════════════════════════════════════════
         // END SCRIPTURE GRAPHICS
+        // ════════════════════════════════════════════════════════════════════════
+
+
+        // ════════════════════════════════════════════════════════════════════════
+        // WORD INSPECTOR
+        // ════════════════════════════════════════════════════════════════════════
+        var _wiActive = false;
+
+        var _wiMap = {
+            // ── Love ────────────────────────────────────────────────────────────
+            'love':      [{l:'H',w:'\u05D7\u05B6\u05E1\u05B6\u05D3',tr:'hesed',pron:'KHEH-sed',s:'H2617',m:'steadfast love, covenant loyalty, mercy, kindness',n:"The defining attribute of God\u2019s covenant character. Appears 245 times in the OT. Translated \u2018lovingkindness\u2019 (KJV) and \u2018steadfast love\u2019 (ESV)."},
+                          {l:'G',w:'\u1F00\u03B3\u03AC\u03C0\u03B7',tr:'agape',pron:'ah-GAH-pay',s:'G26',m:'unconditional love, self-giving love, divine love',n:"The highest NT word for love \u2014 chosen, sacrificial, not based on merit. God IS agape (1 John 4:8)."}],
+            'loved':     'love','loves':'love','loving':'love','beloved':'love','loveth':'love',
+            // ── Grace ───────────────────────────────────────────────────────────
+            'grace':     [{l:'H',w:'\u05D7\u05B5\u05DF',tr:'chen',pron:'KHAYN',s:'H2580',m:'grace, favor, charm, graciousness',n:"Undeserved favor from a superior to an inferior. Noah \u2018found chen in the eyes of the LORD\u2019 (Gen 6:8) \u2014 a picture of saving grace."},
+                          {l:'G',w:'\u03C7\u03AC\u03C1\u03B9\u03C2',tr:'charis',pron:'KHA-ris',s:'G5485',m:'grace, favor, gift, gratitude, beauty',n:"The foundation of NT soteriology. Unearned, unmerited divine favor. \u2018By grace you have been saved\u2019 (Eph 2:8)."}],
+            'gracious':  'grace','graciously':'grace',
+            // ── Faith ───────────────────────────────────────────────────────────
+            'faith':     [{l:'H',w:'\u05D0\u05B8\u05DE\u05B7\u05DF',tr:'aman',pron:'aw-MAN',s:'H539',m:'to confirm, support, be faithful, trust',n:"Root of \u2018Amen.\u2019 Used of Abraham\u2019s faith in Gen 15:6 \u2014 the paradigm of justifying faith (Rom 4:3)."},
+                          {l:'G',w:'\u03C0\u03AF\u03C3\u03C4\u03B9\u03C2',tr:'pistis',pron:'PIS-tis',s:'G4102',m:'faith, belief, trust, fidelity, persuasion',n:"Not merely intellectual assent but active trust and reliance. \u2018The just shall live by pistis\u2019 (Gal 3:11)."}],
+            'faithful':  'faith','faithfulness':'faith','believe':'faith','believed':'faith',
+            'believes':  'faith','believing':'faith','belief':'faith','unbelief':'faith',
+            // ── Peace ────────────────────────────────────────────────────────────
+            'peace':     [{l:'H',w:'\u05E9\u05B8\u05DC\u05D5\u05B9\u05DD',tr:'shalom',pron:'sha-LOME',s:'H7965',m:'peace, completeness, wholeness, welfare, prosperity',n:"Comprehensive well-being \u2014 far deeper than mere absence of conflict. The Messiah is the \u2018Prince of Shalom\u2019 (Isa 9:6)."},
+                          {l:'G',w:'\u03B5\u1F30\u03C1\u03AE\u03BD\u03B7',tr:'eirene',pron:'ay-RAY-nay',s:'G1515',m:'peace, harmony, tranquility, the Hebrew shalom',n:"The peace of God \u2018which surpasses all understanding\u2019 (Phil 4:7). Common NT greeting alongside grace."}],
+            'peaceful':  'peace','peacemaker':'peace','peacemakers':'peace',
+            // ── Holy ─────────────────────────────────────────────────────────────
+            'holy':      [{l:'H',w:'\u05E7\u05B9\u05D3\u05E9\u05C1',tr:'qodesh',pron:'KO-desh',s:'H6944',m:'holiness, apartness, sacredness, consecration',n:"God\u2019s essential nature as wholly other and morally pure. \u2018Be holy for I am holy\u2019 (Lev 11:44)."}],
+            'holiness':  'holy','sanctify':'holy','sanctified':'holy','sanctification':'holy',
+            'sacred':    'holy','consecrate':'holy','consecrated':'holy',
+            // ── Spirit ───────────────────────────────────────────────────────────
+            'spirit':    [{l:'H',w:'\u05E8\u05D5\u05BC\u05D7',tr:'ruach',pron:'ROO-akh',s:'H7307',m:'spirit, wind, breath',n:"Used for the Spirit of God (Gen 1:2), the breath of life (Gen 2:7), and the human spirit."},
+                          {l:'G',w:'\u03C0\u03BD\u03B5\u1FE6\u03BC\u03B1',tr:'pneuma',pron:'PNYOO-mah',s:'G4151',m:'spirit, wind, breath, the Holy Spirit',n:"Used 70+ times for the Holy Spirit in NT. Jesus uses it in John 3:8 to describe the Spirit\u2019s sovereign, mysterious work."}],
+            'spiritual': 'spirit','spirits':'spirit','breath':'spirit','wind':'spirit',
+            // ── Word ─────────────────────────────────────────────────────────────
+            'word':      [{l:'H',w:'\u05D3\u05B8\u05BC\u05D1\u05B8\u05E8',tr:'dabar',pron:'daw-BAR',s:'H1697',m:'word, matter, thing, command, speech',n:"Hebrew word includes both the speaking and the event it produces. God\u2019s dabar creates reality (Gen 1:3)."},
+                          {l:'G',w:'\u03BB\u03CC\u03B3\u03BF\u03C2',tr:'logos',pron:'LAW-goss',s:'G3056',m:'word, reason, account, message, the divine Word',n:"John 1:1 identifies Jesus as the eternal Logos who became flesh. Resonant with both Hebrew dabar and Greek philosophy."}],
+            'words':     'word',
+            // ── Life ──────────────────────────────────────────────────────────────
+            'life':      [{l:'G',w:'\u03B6\u03C9\u03AE',tr:'zoe',pron:'ZOH-ay',s:'G2222',m:'life, divine life, eternal life, the life of God',n:"Contrasted with bios (physical life). Zoe is the eternal uncreated life of God communicated to believers. \u2018I came that they might have zoe\u2019 (John 10:10)."}],
+            'lives':     'life','living':'life','live':'life','alive':'life','eternal':'life',
+            // ── Salvation ─────────────────────────────────────────────────────────
+            'salvation': [{l:'H',w:'\u05D9\u05B0\u05E9\u05C1\u05D5\u05BC\u05E2\u05B8\u05D4',tr:'yeshuah',pron:'yeh-SHOO-ah',s:'H3444',m:'salvation, deliverance, victory, help',n:"The root of the name Jesus (Yeshua). Comprehensive divine rescue \u2014 physical, spiritual, and eternal."},
+                          {l:'G',w:'\u03C3\u1FF4\u03B6\u03C9',tr:'sozo',pron:'SOH-zoh',s:'G4982',m:'to save, to rescue, to deliver, to heal, to make whole',n:"Comprehensive word for salvation \u2014 spiritual deliverance, physical healing, and ultimate rescue from judgment (Matt 1:21)."}],
+            'save':      'salvation','saved':'salvation','saves':'salvation','savior':'salvation',
+            'saving':    'salvation','saviour':'salvation','deliver':'salvation','redeemed':'salvation',
+            // ── LORD ──────────────────────────────────────────────────────────────
+            'lord':      [{l:'H',w:'\u05D9\u05B0\u05D4\u05D5\u05B8\u05D4',tr:'YHWH',pron:'yah-WEH',s:'H3068',m:'LORD, the self-existent one, I AM WHO I AM',n:"The personal covenant name of God revealed at the burning bush (Exod 3:14). Used 6,828 times in OT. Jews substitute \u2018Adonai\u2019 when reading aloud."}],
+            // ── God ───────────────────────────────────────────────────────────────
+            'god':       [{l:'H',w:'\u05D0\u05B1\u05DC\u05B9\u05D4\u05B4\u05D9\u05DD',tr:'Elohim',pron:'el-oh-HEEM',s:'H430',m:'God, gods; the strong one, the mighty one',n:"Plural form used for singular God, suggesting inner complexity. The primary title for God as Creator. Used 2,600 times in OT."}],
+            'gods':      'god',
+            // ── Covenant ──────────────────────────────────────────────────────────
+            'covenant':  [{l:'H',w:'\u05D1\u05B0\u05BC\u05E8\u05B4\u05D9\u05EA',tr:'berith',pron:'beh-REET',s:'H1285',m:'covenant, binding agreement, treaty',n:"The formal relationship structure between God and His people. Five major covenants: Noahic, Abrahamic, Mosaic, Davidic, New."}],
+            'covenants': 'covenant',
+            // ── Righteousness ─────────────────────────────────────────────────────
+            'righteousness':[{l:'G',w:'\u03B4\u03B9\u03BA\u03B1\u03B9\u03BF\u03C3\u03CD\u03BD\u03B7',tr:'dikaiosyne',pron:'dee-kye-oh-SOO-nay',s:'G1343',m:"righteousness, justness, conformity to God\u2019s standard",n:"The righteousness of God that is both His character and the gift given to believers through faith. The theme of Romans (1:17)."}],
+            'righteous':  'righteousness','justified':'righteousness','justify':'righteousness',
+            'justification':'righteousness','just':'righteousness',
+            // ── Repentance ────────────────────────────────────────────────────────
+            'repent':    [{l:'G',w:'\u03BC\u03B5\u03C4\u03B1\u03BD\u03BF\u03AD\u03C9',tr:'metanoeo',pron:'meh-tah-noh-EH-oh',s:'G3340',m:'to repent, to change mind and direction, to turn around',n:"Meta (change) + noe (mind). More than sorrow \u2014 a complete reversal of direction. The opening call of John the Baptist, Jesus, and Peter."}],
+            'repentance':'repent','repented':'repent','repenting':'repent','turn':'repent',
+            // ── Redemption ────────────────────────────────────────────────────────
+            'redemption':[{l:'G',w:'\u1F00\u03C0\u03BF\u03BB\u03CD\u03C4\u03C1\u03C9\u03C3\u03B9\u03C2',tr:'apolytrosis',pron:'ah-pol-OO-troh-sis',s:'G629',m:'redemption, release by payment of ransom, deliverance',n:"The purchasing of a slave\u2019s freedom. Christ\u2019s blood is the ransom price. \u2018In whom we have apolytrosis\u2019 (Col 1:14)."}],
+            'redeem':    'redemption','redeemer':'redemption',
+            // ── Reconciliation ────────────────────────────────────────────────────
+            'reconciliation':[{l:'G',w:'\u03BA\u03B1\u03C4\u03B1\u03BB\u03BB\u03B1\u03B3\u03AE',tr:'katallage',pron:'kah-tal-lag-AY',s:'G2643',m:'reconciliation, restoration of relationship, exchange',n:"The removal of enmity between God and humanity. \u2018God was in Christ reconciling the world to Himself\u2019 (2 Cor 5:19)."}],
+            'reconcile': 'reconciliation','reconciled':'reconciliation',
+            // ── Propitiation ──────────────────────────────────────────────────────
+            'propitiation':[{l:'G',w:'\u1F31\u03BB\u03B1\u03C3\u03BC\u03CC\u03C2',tr:'hilasmos',pron:'hee-las-MOS',s:'G2434',m:'propitiation, atoning sacrifice, satisfaction of divine justice',n:"\u2018He is the hilasmos for our sins\u2019 (1 John 2:2). Christ satisfies God\u2019s holy wrath against sin."}],
+            'atonement': 'propitiation',
+            // ── Comforter/Advocate ────────────────────────────────────────────────
+            'comforter': [{l:'G',w:'\u03C0\u03B1\u03C1\u03AC\u03BA\u03BB\u03B7\u03C4\u03BF\u03C2',tr:'parakletos',pron:'par-AK-lay-tos',s:'G3875',m:'Advocate, Comforter, Helper, Counselor, one called alongside',n:"Para (alongside) + kletos (called). \u2018Another Parakletos\u2019 (John 14:16) \u2014 another of the same kind as Jesus Himself."}],
+            'advocate':  'comforter','helper':'comforter','counselor':'comforter','counsellor':'comforter',
+            // ── Mercy ─────────────────────────────────────────────────────────────
+            'mercy':     [{l:'H',w:'\u05E8\u05B7\u05D7\u05B2\u05DE\u05B4\u05D9\u05DD',tr:'rachamim',pron:'rakh-ah-MEEM',s:'H7356',m:'mercy, compassion, tender love',n:"Literally \u2018womb-love\u2019 \u2014 the deep, instinctive compassion of a mother for her child. God\u2019s mercy flows from His innermost being."},
+                          {l:'G',w:'\u1F14\u03BB\u03B5\u03BF\u03C2',tr:'eleos',pron:'EH-leh-os',s:'G1656',m:'mercy, compassion, pity',n:"God\u2019s active response to need and suffering. \u2018Blessed are the merciful, for they shall receive mercy\u2019 (Matt 5:7)."}],
+            'merciful':  'mercy','mercies':'mercy',
+            // ── Hope ──────────────────────────────────────────────────────────────
+            'hope':      [{l:'G',w:'\u1F10\u03BB\u03C0\u03AF\u03C2',tr:'elpis',pron:'EL-pis',s:'G1680',m:'hope, expectation, confident trust in the future',n:"NT hope is not wishful thinking but confident expectation grounded in the resurrection. \u2018Christ in you, the hope of glory\u2019 (Col 1:27)."}],
+            'hoped':     'hope','hoping':'hope',
+            // ── Truth ─────────────────────────────────────────────────────────────
+            'truth':     [{l:'H',w:'\u05D0\u05B1\u05DE\u05B6\u05EA',tr:'emet',pron:'EH-met',s:'H571',m:'truth, faithfulness, reliability, certainty',n:"The stable, reliable character of God and His word. \u2018Your word is truth\u2019 (Ps 119:142). Same root as Amen."},
+                          {l:'G',w:'\u1F00\u03BB\u03AE\u03B8\u03B5\u03B9\u03B1',tr:'aletheia',pron:'ah-LAY-thay-ah',s:'G225',m:'truth, reality, that which is not hidden',n:"In Greek, a-letheia literally means \u2018un-concealed.\u2019 Jesus is THE aletheia (John 14:6) \u2014 God fully revealed."}],
+            'true':      'truth','truly':'truth',
+            // ── Glory ─────────────────────────────────────────────────────────────
+            'glory':     [{l:'H',w:'\u05DB\u05B8\u05BC\u05D1\u05D5\u05B9\u05D3',tr:'kabod',pron:'kaw-BODE',s:'H3519',m:'glory, weight, honor, splendor, abundance',n:"Literally \u2018weight\u2019 or \u2018heaviness\u2019 \u2014 the visible, weighty, overwhelming presence and majesty of God. Shekinah glory filled the tabernacle."},
+                          {l:'G',w:'\u03B4\u03CC\u03BE\u03B1',tr:'doxa',pron:'DOX-ah',s:'G1391',m:'glory, splendor, honor, praise, brightness',n:"Originally \u2018opinion\u2019 in classical Greek. In the NT, the radiant majesty, honor, and praise due to God alone. \u2018The Word became flesh\u2026 and we beheld His doxa\u2019 (John 1:14)."}],
+            'glorified': 'glory','glorify':'glory','glorious':'glory',
+            // ── Amen ──────────────────────────────────────────────────────────────
+            'amen':      [{l:'H',w:'\u05D0\u05B8\u05DE\u05B5\u05DF',tr:'amen',pron:'ah-MEN',s:'H543',m:'truly, certainly, so be it, verily',n:"A solemn affirmation of truth or a congregational response confirming agreement. Jesus uniquely says \u2018Amen, amen I say to you\u2019 \u2014 asserting His own authority."}],
+            // ── Worship ───────────────────────────────────────────────────────────
+            'worship':   [{l:'H',w:'\u05E9\u05B8\u05D7\u05B8\u05D4',tr:'shachah',pron:'shaw-KHAW',s:'H7812',m:'to bow down, to prostrate, to worship',n:"The physical act of falling prostrate before God. The root posture of biblical worship \u2014 acknowledgment of God\u2019s absolute majesty."},
+                          {l:'G',w:'\u03C0\u03C1\u03BF\u03C3\u03BA\u03C5\u03BD\u03AD\u03C9',tr:'proskuneo',pron:'pros-koo-NEH-oh',s:'G4352',m:'to worship, to bow down, to kiss the hand toward',n:"Literally \u2018to kiss toward.\u2019 The most common NT word for worship. \u2018Worship the Lord your God\u2019 (Matt 4:10)."}],
+            'worshipped':'worship','worshiped':'worship','worshippers':'worship',
+            // ── Prayer ────────────────────────────────────────────────────────────
+            'pray':      [{l:'H',w:'\u05E4\u05B8\u05DC\u05B7\u05DC',tr:'palal',pron:'paw-LAL',s:'H6419',m:'to pray, to intercede, to judge, to intervene',n:"To intercede or make judgment before God. The primary Hebrew root for prayer \u2014 approaching God as a judge who hears and acts."},
+                          {l:'G',w:'\u03C0\u03C1\u03BF\u03C3\u03B5\u03CD\u03C7\u03BF\u03BC\u03B1\u03B9',tr:'proseuchomai',pron:'pros-yoo-KHOM-ahee',s:'G4336',m:'to pray, to offer prayer, to worship through prayer',n:"Pros (toward) + euchomai (to wish, vow). Directional \u2014 prayer oriented entirely toward God. The most frequent NT word for prayer."}],
+            'prayer':    'pray','praying':'pray','prays':'pray','prayers':'pray',
+            'intercede': 'pray','intercession':'pray'
+        };
+
+        // Resolve string aliases to their array entries
+        function _wiResolve(key) {
+            var entry = _wiMap[key];
+            if (!entry) return null;
+            if (typeof entry === 'string') return _wiResolve(entry);
+            return entry;
+        }
+
+        function wiToggle() {
+            _wiActive = !_wiActive;
+            var btn = document.getElementById('wiBtn');
+            if (btn) {
+                btn.style.background    = _wiActive ? '#7c3aed' : '';
+                btn.style.color         = _wiActive ? '#fff'    : '';
+                btn.style.borderColor   = _wiActive ? '#7c3aed' : '';
+            }
+            var container = document.getElementById('versesContainer');
+            if (!container) return;
+            if (_wiActive) {
+                container.classList.add('wi-active');
+                wiActivate(container);
+                showToast('\uD83D\uDD0D Word Inspector ON \u2014 tap any underlined word.');
+            } else {
+                container.classList.remove('wi-active');
+                wiDeactivate(container);
+                wiHidePopup();
+            }
+        }
+
+        function wiActivate(container) {
+            container.querySelectorAll('.verse').forEach(function(verseEl) {
+                var textEl = verseEl.querySelector('.verse-text');
+                if (!textEl || textEl.dataset.wiOrig !== undefined) return;
+                textEl.dataset.wiOrig = textEl.innerHTML;
+                var tokens = textEl.innerHTML.split(/(\s+)/);
+                textEl.innerHTML = tokens.map(function(tok) {
+                    if (/^\s+$/.test(tok)) return tok;
+                    var clean = tok.replace(/[^a-zA-Z]/g,'').toLowerCase();
+                    var has = !!_wiResolve(clean);
+                    if (!has) return '<span class="wi-word">' + tok + '</span>';
+                    return '<span class="wi-word wi-has" onclick="wiLookup(event,\'' +
+                        clean.replace(/'/g,'') + '\')" title="' + clean + '">' + tok + '</span>';
+                }).join('');
+            });
+        }
+
+        function wiDeactivate(container) {
+            container.querySelectorAll('.verse').forEach(function(verseEl) {
+                var textEl = verseEl.querySelector('.verse-text');
+                if (textEl && textEl.dataset.wiOrig !== undefined) {
+                    textEl.innerHTML = textEl.dataset.wiOrig;
+                    delete textEl.dataset.wiOrig;
+                }
+            });
+        }
+
+        function wiLookup(event, word) {
+            event.stopPropagation();
+            var entries = _wiResolve(word);
+            if (!entries || !entries.length) return;
+            wiShowPopup(event.clientX, event.clientY, word, entries);
+        }
+
+        function wiShowPopup(x, y, word, entries) {
+            wiHidePopup();
+            var popup = document.createElement('div');
+            popup.id = 'wiPopup';
+            popup.className = 'wi-popup';
+
+            var html = '<div class="wi-popup-header">' +
+                '<div style="font-size:1.3rem">&#128270;</div>' +
+                '<div style="flex:1"><div style="font-size:0.82rem;font-weight:800;color:#fff;text-transform:capitalize">' + word + '</div>' +
+                '<div style="font-size:0.68rem;color:rgba(255,255,255,0.6)">Original language lookup</div></div>' +
+                '<button onclick="wiHidePopup()" style="background:none;border:none;color:rgba(255,255,255,0.6);font-size:1.2rem;cursor:pointer;padding:0 4px;line-height:1">&times;</button>' +
+                '</div>';
+
+            entries.forEach(function(e, idx) {
+                var isHebrew = (e.l === 'H');
+                var badgeBg  = isHebrew ? '#92400e' : '#312e81';
+                var badgeTx  = '#fff';
+                var langName = isHebrew ? 'Hebrew' : 'Greek';
+                html += '<div class="wi-entry">' +
+                    '<div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px">' +
+                    '<div class="wi-original" style="color:' + (isHebrew?'#1c1917':'#1e3a5f') + ';direction:' + (isHebrew?'rtl':'ltr') + '">' + e.w + '</div>' +
+                    '<span class="wi-badge" style="background:' + badgeBg + ';color:' + badgeTx + ';margin-top:6px">' + langName + '</span>' +
+                    '</div>' +
+                    '<div style="font-size:0.8rem;font-weight:700;color:#334155;margin-bottom:2px">' + e.tr + ' <span style="font-weight:400;color:#64748b">(' + e.pron + ')</span></div>' +
+                    '<div style="font-size:0.65rem;font-weight:700;color:#94a3b8;letter-spacing:0.06em;margin-bottom:6px">' + e.s + '</div>' +
+                    '<div style="font-size:0.8rem;font-weight:700;color:#1e293b;margin-bottom:5px">' + e.m + '</div>' +
+                    '<p style="font-size:0.76rem;color:#475569;line-height:1.55;margin:0">' + e.n + '</p>' +
+                    (idx < entries.length-1 ? '' : '') +
+                    '</div>';
+            });
+
+            // Lexicon link
+            html += '<div style="padding:10px 16px;background:#f8fafc;border-radius:0 0 14px 14px;display:flex;gap:8px">' +
+                '<button onclick="navigateTo(\'heb-greek-lexicon\');wiHidePopup()" style="flex:1;background:#1e3a5f;color:#fff;border:none;border-radius:8px;padding:8px;font-size:0.75rem;font-weight:700;cursor:pointer">Open Full Lexicon</button>' +
+                '<button onclick="navigateTo(\'lexicon\');wiHidePopup()" style="flex:1;background:#f1f5f9;color:#334155;border:1px solid #e2e8f0;border-radius:8px;padding:8px;font-size:0.75rem;font-weight:600;cursor:pointer">Strong\'s Lookup</button>' +
+                '</div>';
+
+            popup.innerHTML = html;
+            document.body.appendChild(popup);
+
+            // Position popup near click, keep in viewport
+            var pw = 320, ph = 280;
+            var vw = window.innerWidth, vh = window.innerHeight;
+            var px = Math.min(x + 12, vw - pw - 12);
+            var py = Math.min(y + 8,  vh - ph - 12);
+            if (py < 8) py = 8;
+            popup.style.left = px + 'px';
+            popup.style.top  = py + 'px';
+
+            // Close on outside click
+            setTimeout(function() {
+                document.addEventListener('click', function _wic(e) {
+                    if (!document.getElementById('wiPopup') || !document.getElementById('wiPopup').contains(e.target)) {
+                        wiHidePopup();
+                        document.removeEventListener('click', _wic);
+                    }
+                });
+            }, 80);
+        }
+
+        function wiHidePopup() {
+            var p = document.getElementById('wiPopup');
+            if (p) p.remove();
+        }
+
+        // Auto-deactivate when navigating away from Bible Reader
+        (function() {
+            var _origNavWI = window.navigateTo;
+            if (typeof _origNavWI === 'function') {
+                window.navigateTo = function(page) {
+                    if (page !== 'bible-reader' && _wiActive) {
+                        _wiActive = false;
+                        var btn = document.getElementById('wiBtn');
+                        if (btn) { btn.style.background=''; btn.style.color=''; btn.style.borderColor=''; }
+                        wiHidePopup();
+                    }
+                    return _origNavWI.apply(this, arguments);
+                };
+            }
+        })();
+        // ════════════════════════════════════════════════════════════════════════
+        // END WORD INSPECTOR
         // ════════════════════════════════════════════════════════════════════════
 
         // ── Audio Bible ──────────────────────────────────────────────────────────
