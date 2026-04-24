@@ -2015,6 +2015,10 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.04Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.04Z"/></svg>
                         <span>Scripture Memory</span>
                     </div>
+                    <div class="nav-item" data-page="scripture-graphics">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                        <span>Scripture Graphics</span>
+                    </div>
                 </div>
             </nav>
 
@@ -3702,6 +3706,12 @@
                     <div id="sm-root" style="max-width:680px;margin:0 auto;padding-bottom:32px"></div>
                 </div>
 
+
+                <!-- Scripture Graphics -->
+                <div class="page" id="page-scripture-graphics">
+                    <div id="sg-root" style="max-width:960px;margin:0 auto;padding-bottom:32px"></div>
+                </div>
+
                 <!-- SCRIPTURE STUDIO BOOK SOCIETY -->
                 <div class="page" id="page-book-society">
                     <div class="panel">
@@ -3926,7 +3936,7 @@
             'personal-diary':'Personal Diary',
             'heb-greek-lexicon':'Hebrew & Greek Lexicon',
             'pronunciation-tool':'Pronunciation Tool',
-            'development-studio':'Resource Builder','group-study':'Group Bible Study','word-studio-1b':'Word Studio 1B','sermon-studio-1a':'Sermon Studio 1A','book-society':'Scripture Studio Book Society','reading-room':'Reading Room','scripture-memory':'Scripture Memory',
+            'development-studio':'Resource Builder','group-study':'Group Bible Study','word-studio-1b':'Word Studio 1B','sermon-studio-1a':'Sermon Studio 1A','book-society':'Scripture Studio Book Society','reading-room':'Reading Room','scripture-memory':'Scripture Memory','scripture-graphics':'Scripture Graphics',
             'cross-references':'Cross-References',
             'commentaries':'Commentaries'
         };
@@ -3972,7 +3982,7 @@
                 'sermon-studio-1a': function() { ss1aRender(); setTimeout(initStudio1ACanvas,80); },
                 'ai-commentary': function() { setTimeout(initBishopCanvas,80); bcShowTab('lookup', document.querySelector('.bc-tab')); },
                 'book-society':     function() { bsRender(); },
-                'reading-room':     function() { rrRender(); },'scripture-memory':  function() { smRender(); },
+                'reading-room':     function() { rrRender(); },'scripture-memory':  function() { smRender(); },'scripture-graphics': function() { sgInit(); },
                 'lexicon':              function() { searchLexicon(); },
                 'heb-greek-lexicon':    function() { searchHGLex(); },
                 'topical-finder':       function() {
@@ -10226,6 +10236,318 @@
         }
         // ════════════════════════════════════════════════════════════════════════
         // END SCRIPTURE MEMORY MODULE
+        // ════════════════════════════════════════════════════════════════════════
+
+
+        // ════════════════════════════════════════════════════════════════════════
+        // SCRIPTURE GRAPHICS MODULE
+        // ════════════════════════════════════════════════════════════════════════
+        var SG_THEMES = [
+            {id:'navy',     name:'Deep Faith',     c1:'#0a0f2e', c2:'#1e3a5f', c3:'#2d5fa6', text:'#ffffff', accent:'rgba(212,168,32,0.55)', ref:'rgba(255,255,255,0.65)'},
+            {id:'purple',   name:'Royal Crown',    c1:'#2e0657', c2:'#6b21a8', c3:'#9333ea', text:'#ffffff', accent:'rgba(216,180,254,0.4)', ref:'rgba(255,255,255,0.7)'},
+            {id:'crimson',  name:'Crimson Grace',  c1:'#450a0a', c2:'#991b1b', c3:'#dc2626', text:'#ffffff', accent:'rgba(254,202,202,0.35)', ref:'rgba(255,255,255,0.7)'},
+            {id:'gold',     name:'Golden Glory',   c1:'#451a03', c2:'#92400e', c3:'#d97706', text:'#ffffff', accent:'rgba(253,230,138,0.35)', ref:'rgba(255,255,255,0.7)'},
+            {id:'forest',   name:'Still Waters',   c1:'#022c22', c2:'#065f46', c3:'#059669', text:'#ffffff', accent:'rgba(167,243,208,0.3)', ref:'rgba(255,255,255,0.7)'},
+            {id:'midnight', name:'Midnight Watch', c1:'#000000', c2:'#0f172a', c3:'#1e293b', text:'#ffffff', accent:'rgba(99,102,241,0.45)', ref:'rgba(148,163,184,0.9)'},
+            {id:'sunrise',  name:'Morning Glory',  c1:'#7c2d12', c2:'#ea580c', c3:'#fbbf24', text:'#ffffff', accent:'rgba(255,255,255,0.25)', ref:'rgba(255,255,255,0.8)'},
+            {id:'parchment',name:'Ancient Script', c1:'#fef3c7', c2:'#fde68a', c3:'#fbbf24', text:'#1c1917', accent:'rgba(120,53,15,0.15)', ref:'rgba(92,60,24,0.75)'}
+        ];
+
+        var _sg = {
+            ref:  'John 3:16',
+            text: 'For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.',
+            theme: 'navy',
+            fontSize: 'medium',
+            align: 'center',
+            showBorder: true,
+            showWatermark: true,
+            format: 'square'
+        };
+
+        function sgInit() {
+            var root = document.getElementById('sg-root');
+            if (!root) return;
+
+            // Try to pre-fill from Bible Reader selection
+            if (window.selectedVerseData && selectedVerseData.ref && selectedVerseData.text) {
+                _sg.ref  = selectedVerseData.ref;
+                _sg.text = selectedVerseData.text;
+            }
+
+            root.innerHTML = sgBuildUI();
+            sgRenderCanvas();
+        }
+
+        function sgBuildUI() {
+            var html = '';
+
+            // Hero
+            html += '<div style="background:linear-gradient(135deg,#1c0a3a,#3b0764,#1e3a5f);border-radius:0;padding:22px 26px;margin-bottom:0;color:#fff;display:flex;align-items:center;gap:16px">' +
+                '<div style="font-size:2.4rem;line-height:1;flex-shrink:0">&#127912;</div>' +
+                '<div><div style="font-size:1.15rem;font-weight:800;margin-bottom:3px">Scripture Graphics</div>' +
+                '<div style="font-size:0.82rem;opacity:0.75">Create beautiful verse cards to share on social media, print, or send to others.</div></div></div>';
+
+            // Two-column grid
+            html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;margin-top:0" id="sg-grid">';
+
+            // ── Controls panel ──
+            html += '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:0 0 14px 14px;padding:20px;display:flex;flex-direction:column;gap:16px">';
+
+            // Reference
+            html += '<div><label style="font-size:0.75rem;font-weight:700;color:#64748b;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.08em">Scripture Reference</label>' +
+                '<input id="sgRef" type="text" value="' + _sg.ref.replace(/"/g,'&quot;') + '" oninput="_sg.ref=this.value;sgRenderCanvas()" style="width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:9px 12px;font-size:0.88rem;box-sizing:border-box"></div>';
+
+            // Verse text
+            html += '<div><label style="font-size:0.75rem;font-weight:700;color:#64748b;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.08em">Verse Text</label>' +
+                '<textarea id="sgText" rows="4" oninput="_sg.text=this.value;sgRenderCanvas()" style="width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:9px 12px;font-size:0.85rem;box-sizing:border-box;resize:vertical;font-family:inherit;line-height:1.5">' + _sg.text + '</textarea>' +
+                '<button onclick="sgPullFromReader()" style="margin-top:6px;background:#f1f5f9;border:1px solid #e2e8f0;color:#475569;border-radius:7px;padding:6px 12px;font-size:0.75rem;font-weight:600;cursor:pointer;width:100%">&#8617; Pull from Bible Reader</button></div>';
+
+            // Themes
+            html += '<div><label style="font-size:0.75rem;font-weight:700;color:#64748b;display:block;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.08em">Theme</label>' +
+                '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px" id="sgThemeGrid">';
+            SG_THEMES.forEach(function(t) {
+                var active = (_sg.theme === t.id);
+                html += '<button onclick="_sg.theme=\\'' + t.id + '\\';sgRenderCanvas();sgUpdateThemeGrid()" ' +
+                    'style="background:linear-gradient(135deg,' + t.c1 + ',' + t.c3 + ');border:' + (active?'2px solid #fff':'2px solid transparent') + ';' +
+                    'box-shadow:' + (active?'0 0 0 2px #1e3a5f':'none') + ';' +
+                    'border-radius:8px;height:36px;cursor:pointer;position:relative;overflow:hidden" ' +
+                    'title="' + t.name + '" data-theme-btn="' + t.id + '">' +
+                    '<span style="position:absolute;bottom:3px;left:0;right:0;text-align:center;font-size:0.5rem;font-weight:700;color:' + t.text + ';opacity:0.85;text-shadow:0 1px 2px rgba(0,0,0,0.5)">' + t.name + '</span>' +
+                    '</button>';
+            });
+            html += '</div></div>';
+
+            // Font size
+            html += '<div><label style="font-size:0.75rem;font-weight:700;color:#64748b;display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.08em">Font Size</label>' +
+                '<div style="display:flex;gap:6px">';
+            ['small','medium','large'].forEach(function(sz) {
+                var active = _sg.fontSize === sz;
+                html += '<button onclick="_sg.fontSize=\\'' + sz + '\\';sgRenderCanvas()" style="flex:1;border:' + (active?'2px solid #1e3a5f':'1px solid #e2e8f0') + ';background:' + (active?'#1e3a5f':'#f8fafc') + ';color:' + (active?'#fff':'#64748b') + ';border-radius:8px;padding:8px;font-size:0.78rem;font-weight:600;cursor:pointer;text-transform:capitalize">' + sz + '</button>';
+            });
+            html += '</div></div>';
+
+            // Alignment
+            html += '<div><label style="font-size:0.75rem;font-weight:700;color:#64748b;display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.08em">Alignment</label>' +
+                '<div style="display:flex;gap:6px">';
+            [['center','&#8597; Center'],['left','&#8592; Left']].forEach(function(a) {
+                var active = _sg.align === a[0];
+                html += '<button onclick="_sg.align=\\'' + a[0] + '\\';sgRenderCanvas()" style="flex:1;border:' + (active?'2px solid #1e3a5f':'1px solid #e2e8f0') + ';background:' + (active?'#1e3a5f':'#f8fafc') + ';color:' + (active?'#fff':'#64748b') + ';border-radius:8px;padding:8px;font-size:0.78rem;font-weight:600;cursor:pointer">' + a[1] + '</button>';
+            });
+            html += '</div></div>';
+
+            // Format
+            html += '<div><label style="font-size:0.75rem;font-weight:700;color:#64748b;display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.08em">Format</label>' +
+                '<div style="display:flex;gap:6px">';
+            [['square','&#9634; Square (1:1)'],['wide','&#9635; Wide (16:9)']].forEach(function(fm) {
+                var active = _sg.format === fm[0];
+                html += '<button onclick="_sg.format=\\'' + fm[0] + '\\';sgRenderCanvas()" style="flex:1;border:' + (active?'2px solid #1e3a5f':'1px solid #e2e8f0') + ';background:' + (active?'#1e3a5f':'#f8fafc') + ';color:' + (active?'#fff':'#64748b') + ';border-radius:8px;padding:8px;font-size:0.76rem;font-weight:600;cursor:pointer">' + fm[1] + '</button>';
+            });
+            html += '</div></div>';
+
+            // Options
+            html += '<div style="display:flex;gap:12px">' +
+                '<label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:0.8rem;font-weight:600;color:#475569">' +
+                '<input type="checkbox" ' + (_sg.showBorder?'checked':'') + ' onchange="_sg.showBorder=this.checked;sgRenderCanvas()" style="width:16px;height:16px;cursor:pointer"> Border</label>' +
+                '<label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:0.8rem;font-weight:600;color:#475569">' +
+                '<input type="checkbox" ' + (_sg.showWatermark?'checked':'') + ' onchange="_sg.showWatermark=this.checked;sgRenderCanvas()" style="width:16px;height:16px;cursor:pointer"> Watermark</label>' +
+                '</div>';
+
+            html += '</div>'; // end controls
+
+            // ── Canvas panel ──
+            html += '<div style="position:sticky;top:16px">' +
+                '<div style="background:#f1f5f9;border-radius:12px;padding:12px;margin-bottom:12px">' +
+                '<canvas id="sgCanvas" style="width:100%;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.18);display:block"></canvas>' +
+                '</div>' +
+                '<div style="display:flex;flex-direction:column;gap:8px">' +
+                '<button onclick="sgDownload()" style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border:none;border-radius:10px;padding:13px;font-size:0.88rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">&#128229; Download PNG</button>' +
+                '<button onclick="sgCopyImage()" id="sgCopyBtn" style="background:#f1f5f9;border:1px solid #e2e8f0;color:#334155;border-radius:10px;padding:11px;font-size:0.85rem;font-weight:600;cursor:pointer">&#128203; Copy to Clipboard</button>' +
+                '</div>' +
+                '<div style="margin-top:12px;background:#fef3c7;border:1px solid #fcd34d;border-radius:10px;padding:12px;font-size:0.75rem;color:#92400e;line-height:1.5">' +
+                '<strong>&#128161; Share it:</strong> Download and post to Instagram, Facebook, X, or WhatsApp. Perfect for morning devotionals, church bulletins, or encouraging a friend.' +
+                '</div></div>';
+
+            html += '</div>'; // end grid
+
+            // Mobile note
+            html += '<style>@media(max-width:640px){#sg-grid{grid-template-columns:1fr!important}}</style>';
+
+            return html;
+        }
+
+        function sgUpdateThemeGrid() {
+            document.querySelectorAll('[data-theme-btn]').forEach(function(btn) {
+                var tid = btn.getAttribute('data-theme-btn');
+                btn.style.border = (tid === _sg.theme) ? '2px solid #fff' : '2px solid transparent';
+                btn.style.boxShadow = (tid === _sg.theme) ? '0 0 0 2px #1e3a5f' : 'none';
+            });
+        }
+
+        function sgPullFromReader() {
+            if (window.selectedVerseData && selectedVerseData.ref && selectedVerseData.text) {
+                _sg.ref  = selectedVerseData.ref;
+                _sg.text = selectedVerseData.text;
+                var ri = document.getElementById('sgRef');
+                var ti = document.getElementById('sgText');
+                if (ri) ri.value = _sg.ref;
+                if (ti) ti.value = _sg.text;
+                sgRenderCanvas();
+                showToast('Pulled from Bible Reader!');
+            } else {
+                showToast('Select a verse in the Bible Reader first, then come back here.');
+            }
+        }
+
+        function sgRenderCanvas() {
+            var canvas = document.getElementById('sgCanvas');
+            if (!canvas) return;
+
+            var isWide = (_sg.format === 'wide');
+            var W = 1080, H = isWide ? 608 : 1080;
+            canvas.width  = W;
+            canvas.height = H;
+
+            var ctx = canvas.getContext('2d');
+            var theme = SG_THEMES.find(function(t){ return t.id === _sg.theme; }) || SG_THEMES[0];
+
+            // ── Background gradient ─────────────────────────────────────────
+            var grad = ctx.createLinearGradient(0, 0, W, H);
+            grad.addColorStop(0,   theme.c1);
+            grad.addColorStop(0.5, theme.c2);
+            grad.addColorStop(1,   theme.c3);
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, W, H);
+
+            // ── Radial glow overlay ─────────────────────────────────────────
+            var radial = ctx.createRadialGradient(W*0.5, H*0.38, 0, W*0.5, H*0.38, W*0.65);
+            radial.addColorStop(0,   'rgba(255,255,255,0.08)');
+            radial.addColorStop(0.5, 'rgba(255,255,255,0.02)');
+            radial.addColorStop(1,   'rgba(0,0,0,0.0)');
+            ctx.fillStyle = radial;
+            ctx.fillRect(0, 0, W, H);
+
+            // ── Accent diagonal stripes (subtle) ────────────────────────────
+            ctx.save();
+            ctx.globalAlpha = 0.07;
+            ctx.fillStyle = theme.accent || 'rgba(255,255,255,0.1)';
+            for (var i = -H; i < W + H; i += 90) {
+                ctx.beginPath();
+                ctx.moveTo(i, 0); ctx.lineTo(i + 40, 0); ctx.lineTo(i + 40 + H, H); ctx.lineTo(i + H, H);
+                ctx.closePath(); ctx.fill();
+            }
+            ctx.restore();
+
+            // ── Border ──────────────────────────────────────────────────────
+            if (_sg.showBorder) {
+                var bm = 36;
+                ctx.strokeStyle = theme.accent || 'rgba(255,255,255,0.35)';
+                ctx.lineWidth = 3;
+                ctx.globalAlpha = 0.55;
+                ctx.strokeRect(bm, bm, W - bm*2, H - bm*2);
+                ctx.globalAlpha = 1;
+            }
+
+            // ── Quotation mark decoration ───────────────────────────────────
+            ctx.font = 'bold ' + Math.round(H * 0.22) + 'px Georgia, serif';
+            ctx.fillStyle = 'rgba(255,255,255,0.04)';
+            ctx.textAlign = 'left';
+            ctx.fillText('\u201C', 46, H * 0.32);
+
+            // ── Verse text ──────────────────────────────────────────────────
+            var fontSizes = {small: Math.round(H*0.042), medium: Math.round(H*0.052), large: Math.round(H*0.065)};
+            var fs = fontSizes[_sg.fontSize] || fontSizes.medium;
+            ctx.font = 'italic ' + fs + 'px Georgia, serif';
+            ctx.fillStyle = theme.text;
+            ctx.globalAlpha = 0.95;
+
+            var margin = Math.round(W * 0.1);
+            var maxW = W - margin * 2;
+            var textAlign = _sg.align === 'left' ? 'left' : 'center';
+            ctx.textAlign = textAlign;
+            var tx = _sg.align === 'left' ? margin : W / 2;
+
+            // Word wrap
+            var words = _sg.text.split(' ');
+            var lines = [];
+            var line = '';
+            words.forEach(function(word) {
+                var test = line ? line + ' ' + word : word;
+                if (ctx.measureText(test).width > maxW && line) {
+                    lines.push(line);
+                    line = word;
+                } else {
+                    line = test;
+                }
+            });
+            if (line) lines.push(line);
+
+            var lh = Math.round(fs * 1.6);
+            var totalTextH = lines.length * lh;
+            // Reserve bottom space for reference + watermark
+            var bottomReserve = Math.round(H * 0.18);
+            var topPad = Math.round(H * 0.12);
+            var availH = H - topPad - bottomReserve;
+            var startY = topPad + (availH - totalTextH) / 2 + fs;
+            if (startY < topPad + fs) startY = topPad + fs;
+
+            lines.forEach(function(ln, i) {
+                ctx.fillText(ln, tx, startY + i * lh);
+            });
+
+            // ── Reference ───────────────────────────────────────────────────
+            var refFs = Math.round(fs * 0.72);
+            ctx.font = 'bold ' + refFs + 'px Arial, sans-serif';
+            ctx.fillStyle = theme.ref || 'rgba(255,255,255,0.7)';
+            ctx.textAlign = _sg.align === 'left' ? 'left' : 'center';
+            ctx.globalAlpha = 0.9;
+            var refY = startY + lines.length * lh + Math.round(H * 0.05);
+            if (refY > H - bottomReserve + refFs) refY = H - bottomReserve + refFs;
+            ctx.fillText('\u2014 ' + _sg.ref, tx, refY);
+
+            // ── Watermark ───────────────────────────────────────────────────
+            if (_sg.showWatermark) {
+                ctx.font = 'bold ' + Math.round(H * 0.022) + 'px Arial, sans-serif';
+                ctx.fillStyle = theme.text;
+                ctx.globalAlpha = 0.28;
+                ctx.textAlign = 'center';
+                ctx.fillText('Scripture Studio \u2022 Bishop Richard G. Clark', W / 2, H - Math.round(H * 0.04));
+            }
+
+            ctx.globalAlpha = 1;
+        }
+
+        function sgDownload() {
+            var canvas = document.getElementById('sgCanvas');
+            if (!canvas) return;
+            sgRenderCanvas();
+            var link = document.createElement('a');
+            var ref = (_sg.ref || 'verse').replace(/[^a-z0-9]/gi,'_').replace(/_+/g,'_');
+            link.download = 'scripture_' + ref + '.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            showToast('Downloading ' + link.download);
+        }
+
+        function sgCopyImage() {
+            var canvas = document.getElementById('sgCanvas');
+            if (!canvas) return;
+            sgRenderCanvas();
+            if (!navigator.clipboard || !window.ClipboardItem) {
+                showToast('Copy not supported in this browser. Use Download instead.');
+                return;
+            }
+            canvas.toBlob(function(blob) {
+                navigator.clipboard.write([new ClipboardItem({'image/png': blob})]).then(function() {
+                    var btn = document.getElementById('sgCopyBtn');
+                    if (btn) { btn.textContent = '\u2713 Copied!'; setTimeout(function(){ btn.textContent = '\uD83D\uDCCB Copy to Clipboard'; }, 2000); }
+                    showToast('Image copied to clipboard!');
+                }).catch(function() {
+                    showToast('Could not copy. Try Download instead.');
+                });
+            });
+        }
+        // ════════════════════════════════════════════════════════════════════════
+        // END SCRIPTURE GRAPHICS
         // ════════════════════════════════════════════════════════════════════════
 
         // ── Audio Bible ──────────────────────────────────────────────────────────
