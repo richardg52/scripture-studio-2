@@ -4185,11 +4185,16 @@
             document.body.scrollTop = 0;
             var _ca = document.querySelector('.content-area');
             if (_ca) _ca.scrollTop = 0;
-            requestAnimationFrame(function() {
+            function _resetScroll() {
                 window.scrollTo(0,0);
                 document.documentElement.scrollTop = 0;
                 document.body.scrollTop = 0;
-                if (_ca) _ca.scrollTop = 0;
+                var ca = document.querySelector('.content-area');
+                if (ca) ca.scrollTop = 0;
+            }
+            requestAnimationFrame(function() {
+                _resetScroll();
+                requestAnimationFrame(function() { _resetScroll(); });
             });
             closeVerseActions();
             // Page-specific loaders
@@ -10880,6 +10885,10 @@
 
             root.innerHTML = sgBuildUI();
             sgRenderCanvas();
+            requestAnimationFrame(function() {
+                var ca = document.querySelector('.content-area');
+                if (ca) ca.scrollTop = 0;
+            });
         }
 
         function sgBuildUI() {
