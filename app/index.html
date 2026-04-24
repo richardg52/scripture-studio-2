@@ -53,7 +53,8 @@
         /* App Layout */
         .app-container {
             display: flex;
-            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
         }
 
         /* Sidebar */
@@ -182,6 +183,9 @@
             margin-left: 280px;
             display: flex;
             flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            min-width: 0;
         }
 
         /* Top Bar */
@@ -266,6 +270,7 @@
             flex: 1;
             padding: 0 2rem 2rem 2rem;
             overflow-y: auto;
+            min-height: 0;
         }
 
         /* Page Styles */
