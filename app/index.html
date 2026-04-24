@@ -4176,8 +4176,16 @@
             const titleEl = document.getElementById('pageTitle');
             if (titleEl) titleEl.textContent = pageTitles[page] || page;
             window.scrollTo(0,0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
             var _ca = document.querySelector('.content-area');
             if (_ca) _ca.scrollTop = 0;
+            requestAnimationFrame(function() {
+                window.scrollTo(0,0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+                if (_ca) _ca.scrollTop = 0;
+            });
             closeVerseActions();
             // Page-specific loaders
             const loaders = {
