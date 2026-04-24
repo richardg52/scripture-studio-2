@@ -1309,7 +1309,7 @@
             <div class="nav-buttons">
                 <a href="#book" class="btn btn-ghost" style="color:#d4a820;border-color:rgba(212,168,32,0.4);font-weight:700;letter-spacing:0.03em">📖 Get Your Copy Today</a>
                 <a href="https://scripturestudio.outseta.com/auth?widgetMode=login#o-anonymous" class="btn btn-ghost">Log In</a>
-                <a href="https://scripturestudio.outseta.com/auth?widgetMode=register#o-anonymous" class="btn btn-primary">Start Free Trial</a>
+                <a href="#" onclick="openBundleModal();return false;" class="btn btn-primary">Start Free Trial</a>
             </div>
             <!-- Mobile Hamburger Button -->
             <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Open menu">
@@ -1351,7 +1351,7 @@
         <a href="#pricing" class="mobile-nav-link" onclick="closeMobileNav()">Pricing</a>
         <div class="mobile-nav-btns">
             <a href="https://scripturestudio.outseta.com/auth?widgetMode=login#o-anonymous" class="mobile-nav-btn-login" onclick="closeMobileNav()">Log In</a>
-            <a href="https://scripturestudio.outseta.com/auth?widgetMode=register#o-anonymous" class="mobile-nav-btn-trial" onclick="closeMobileNav()">Start Free Trial</a>
+            <a href="#" onclick="closeMobileNav();openBundleModal();return false;" class="mobile-nav-btn-trial">Start Free Trial</a>
             <a href="#book" class="mobile-nav-btn-book" onclick="closeMobileNav()">📖 Get Your Copy Today</a>
         </div>
     </div>
@@ -1363,7 +1363,7 @@
                 <h1>Study Scripture.<br><span>Prepare Sermons.</span><br>Grow Ministry.</h1>
                 <p>The all-in-one Bible study and sermon preparation platform designed for pastors, teachers, and ministry leaders.</p>
                 <div class="hero-buttons">
-                    <a href="https://scripturestudio.outseta.com/auth?widgetMode=register#o-anonymous" class="btn btn-primary btn-large">Start 7-Day Free Trial</a>
+                    <a href="#" onclick="openBundleModal();return false;" class="btn btn-primary btn-large">Start 7-Day Free Trial</a>
                     <a href="#features" class="btn btn-secondary btn-large">Explore Features</a>
                 </div>
                 <div class="hero-stats">
@@ -1548,7 +1548,7 @@
 
             <div style="display:flex;gap:12px;flex-wrap:wrap">
               <a href="#book" style="background:linear-gradient(135deg,#d4a820,#f0cc50);color:#0a0810;font-weight:800;font-size:0.88rem;padding:12px 26px;border-radius:10px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 16px rgba(212,168,32,0.35)">📖 Get the Book</a>
-              <a href="https://scripturestudio.outseta.com/auth?widgetMode=register#o-anonymous" target="_blank" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-weight:700;font-size:0.88rem;padding:12px 26px;border-radius:10px;text-decoration:none;white-space:nowrap">Join Scripture Studio</a>
+              <a href="#" onclick="openBundleModal();return false;" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-weight:700;font-size:0.88rem;padding:12px 26px;border-radius:10px;text-decoration:none;white-space:nowrap">Join Scripture Studio</a>
             </div>
           </div>
         </div>
@@ -2066,7 +2066,7 @@
         <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#38bdf8;margin-bottom:20px">Begin Today</div>
         <h2 style="font-family:Georgia,serif;font-size:4rem;font-weight:800;color:white;margin:0 0 32px;line-height:1.1">Your best sermons<br>are still ahead of you.</h2>
         <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-          <a href="https://scripturestudio.outseta.com/auth?widgetMode=register#o-anonymous" style="background:#2563eb;color:white;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:700;font-size:1rem;display:inline-block;transition:background 0.2s" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">Start Your Free Trial</a>
+          <a href="#" onclick="openBundleModal();return false;" style="background:#2563eb;color:white;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:700;font-size:1rem;display:inline-block;transition:background 0.2s" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">Start Your Free Trial</a>
           <a href="#pricing" style="background:rgba(255,255,255,0.08);color:white;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:1rem;display:inline-block;border:1px solid rgba(255,255,255,0.15)" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">View Pricing</a>
         </div>
         <p style="color:#6b7280;font-size:0.88rem;margin-top:18px">7-day free trial &middot; No credit card required &middot; Cancel anytime</p>
@@ -2125,6 +2125,23 @@
                     </ul>
                     <a href="https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=7maerMmE#o-anonymous" class="btn btn-secondary" target="_blank" rel="noopener">Start Free Trial</a>
                 </div>
+
+            <!-- Book Add-On Banner -->
+            <div style="margin-top:48px;background:linear-gradient(135deg,#0a0810 0%,#1a1030 50%,#0f1e4a 100%);border-radius:20px;padding:36px 40px;display:flex;flex-wrap:wrap;align-items:center;gap:32px;box-shadow:0 20px 60px rgba(0,0,0,0.25)">
+                <div style="flex-shrink:0;text-align:center">
+                    <div style="background:linear-gradient(135deg,#d4a820,#f0cc50);width:80px;height:100px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;box-shadow:0 8px 24px rgba(212,168,32,0.4);font-size:2.2rem">📖</div>
+                    <div style="font-size:0.65rem;font-weight:700;color:rgba(212,168,32,0.7);text-transform:uppercase;letter-spacing:0.1em">Add-On</div>
+                </div>
+                <div style="flex:1;min-width:220px">
+                    <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#d4a820;margin-bottom:8px">Complete Your Order</div>
+                    <h3 style="font-family:Georgia,serif;color:#fff;font-size:1.35rem;font-weight:800;margin:0 0 8px;line-height:1.3"><em>Didn't See It Coming</em> — by Dr. Richard G. Clark</h3>
+                    <p style="color:rgba(255,255,255,0.65);font-size:0.88rem;line-height:1.6;margin:0 0 6px">The book and the software work together — one for your heart, one for your ministry. Add the book to complete your toolkit.</p>
+                    <p style="color:rgba(255,255,255,0.4);font-size:0.75rem;margin:0">Note: The book and the software subscription are separate purchases. Start your free trial above, then order your copy below.</p>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;flex-shrink:0">
+                    <a href="https://buy.stripe.com/dRm9AV6PdgUC9cW1FbgUM08" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#d4a820,#f0cc50);color:#0a0810;font-weight:800;font-size:0.88rem;padding:12px 24px;border-radius:10px;text-decoration:none;text-align:center;white-space:nowrap;box-shadow:0 4px 16px rgba(212,168,32,0.4);display:block">📖 Standard — $14.99</a>
+                    <a href="https://buy.stripe.com/dRm14pflJgUC88S2JfgUM07" target="_blank" rel="noopener" style="background:rgba(212,168,32,0.12);border:1px solid rgba(212,168,32,0.4);color:#d4a820;font-weight:700;font-size:0.88rem;padding:12px 24px;border-radius:10px;text-decoration:none;text-align:center;white-space:nowrap;display:block">✍ Signed Copy — $19.99</a>
+                </div>
             </div>
         </div>
     </section>
@@ -2134,7 +2151,7 @@
         <div class="section-container">
             <h2>Ready to Transform Your Ministry?</h2>
             <p>Join thousands of pastors and ministry leaders using Scripture Studio.</p>
-            <a href="https://scripturestudio.outseta.com/auth?widgetMode=register#o-anonymous" class="btn">Start Your Free 7-Day Trial</a>
+            <a href="https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=ZmNJDpm2#o-anonymous" class="btn">Start Your Free 7-Day Trial</a>
         </div>
     </section>
     
@@ -2789,6 +2806,197 @@
         // Close on Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeMobileNav();
+        });
+    </script>
+
+
+    <!-- Bundle Selector Modal -->
+    <div id="bundleModal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(10,14,36,0.82);backdrop-filter:blur(8px);overflow-y:auto;padding:2rem 1rem" onclick="if(event.target===this)closeBundleModal()">
+        <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.45)">
+
+            <!-- Header -->
+            <div style="background:linear-gradient(135deg,#0f1e4a,#1e3a5f);padding:28px 32px 24px;position:relative">
+                <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#93c5fd;margin-bottom:8px">Build Your Order</div>
+                <h2 style="font-family:Georgia,serif;color:#fff;font-size:1.6rem;font-weight:800;margin:0 0 4px;line-height:1.2">Scripture Studio</h2>
+                <p style="color:rgba(255,255,255,0.55);font-size:0.85rem;margin:0">Choose your plan + any add-ons below</p>
+                <button onclick="closeBundleModal()" style="position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.12);border:none;border-radius:50%;width:36px;height:36px;font-size:1.3rem;cursor:pointer;color:white;display:flex;align-items:center;justify-content:center;line-height:1">&times;</button>
+            </div>
+
+            <div style="padding:28px 32px">
+
+                <!-- Step 1: Software Plan -->
+                <div style="margin-bottom:28px">
+                    <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2563eb;margin-bottom:14px">Step 1 &mdash; Choose your software plan</div>
+
+                    <label id="bundlePlan-foundation" onclick="selectBundlePlan('foundation')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:2px solid #e2e8f0;border-radius:12px;cursor:pointer;margin-bottom:8px;transition:border-color 0.2s">
+                        <div id="bundleRadio-foundation" style="width:20px;height:20px;border-radius:50%;border:2px solid #cbd5e1;flex-shrink:0;display:flex;align-items:center;justify-content:center"></div>
+                        <div style="flex:1">
+                            <div style="font-weight:700;color:#1e293b;font-size:0.95rem">Foundation</div>
+                            <div style="font-size:0.78rem;color:#64748b;margin-top:2px">Bible Reader, Notes, Prayer Journal</div>
+                        </div>
+                        <div style="font-weight:800;color:#1e293b;font-size:0.95rem;white-space:nowrap">$12.99<span style="font-weight:500;font-size:0.75rem;color:#64748b">/mo</span></div>
+                    </label>
+
+                    <label id="bundlePlan-ministry" onclick="selectBundlePlan('ministry')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:2px solid #2563eb;border-radius:12px;cursor:pointer;margin-bottom:8px;background:#f0f7ff;transition:border-color 0.2s;position:relative">
+                        <div id="bundleRadio-ministry" style="width:20px;height:20px;border-radius:50%;border:2px solid #2563eb;flex-shrink:0;background:#2563eb;display:flex;align-items:center;justify-content:center">
+                            <div style="width:8px;height:8px;background:#fff;border-radius:50%"></div>
+                        </div>
+                        <div style="flex:1">
+                            <div style="font-weight:700;color:#1e293b;font-size:0.95rem">Ministry <span style="background:#2563eb;color:#fff;font-size:0.62rem;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:6px;vertical-align:middle">POPULAR</span></div>
+                            <div style="font-size:0.78rem;color:#64748b;margin-top:2px">Everything + Sermon Studio, Bishop Commentary, Word Study</div>
+                        </div>
+                        <div style="font-weight:800;color:#1e293b;font-size:0.95rem;white-space:nowrap">$24.99<span style="font-weight:500;font-size:0.75rem;color:#64748b">/mo</span></div>
+                    </label>
+
+                    <label id="bundlePlan-pastor" onclick="selectBundlePlan('pastor')" style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:2px solid #e2e8f0;border-radius:12px;cursor:pointer;transition:border-color 0.2s">
+                        <div id="bundleRadio-pastor" style="width:20px;height:20px;border-radius:50%;border:2px solid #cbd5e1;flex-shrink:0;display:flex;align-items:center;justify-content:center"></div>
+                        <div style="flex:1">
+                            <div style="font-weight:700;color:#1e293b;font-size:0.95rem">Pastor Pro</div>
+                            <div style="font-size:0.78rem;color:#64748b;margin-top:2px">Everything + Congregation Mgmt, Analytics, Team</div>
+                        </div>
+                        <div style="font-weight:800;color:#1e293b;font-size:0.95rem;white-space:nowrap">$49.99<span style="font-weight:500;font-size:0.75rem;color:#64748b">/mo</span></div>
+                    </label>
+                </div>
+
+                <!-- Divider -->
+                <div style="border-top:1px solid #e2e8f0;margin-bottom:24px"></div>
+
+                <!-- Step 2: Book Add-On -->
+                <div style="margin-bottom:28px">
+                    <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#d4a820;margin-bottom:14px">Step 2 &mdash; Add the book (optional)</div>
+
+                    <label id="bundleBookLabel-standard" style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:2px solid #e2e8f0;border-radius:12px;cursor:pointer;margin-bottom:8px;transition:border-color 0.2s">
+                        <input type="checkbox" id="bundleBook-standard" onchange="updateBundleTotal()" style="width:18px;height:18px;accent-color:#d4a820;flex-shrink:0;cursor:pointer">
+                        <div style="font-size:1.3rem;flex-shrink:0">📖</div>
+                        <div style="flex:1">
+                            <div style="font-weight:700;color:#1e293b;font-size:0.9rem;font-style:italic">"Didn't See It Coming"</div>
+                            <div style="font-size:0.75rem;color:#64748b;margin-top:2px">Standard Edition &mdash; Paperback</div>
+                        </div>
+                        <div style="font-weight:800;color:#d4a820;font-size:0.95rem;white-space:nowrap">$14.99</div>
+                    </label>
+
+                    <label id="bundleBookLabel-signed" style="display:flex;align-items:center;gap:14px;padding:14px 16px;border:2px solid #e2e8f0;border-radius:12px;cursor:pointer;transition:border-color 0.2s">
+                        <input type="checkbox" id="bundleBook-signed" onchange="updateBundleTotal()" style="width:18px;height:18px;accent-color:#d4a820;flex-shrink:0;cursor:pointer">
+                        <div style="font-size:1.3rem;flex-shrink:0">✍️</div>
+                        <div style="flex:1">
+                            <div style="font-weight:700;color:#1e293b;font-size:0.9rem;font-style:italic">"Didn't See It Coming"</div>
+                            <div style="font-size:0.75rem;color:#64748b;margin-top:2px">Signed Edition &mdash; Personally autographed</div>
+                        </div>
+                        <div style="font-weight:800;color:#d4a820;font-size:0.95rem;white-space:nowrap">$19.99</div>
+                    </label>
+                </div>
+
+                <!-- Order Summary -->
+                <div id="bundleSummary" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:16px 18px;margin-bottom:20px">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                        <span style="font-size:0.82rem;color:#64748b">Software (7-day free trial)</span>
+                        <span id="bundleSoftwarePrice" style="font-size:0.82rem;font-weight:700;color:#1e293b">$24.99/mo</span>
+                    </div>
+                    <div id="bundleBookRow" style="display:none;justify-content:space-between;align-items:center;margin-bottom:4px">
+                        <span style="font-size:0.82rem;color:#64748b">Book add-on</span>
+                        <span id="bundleBookPrice" style="font-size:0.82rem;font-weight:700;color:#d4a820"></span>
+                    </div>
+                    <div style="border-top:1px solid #e2e8f0;margin:10px 0 6px"></div>
+                    <div style="font-size:0.72rem;color:#94a3b8">7 days free, then billed monthly. Book ships separately via Stripe. Cancel software anytime.</div>
+                </div>
+
+                <!-- CTA Button(s) -->
+                <button id="bundleStartBtn" onclick="startBundleCheckout()" style="width:100%;background:linear-gradient(135deg,#1e3a5f,#2563eb);color:#fff;border:none;border-radius:12px;padding:15px;font-size:1rem;font-weight:800;cursor:pointer;margin-bottom:10px;transition:opacity 0.2s" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                    Start 7-Day Free Trial &rarr;
+                </button>
+                <p style="text-align:center;font-size:0.74rem;color:#94a3b8;margin:0">No credit card required for trial &bull; Cancel anytime</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var _bundlePlan = 'ministry';
+        var _bundlePlanUids = {
+            foundation: 'BWzLAaQE',
+            ministry:   'ZmNJDpm2',
+            pastor:     '7maerMmE'
+        };
+        var _bundlePlanPrices = {
+            foundation: '$12.99/mo',
+            ministry:   '$24.99/mo',
+            pastor:     '$49.99/mo'
+        };
+
+        function openBundleModal() {
+            document.getElementById('bundleModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeBundleModal() {
+            document.getElementById('bundleModal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        function selectBundlePlan(plan) {
+            _bundlePlan = plan;
+            ['foundation','ministry','pastor'].forEach(function(p) {
+                var label  = document.getElementById('bundlePlan-' + p);
+                var radio  = document.getElementById('bundleRadio-' + p);
+                var active = (p === plan);
+                label.style.borderColor = active ? '#2563eb' : '#e2e8f0';
+                label.style.background  = active ? '#f0f7ff' : '#fff';
+                radio.style.background  = active ? '#2563eb' : 'transparent';
+                radio.style.borderColor = active ? '#2563eb' : '#cbd5e1';
+                radio.innerHTML = active ? '<div style="width:8px;height:8px;background:#fff;border-radius:50%"></div>' : '';
+            });
+            updateBundleTotal();
+        }
+        function updateBundleTotal() {
+            document.getElementById('bundleSoftwarePrice').textContent = _bundlePlanPrices[_bundlePlan];
+            var std    = document.getElementById('bundleBook-standard').checked;
+            var signed = document.getElementById('bundleBook-signed').checked;
+            var bookRow = document.getElementById('bundleBookRow');
+            var bookPriceEl = document.getElementById('bundleBookPrice');
+
+            // Only allow one book selection at a time
+            if (std && signed) {
+                document.getElementById('bundleBook-standard').checked = false;
+                std = false;
+            }
+
+            if (std) {
+                bookRow.style.display = 'flex';
+                bookPriceEl.textContent = '$14.99';
+            } else if (signed) {
+                bookRow.style.display = 'flex';
+                bookPriceEl.textContent = '$19.99';
+            } else {
+                bookRow.style.display = 'none';
+            }
+
+            // Update book label borders
+            document.getElementById('bundleBookLabel-standard').style.borderColor = std    ? '#d4a820' : '#e2e8f0';
+            document.getElementById('bundleBookLabel-signed').style.borderColor   = signed ? '#d4a820' : '#e2e8f0';
+
+            // Update button text
+            var hasBook = std || signed;
+            document.getElementById('bundleStartBtn').textContent = hasBook
+                ? 'Start Free Trial + Order Book →'
+                : 'Start 7-Day Free Trial →';
+        }
+        function startBundleCheckout() {
+            var uid    = _bundlePlanUids[_bundlePlan];
+            var softURL = 'https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=' + uid + '#o-anonymous';
+            var std    = document.getElementById('bundleBook-standard').checked;
+            var signed = document.getElementById('bundleBook-signed').checked;
+
+            // Open software checkout
+            window.open(softURL, '_blank');
+
+            // If book selected, open book checkout in another tab after short delay
+            if (std) {
+                setTimeout(function() { window.open('https://buy.stripe.com/dRm9AV6PdgUC9cW1FbgUM08', '_blank'); }, 400);
+            } else if (signed) {
+                setTimeout(function() { window.open('https://buy.stripe.com/dRm14pflJgUC88S2JfgUM07', '_blank'); }, 400);
+            }
+
+            closeBundleModal();
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeBundleModal();
         });
     </script>
 
