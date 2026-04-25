@@ -268,11 +268,9 @@
         /* Content Area */
         .content-area {
             flex: 1;
-            padding: 0;
-            overflow: hidden;
+            padding: 0 2rem 2rem 2rem;
+            overflow-y: auto;
             min-height: 0;
-            display: flex;
-            flex-direction: column;
         }
 
         /* Page Styles */
@@ -281,12 +279,7 @@
         }
 
         .page.active {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            overflow-y: auto;
-            min-height: 0;
-            padding: 0 2rem 2rem 2rem;
+            display: block;
         }
 
         /* Dashboard Styles */
@@ -4187,8 +4180,8 @@
             AppState.currentPage = page;
             const titleEl = document.getElementById('pageTitle');
             if (titleEl) titleEl.textContent = pageTitles[page] || page;
-            // ── Scroll reset: each page is its own scroll container ──
-            // Remove any previous scroll lock
+            // ── Scroll reset ──────────────────────────────────────────────
+            // Clean up any previous lock
             if (window._ssLockedEl && window._ssScrollLocker) {
                 window._ssLockedEl.removeEventListener('scroll', window._ssScrollLocker);
             }
@@ -4196,18 +4189,21 @@
                 window.removeEventListener('scroll', window._ssWinLocker);
             }
             clearTimeout(window._ssLockTimer);
-            // Reset the page element (the scroll container)
-            if (pageEl) { pageEl.scrollTop = 0; }
+            // Hard reset all possible scroll containers
+            var _ca = document.querySelector('.content-area');
             window.scrollTo(0, 0);
-            // Lock: prevent browser scroll restoration on the page element for 700ms
-            if (pageEl) {
-                window._ssLockedEl = pageEl;
-                window._ssScrollLocker = function() { pageEl.scrollTop = 0; };
-                pageEl.addEventListener('scroll', window._ssScrollLocker);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            if (_ca) _ca.scrollTop = 0;
+            // Lock content-area: any scroll during nav gets cancelled instantly
+            if (_ca) {
+                window._ssLockedEl = _ca;
+                window._ssScrollLocker = function() { _ca.scrollTop = 0; };
+                _ca.addEventListener('scroll', window._ssScrollLocker);
                 window._ssWinLocker = function() { window.scrollTo(0, 0); };
                 window.addEventListener('scroll', window._ssWinLocker);
                 window._ssLockTimer = setTimeout(function() {
-                    pageEl.removeEventListener('scroll', window._ssScrollLocker);
+                    _ca.removeEventListener('scroll', window._ssScrollLocker);
                     window.removeEventListener('scroll', window._ssWinLocker);
                     window._ssScrollLocker = null;
                     window._ssWinLocker = null;
