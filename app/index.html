@@ -271,6 +271,8 @@
             padding: 0 2rem 2rem 2rem;
             overflow-y: auto;
             min-height: 0;
+            overflow-anchor: none;
+            scroll-behavior: auto;
         }
 
         /* Page Styles */
@@ -4183,32 +4185,45 @@
             // ── Scroll reset ──────────────────────────────────────────────
             // Clean up any previous lock
             if (window._ssLockedEl && window._ssScrollLocker) {
-                window._ssLockedEl.removeEventListener('scroll', window._ssScrollLocker);
+                window._ssLockedEl.removeEventListener('scroll', window._ssScrollLocker, { capture: true });
             }
             if (window._ssWinLocker) {
-                window.removeEventListener('scroll', window._ssWinLocker);
+                window.removeEventListener('scroll', window._ssWinLocker, { capture: true });
             }
             clearTimeout(window._ssLockTimer);
-            // Hard reset all possible scroll containers
+            clearTimeout(window._ssResetTimer);
             var _ca = document.querySelector('.content-area');
+            // Overflow-toggle: temporarily hide overflow so the browser is forced to drop scrollTop to 0
+            if (_ca) {
+                _ca.style.overflowY = 'hidden';
+                _ca.scrollTop = 0;
+                // Restore on next paint so content renders properly
+                requestAnimationFrame(function() {
+                    _ca.scrollTop = 0;
+                    _ca.style.overflowY = '';
+                    // One final reset after browser has had a chance to do scroll restoration
+                    requestAnimationFrame(function() {
+                        _ca.scrollTop = 0;
+                    });
+                });
+            }
             window.scrollTo(0, 0);
             document.documentElement.scrollTop = 0;
             document.body.scrollTop = 0;
-            if (_ca) _ca.scrollTop = 0;
-            // Lock content-area: any scroll during nav gets cancelled instantly
+            // Lock content-area at capture phase — fires BEFORE Chrome scroll restoration
             if (_ca) {
                 window._ssLockedEl = _ca;
                 window._ssScrollLocker = function() { _ca.scrollTop = 0; };
-                _ca.addEventListener('scroll', window._ssScrollLocker);
+                _ca.addEventListener('scroll', window._ssScrollLocker, { capture: true, passive: false });
                 window._ssWinLocker = function() { window.scrollTo(0, 0); };
-                window.addEventListener('scroll', window._ssWinLocker);
+                window.addEventListener('scroll', window._ssWinLocker, { capture: true, passive: false });
                 window._ssLockTimer = setTimeout(function() {
-                    _ca.removeEventListener('scroll', window._ssScrollLocker);
-                    window.removeEventListener('scroll', window._ssWinLocker);
+                    _ca.removeEventListener('scroll', window._ssScrollLocker, { capture: true });
+                    window.removeEventListener('scroll', window._ssWinLocker, { capture: true });
                     window._ssScrollLocker = null;
                     window._ssWinLocker = null;
                     window._ssLockedEl = null;
-                }, 700);
+                }, 800);
             }
             closeVerseActions();
             // Page-specific loaders
