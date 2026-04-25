@@ -4180,33 +4180,43 @@
             AppState.currentPage = page;
             const titleEl = document.getElementById('pageTitle');
             if (titleEl) titleEl.textContent = pageTitles[page] || page;
-            // ── Scroll reset ─────────────────────────────────────────────
-            function _hardScrollReset() {
-                window.scrollTo(0, 0);
-                document.documentElement.scrollTop = 0;
-                document.body.scrollTop = 0;
-                var ca = document.querySelector('.content-area');
-                if (ca) {
-                    // Overflow-toggle trick: forces browser to drop stored scroll position
-                    ca.style.overflowY = 'hidden';
-                    ca.scrollTop = 0;
-                    ca.style.overflowY = '';
-                    ca.scrollTop = 0;
+            // ── Scroll reset: lock scroll to 0 for 700ms after every navigation ──
+            var _ca = document.querySelector('.content-area');
+            // Immediate reset on every possible container
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            if (_ca) { _ca.scrollTop = 0; }
+            // Attach scroll-lock listener — fires the instant anything tries to scroll
+            // during navigation and slams it back to 0
+            if (_ca) {
+                if (window._ssScrollLocker) {
+                    _ca.removeEventListener('scroll', window._ssScrollLocker);
                 }
-                var mc = document.querySelector('.main-content');
-                if (mc) mc.scrollTop = 0;
-                var app = document.getElementById('main-app');
-                if (app) app.scrollTop = 0;
+                clearTimeout(window._ssLockTimer);
+                window._ssScrollLocker = function() { _ca.scrollTop = 0; };
+                _ca.addEventListener('scroll', window._ssScrollLocker);
+                // Also lock the window in case it is the scroll container
+                if (window._ssWinLocker) {
+                    window.removeEventListener('scroll', window._ssWinLocker);
+                }
+                window._ssWinLocker = function() { window.scrollTo(0, 0); };
+                window.addEventListener('scroll', window._ssWinLocker);
+                // Release lock after 700ms — well past all async loaders
+                window._ssLockTimer = setTimeout(function() {
+                    _ca.removeEventListener('scroll', window._ssScrollLocker);
+                    window.removeEventListener('scroll', window._ssWinLocker);
+                    window._ssScrollLocker = null;
+                    window._ssWinLocker = null;
+                }, 700);
             }
-            _hardScrollReset();
-            requestAnimationFrame(function() {
-                _hardScrollReset();
-                requestAnimationFrame(function() { _hardScrollReset(); });
-            });
-            // Catch async loaders (canvas init, calendar render, etc.)
-            setTimeout(function() { _hardScrollReset(); }, 0);
-            setTimeout(function() { _hardScrollReset(); }, 150);
-            setTimeout(function() { _hardScrollReset(); }, 400);
+            // Also use scrollIntoView as a final native-browser anchor
+            if (pageEl) {
+                requestAnimationFrame(function() {
+                    pageEl.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    if (_ca) _ca.scrollTop = 0;
+                });
+            }
             closeVerseActions();
             // Page-specific loaders
             const loaders = {
