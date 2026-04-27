@@ -2094,7 +2094,7 @@
                         <li><i data-lucide="check"></i> Prayer Journal</li>
                         <li><i data-lucide="check"></i> Cross-References</li>
                     </ul>
-                    <a href="https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=BWzLAaQE#o-anonymous" class="btn btn-secondary" target="_blank" rel="noopener">Start Free Trial</a>
+                    <a href="https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=BWzLAaQE&redirectUri=https%3A%2F%2Fscripturestudio.app%2Fapp%2F#o-anonymous" class="btn btn-secondary" target="_blank" rel="noopener">Start Free Trial</a>
                 </div>
                 <div class="pricing-card featured">
                     <div class="pricing-badge">Most Popular</div>
@@ -2109,7 +2109,7 @@
                         <li><i data-lucide="check"></i> Illustration Library</li>
                         <li><i data-lucide="check"></i> Ministry Calendar</li>
                     </ul>
-                    <a href="https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=ZmNJDpm2#o-anonymous" class="btn btn-primary" target="_blank" rel="noopener">Start Free Trial</a>
+                    <a href="https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=ZmNJDpm2&redirectUri=https%3A%2F%2Fscripturestudio.app%2Fapp%2F#o-anonymous" class="btn btn-primary" target="_blank" rel="noopener">Start Free Trial</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Pastor Pro</h3>
@@ -2123,7 +2123,7 @@
                         <li><i data-lucide="check"></i> Priority Support</li>
                         <li><i data-lucide="check"></i> Team Collaboration</li>
                     </ul>
-                    <a href="https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=7maerMmE#o-anonymous" class="btn btn-secondary" target="_blank" rel="noopener">Start Free Trial</a>
+                    <a href="https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=7maerMmE&redirectUri=https%3A%2F%2Fscripturestudio.app%2Fapp%2F#o-anonymous" class="btn btn-secondary" target="_blank" rel="noopener">Start Free Trial</a>
                 </div>
 
             <!-- Book Add-On Banner -->
@@ -2151,7 +2151,7 @@
         <div class="section-container">
             <h2>Ready to Go Deeper in the Word?</h2>
             <p>Join thousands of believers using Scripture Studio to study, grow, and know God's Word like never before.</p>
-            <a href="https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=ZmNJDpm2#o-anonymous" class="btn">Start Your Free 7-Day Trial</a>
+            <a href="https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=ZmNJDpm2&redirectUri=https%3A%2F%2Fscripturestudio.app%2Fapp%2F#o-anonymous" class="btn">Start Your Free 7-Day Trial</a>
         </div>
     </section>
     
@@ -2978,22 +2978,26 @@
                 : 'Start 7-Day Free Trial →';
         }
         function startBundleCheckout() {
-            var uid    = _bundlePlanUids[_bundlePlan];
-            var softURL = 'https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=' + uid + '#o-anonymous';
-            var std    = document.getElementById('bundleBook-standard').checked;
-            var signed = document.getElementById('bundleBook-signed').checked;
-
-            // Open software checkout
-            window.open(softURL, '_blank');
-
-            // If book selected, open book checkout in another tab after short delay
-            if (std) {
-                setTimeout(function() { window.open('https://buy.stripe.com/dRm9AV6PdgUC9cW1FbgUM08', '_blank'); }, 400);
-            } else if (signed) {
-                setTimeout(function() { window.open('https://buy.stripe.com/dRm14pflJgUC88S2JfgUM07', '_blank'); }, 400);
-            }
+            var uid     = _bundlePlanUids[_bundlePlan];
+            var redirect = encodeURIComponent('https://scripturestudio.app/app/');
+            var softURL  = 'https://scripturestudio.outseta.com/auth?widgetMode=register&planUid=' + uid + '&redirectUri=' + redirect + '#o-anonymous';
+            var std      = document.getElementById('bundleBook-standard').checked;
+            var signed   = document.getElementById('bundleBook-signed').checked;
+            var bookURL  = std    ? 'https://buy.stripe.com/dRm9AV6PdgUC9cW1FbgUM08'
+                         : signed ? 'https://buy.stripe.com/dRm14pflJgUC88S2JfgUM07'
+                         : null;
 
             closeBundleModal();
+
+            if (bookURL) {
+                // Open BOOK first (direct user gesture — no pop-up blocker risk)
+                window.open(bookURL, '_blank');
+                // Then navigate current tab to software signup
+                setTimeout(function() { window.location.href = softURL; }, 300);
+            } else {
+                // Software only — navigate current tab
+                window.location.href = softURL;
+            }
         }
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeBundleModal();
