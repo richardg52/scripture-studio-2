@@ -269,20 +269,21 @@
         .content-area {
             flex: 1;
             padding: 0 2rem 2rem 2rem;
-            overflow-y: auto;
-            overflow-x: hidden;
+            overflow: hidden;        /* Not scrollable — each page scrolls itself */
             min-height: 0;
-            overflow-anchor: none;
-            scroll-behavior: auto;
         }
 
         /* Page Styles */
         .page {
             display: none;
+            overflow: hidden;        /* Hidden pages have no scroll context — Chrome can't restore */
         }
 
         .page.active {
             display: block;
+            height: 100%;            /* Fill the content-area exactly */
+            overflow-y: auto;        /* Each active page is its own fresh scroll container */
+            overflow-anchor: none;   /* content-area overflow:hidden handles x-clipping */
         }
 
         /* Dashboard Styles */
@@ -4192,50 +4193,10 @@
             if (titleEl) titleEl.textContent = pageTitles[page] || page;
 
             // ── Step 3: Scroll to top ─────────────────────────────────────────────────────
-            var _ca = document.querySelector('.content-area');
-            var _anchor = document.getElementById('ss-scroll-top');
-
-            // Remove any previous anti-restore listener before adding a new one
-            if (window._ssAntiRestore) {
-                _ca && _ca.removeEventListener('scroll', window._ssAntiRestore, true);
-                window._ssAntiRestore = null;
-            }
-            clearTimeout(window._ssAntiRestoreTimer);
-
-            function _goTop() {
-                if (_ca) _ca.scrollTop = 0;
-                if (_anchor) {
-                    try { _anchor.scrollIntoView({ behavior: 'instant', block: 'start' }); }
-                    catch(e) { if (_anchor) _anchor.scrollIntoView(true); }
-                }
-            }
-
-            // Fire reset immediately and on next two frames
-            _goTop();
-            requestAnimationFrame(function() { _goTop(); requestAnimationFrame(_goTop); });
-
-            // Anti-restore listener: watches content-area scroll for 800ms after nav.
-            // If Chrome fires its element-level scroll restoration (scrollTop jumps > 5),
-            // we catch it in the capture phase and immediately slam it back to 0.
-            var _navTs = Date.now();
-            window._ssAntiRestore = function() {
-                if (!_ca) return;
-                if (Date.now() - _navTs > 800) {
-                    // Window has passed — stop intercepting, let user scroll freely
-                    _ca.removeEventListener('scroll', window._ssAntiRestore, true);
-                    window._ssAntiRestore = null;
-                    return;
-                }
-                if (_ca.scrollTop > 5) { _goTop(); }
-            };
-            if (_ca) _ca.addEventListener('scroll', window._ssAntiRestore, true);
-            // Guarantee cleanup after 900ms regardless
-            window._ssAntiRestoreTimer = setTimeout(function() {
-                if (_ca && window._ssAntiRestore) {
-                    _ca.removeEventListener('scroll', window._ssAntiRestore, true);
-                    window._ssAntiRestore = null;
-                }
-            }, 900);
+            // Each .page.active is its own scroll container — reset it directly.
+            // Chrome can't restore scroll on hidden pages (overflow:hidden, display:none),
+            // so every page always starts at 0 when activated.
+            if (pageEl) pageEl.scrollTop = 0;
 
             closeVerseActions();
             // Page-specific loaders
