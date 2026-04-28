@@ -3451,7 +3451,7 @@
                 </div>
 
                 <!-- Congregation Page -->
-                <div class="page" id="page-congregation" style="padding:0">
+                <div class="page" id="page-congregation">
 
                   <!-- Community Hero Banner -->
                   <div style="position:relative;height:240px;overflow:hidden;margin:0 -2rem 0;width:calc(100% + 4rem)">
@@ -3582,7 +3582,7 @@
                 </div>
 
                 <!-- ===== PREACHING CALENDAR ===== -->
-                <div class="page" id="page-preaching-calendar" style="padding:0!important">
+                <div class="page" id="page-preaching-calendar">
                     <!-- PREACHING CALENDAR HERO -->
                     <div style="background:linear-gradient(135deg,#0f2744 0%,#1e3a5f 60%,#1e40af 100%);border-radius:0;padding:24px 28px;margin:-2rem -2rem 16px;width:calc(100% + 4rem);position:relative;overflow:hidden">
                       <div style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:5rem;opacity:0.08;line-height:1;pointer-events:none">&#128197;</div>
@@ -3723,6 +3723,11 @@
                         <div class="panel-body">
                             <div style="margin-bottom:16px">
                                 <p style="color:#64748b;font-size:0.82rem;margin-bottom:10px;font-weight:600">Browse by topic:</p>
+                                <!-- Custom topic search -->
+                                <div style="display:flex;gap:10px;margin-bottom:16px">
+                                    <input id="topicSearchInput" placeholder="Search any biblical topic — Trinity, Baptism, Second Coming, Justice..." style="flex:1;padding:12px 16px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:0.9rem;color:#1e293b;outline:none" onkeydown="if(event.key==='Enter'){quickTopic(this.value)}" onfocus="this.style.borderColor='#1e40af'" onblur="this.style.borderColor='#e2e8f0'" />
+                                    <button onclick="quickTopic(document.getElementById('topicSearchInput').value)" style="background:#1e40af;color:#fff;border:none;border-radius:10px;padding:12px 22px;font-size:0.88rem;font-weight:700;cursor:pointer;white-space:nowrap">&#128269; Find</button>
+                                </div>
                                 <div style="display:flex;flex-wrap:wrap;gap:8px" id="topicTags">
                                     <span style="background:#dbeafe;color:#1e40af;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('faith')">Faith</span>
                                     <span style="background:#dbeafe;color:#1e40af;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('love')">Love</span>
@@ -3739,9 +3744,17 @@
                                     <span style="background:#f0fdf4;color:#065f46;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('repentance')">Repentance</span>
                                     <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('resurrection')">Resurrection</span>
                                     <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('covenant')">Covenant</span>
-                                    <span style="background:#dbeafe;color:#1e40af;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('identity')">Identity in Christ</span>
+                                    <span style="background:#dbeafe;color:#1e40af;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('identity in christ')">Identity in Christ</span>
                                     <span style="background:#fef3c7;color:#92400e;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('family')">Family</span>
                                     <span style="background:#dcfce7;color:#166534;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('purpose')">Purpose</span>
+                                    <span style="background:#fee2e2;color:#991b1b;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('suffering')">Suffering</span>
+                                    <span style="background:#dbeafe;color:#1e40af;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('grace')">Grace</span>
+                                    <span style="background:#fef3c7;color:#92400e;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('worship')">Worship</span>
+                                    <span style="background:#f0fdf4;color:#065f46;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('stewardship')">Stewardship</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('justice')">Justice</span>
+                                    <span style="background:#fdf2f8;color:#86198f;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('humility')">Humility</span>
+                                    <span style="background:#dcfce7;color:#166534;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('holiness')">Holiness</span>
+                                    <span style="background:#dbeafe;color:#1e40af;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickTopic('discipleship')">Discipleship</span>
                                 </div>
                             </div>
                             <div id="topicResults"></div>
@@ -3750,7 +3763,7 @@
                 </div>
 
                 <!-- ===== PERSONAL DIARY ===== -->
-                <div class="page" id="page-personal-diary" style="padding:0">
+                <div class="page" id="page-personal-diary">
                     <!-- DAILY EMOTIONAL — PHOTO HERO with rotating verse -->
                     <div style="position:relative;height:310px;overflow:hidden;margin:0 -2rem 0;width:calc(100% + 4rem);cursor:pointer" onclick="nextDiaryScripture()" title="Tap for next scripture">
                       <img id="diaryHeroImg" src="Clark2.png" alt="Woman writing in personal diary" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:opacity 1.2s ease">
@@ -3839,6 +3852,11 @@
                     <div style="position:relative;height:300px;overflow:hidden;margin:0 -2rem 0;width:calc(100% + 4rem)"><img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1400&q=80&fit=crop" alt="Professional microphone" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(30,5,50,0.2) 0%,rgba(70,10,100,0.55) 45%,rgba(80,10,110,0.93) 100%)"></div><div style="position:relative;z-index:2;padding:0 32px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:28px"><div style="font-size:0.58rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(212,168,32,0.9);margin-bottom:8px">&#9733; Scripture Studio</div><h2 style="font-size:2rem;font-weight:900;color:#fff;margin:0 0 6px;text-shadow:0 2px 8px rgba(0,0,0,0.5)">Pronunciation Tool</h2><p style="font-size:0.9rem;margin:0;color:rgba(255,255,255,0.82);text-shadow:0 1px 4px rgba(0,0,0,0.4)">Hear and learn how to correctly pronounce biblical names & Hebrew terms</p></div></div>
                     <div class="panel">
                         <div class="panel-body">
+                            <!-- Custom search input -->
+                            <div style="display:flex;gap:10px;margin-bottom:20px">
+                                <input id="pronSearch" placeholder="Type any biblical name or word — Mephibosheth, Beelzebub, propitiation..." style="flex:1;padding:12px 16px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:0.9rem;color:#1e293b;outline:none" onkeydown="if(event.key==='Enter')lookupPronunciation()" onfocus="this.style.borderColor='#7c3aed'" onblur="this.style.borderColor='#e2e8f0'" />
+                                <button onclick="lookupPronunciation()" style="background:#7c3aed;color:#fff;border:none;border-radius:10px;padding:12px 22px;font-size:0.88rem;font-weight:700;cursor:pointer;white-space:nowrap">&#128264; Look Up</button>
+                            </div>
                             <div style="margin-bottom:16px">
                                 <p style="color:#64748b;font-size:0.82rem;margin-bottom:10px;font-weight:600">Common pulpit challenges — click any name:</p>
                                 <div style="display:flex;flex-wrap:wrap;gap:8px">
@@ -3854,6 +3872,22 @@
                                     <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Methuselah')">Methuselah</span>
                                     <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Zacchaeus')">Zacchaeus</span>
                                     <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Caesarea Philippi')">Caesarea Philippi</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Mephibosheth')">Mephibosheth</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Beelzebub')">Beelzebub</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Propitiation')">Propitiation</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Sanctification')">Sanctification</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Justification')">Justification</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Jehoshaphat')">Jehoshaphat</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Abednego')">Abednego</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Shekinah')">Shekinah</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Atonement')">Atonement</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Septuagint')">Septuagint</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Parousia')">Parousia</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Hermeneutics')">Hermeneutics</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Eschatology')">Eschatology</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Soteriology')">Soteriology</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Agape')">Agape</span>
+                                    <span style="background:#f3e8ff;color:#6b21a8;font-size:0.78rem;font-weight:700;padding:7px 14px;border-radius:980px;cursor:pointer" onclick="quickPronounce('Koinonia')">Koinonia</span>
                                 </div>
                             </div>
                             <div id="pronunciationResult"></div>
@@ -3872,7 +3906,7 @@
                   
 
                     <!-- WORD STUDIO 1B — CANVAS MOTION -->
-                    <div style="position:relative;overflow:hidden;margin-bottom:16px;height:280px;background:#04060e">
+                    <div style="position:relative;overflow:hidden;margin:0 -2rem 16px;width:calc(100% + 4rem);height:280px;background:#04060e">
                       <canvas id="studio1bCanvas" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
                       <div style="position:relative;z-index:2;padding:36px 32px">
                         <button onclick="navigateTo('dashboard')" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.7);border-radius:4px;padding:6px 14px;font-size:0.74rem;font-weight:600;cursor:pointer;margin-bottom:18px;display:inline-flex;align-items:center;gap:6px">&#8592; The Study</button>
@@ -3932,13 +3966,13 @@
 
 
                 <!-- Scripture Memory Module -->
-                <div class="page" id="page-scripture-memory" style="padding:0">
+                <div class="page" id="page-scripture-memory">
                     <div id="sm-root" style="width:100%;box-sizing:border-box;padding-bottom:32px"></div>
                 </div>
 
 
                 <!-- Scripture Graphics -->
-                <div class="page" id="page-scripture-graphics" style="padding:0">
+                <div class="page" id="page-scripture-graphics">
                     <div id="sg-root" style="width:100%;box-sizing:border-box;padding-bottom:32px"></div>
                 </div>
 
@@ -7941,7 +7975,23 @@
                 hope:       { definition:'Confident expectation in God\'s promises, especially regarding the future.', passages:['Romans 8:24-25','Hebrews 11:1','Romans 15:13','Lamentations 3:21-23','1 Peter 1:3'], notes:'Biblical hope is not wishful thinking — it is certainty grounded in the character and promises of God.' },
                 marriage:   { definition:'The covenant union of husband and wife, designed by God as a reflection of Christ and the Church.', passages:['Genesis 2:24','Ephesians 5:22-33','1 Corinthians 7:3-5','Proverbs 18:22','Colossians 3:18-19'], notes:'Marriage sermons should address both the ideal and the grace available when marriages struggle.' },
                 wisdom:     { definition:'The ability to apply knowledge and discernment in accordance with God\'s truth.', passages:['James 1:5','Proverbs 9:10','Proverbs 3:5-6','1 Corinthians 1:30','Ecclesiastes 12:13'], notes:'Wisdom in Scripture begins with the fear of the Lord (Prov 9:10) — not merely intellectual understanding.' },
-                anxiety:    { definition:'Excessive worry or fear; Scripture addresses this directly with commands and promises.', passages:['Philippians 4:6-7','Matthew 6:25-34','1 Peter 5:7','Isaiah 41:10','Psalm 94:19'], notes:'Preach with pastoral sensitivity — anxiety can be both spiritual and medical. Address both without dismissing either.' }
+                anxiety:        { definition:'Excessive worry or fear; Scripture addresses this directly with commands and promises.', passages:['Philippians 4:6-7','Matthew 6:25-34','1 Peter 5:7','Isaiah 41:10','Psalm 94:19'], notes:'Preach with pastoral sensitivity — anxiety can be both spiritual and medical. Address both without dismissing either.' },
+                grief:          { definition:'Deep sorrow over loss — death, broken relationships, or shattered dreams. Scripture honors grief rather than rushing past it.', passages:['Psalm 34:18','John 11:35','Matthew 5:4','Lamentations 3:21-23','Romans 8:26'], notes:'Jesus wept at Lazarus\'s tomb even knowing He would raise him. Grief is not faithlessness — it is love expressing itself honestly.' },
+                obedience:      { definition:'Willing submission to God\'s commands and will, flowing from love rather than fear.', passages:['John 14:15','1 Samuel 15:22','Romans 6:16-17','Deuteronomy 11:13-14','Luke 6:46'], notes:'Obedience in Scripture is always relational, not merely legal. It flows from a transformed heart (Jer. 31:33) and produces blessing.' },
+                repentance:     { definition:'A genuine turning — changing one\'s mind, heart, and direction away from sin and toward God.', passages:['Acts 3:19','Luke 15:11-32','2 Corinthians 7:10','Mark 1:15','Isaiah 55:7'], notes:'True repentance (Greek: metanoia) involves more than remorse — it is a full 180-degree turn. John Wesley called it "the porch of religion."' },
+                resurrection:   { definition:'The bodily rising from the dead; the cornerstone doctrine of Christian faith, grounded in Christ\'s own resurrection.', passages:['1 Corinthians 15:1-58','John 11:25-26','Romans 6:4-5','Acts 2:24','Revelation 1:18'], notes:'Paul argues in 1 Cor. 15 that if Christ is not raised, faith is worthless. The resurrection is not a footnote — it is the whole foundation.' },
+                covenant:       { definition:'A sacred, binding agreement between God and His people — always initiated by God and always involving promise, obligation, and relationship.', passages:['Genesis 9:11','Genesis 17:1-8','Exodus 19:5-6','Jeremiah 31:31-34','Hebrews 8:6'], notes:'Scripture traces a covenant thread from Noah to Abraham to Moses to David to Christ. Each covenant deepens and expands God\'s redemptive purpose.' },
+                'identity in christ':{ definition:'The new nature and standing of every believer — not defined by past, performance, or people\'s opinions, but by what God declares through union with Christ.', passages:['2 Corinthians 5:17','Galatians 2:20','Ephesians 1:3-14','Romans 8:1','Colossians 3:1-4'], notes:'Preach identity before behavior — who we are in Christ always precedes how we are to live. Many believers try to perform their way to an identity they already have.' },
+                family:         { definition:'The primary unit of human society designed by God — built on covenant love, mutual service, and intergenerational faithfulness.', passages:['Genesis 2:24','Deuteronomy 6:6-9','Proverbs 22:6','Ephesians 6:1-4','Colossians 3:18-21'], notes:'Family sermons should address the ideal while offering grace for broken families. God is the Father of the fatherless (Psalm 68:5) — no family situation is beyond His reach.' },
+                purpose:        { definition:'The God-given reason for existence — rooted in knowing God, bearing His image, and participating in His redemptive mission in the world.', passages:['Jeremiah 29:11','Romans 8:28-30','Ephesians 2:10','Psalm 139:13-16','1 Peter 2:9'], notes:'Purpose is not primarily about career or calling — it begins with relationship. We were created to know God (John 17:3) and to reflect Him to the world.' },
+                suffering:      { definition:'Pain, hardship, and trials that God permits and can use for His purposes — never wasted in His economy.', passages:['Romans 5:3-5','James 1:2-4','2 Corinthians 4:17','1 Peter 4:12-13','Romans 8:18'], notes:'Suffering sermons must sit with the pain before pointing to the purpose. Don\'t rush to "all things work together" before acknowledging the weight of what people carry.' },
+                grace:          { definition:'God\'s unmerited favor — the undeserved love and kindness He extends to sinners through Jesus Christ.', passages:['Ephesians 2:8-9','Romans 5:20-21','Titus 2:11-12','2 Corinthians 12:9','John 1:14'], notes:'Grace is both a gift and a power. Paul argues it not only saves us but trains us to live godly lives (Titus 2:11-12). Never reduce grace to a doctrine alone.' },
+                worship:        { definition:'The whole-life response of adoration, reverence, and surrender to God — not limited to singing but expressed in every act done for His glory.', passages:['John 4:23-24','Romans 12:1-2','Psalm 150','Revelation 4:11','Hebrews 13:15'], notes:'True worship is always trinitarian — we worship the Father, through the Son, by the Spirit. It is both liturgical (gathered) and ethical (daily living).' },
+                stewardship:    { definition:'The faithful management of everything God entrusts to us — time, money, gifts, relationships, and creation.', passages:['Matthew 25:14-30','Luke 16:10-12','1 Corinthians 4:2','Proverbs 3:9-10','Malachi 3:10'], notes:'Stewardship sermons go far beyond tithing. We are managers, not owners. God owns everything — we are caretakers of His resources for His purposes.' },
+                justice:        { definition:'The right ordering of society according to God\'s character — giving to each what they are due, defending the vulnerable, and opposing oppression.', passages:['Micah 6:8','Isaiah 1:17','Amos 5:24','Luke 4:18-19','Matthew 23:23'], notes:'Biblical justice flows from God\'s own character (Deut. 32:4). It is both personal (righteous living) and social (structural advocacy for the poor and marginalized).' },
+                humility:       { definition:'The accurate assessment of oneself before God — not self-deprecation but self-forgetfulness and God-dependence.', passages:['Philippians 2:3-8','James 4:6','Proverbs 11:2','Matthew 18:4','1 Peter 5:6'], notes:'Christ is the supreme model of humility — the eternal Son taking on flesh, washing feet, and dying a criminal\'s death. Humility is not weakness; it is power under submission.' },
+                holiness:       { definition:'The state of being set apart for God — morally pure, consecrated, and increasingly conformed to the character of God.', passages:['Leviticus 19:2','Hebrews 12:14','1 Peter 1:15-16','1 Thessalonians 4:7','Romans 6:22'], notes:'Holiness has two dimensions: positional (declared holy in Christ at salvation) and practical (being made holy through the Spirit\'s work). Both must be preached together.' },
+                discipleship:   { definition:'The lifelong process of following Jesus — learning His ways, being transformed by His Spirit, and reproducing that transformation in others.', passages:['Matthew 28:19-20','Luke 9:23','John 8:31-32','2 Timothy 2:2','Colossians 1:28-29'], notes:'Jesus said "follow me" before He said "go." Discipleship is first about identity and formation before it is about activity and mission.' }
             };
             var lc  = topic.toLowerCase();
             var data = topics[lc];
@@ -8387,7 +8437,29 @@
             'colossians':      {pron:'kuh-LOSH-unz',      syllables:'kuh | LOSH | unz',            origin:'Greek',      meaning:'People of Colossae'},
             'titus':           {pron:'TY-tus',            syllables:'TY | tus',                    origin:'Latin',      meaning:'Of the giants; honorable'},
             'galatians':       {pron:'guh-LAY-shunz',     syllables:'guh | LAY | shunz',           origin:'Greek',      meaning:'People of Galatia'},
-            'pharaoh':         {pron:'FAIR-oh',            syllables:'FAIR | oh',                   origin:'Egyptian',    meaning:'great house',                          context:'Title of Egyptian kings; the Exodus pharaoh\'s hard heart became a display of God\'s power (Ex 9:16)'}
+            'pharaoh':         {pron:'FAIR-oh',            syllables:'FAIR | oh',                   origin:'Egyptian',   meaning:'Great house', context:'Title of Egyptian kings; the Exodus pharaoh\'s hard heart became a display of God\'s power (Ex 9:16)'},
+            // ── Additional Biblical Names ───────────────────────────────
+            'mephibosheth':    {pron:'meh-FIB-oh-sheth',  syllables:'meh | FIB | oh | sheth',      origin:'Hebrew',     meaning:'From the mouth of shame; son of Jonathan, shown covenant kindness by David (2 Samuel 9)',              context:'David\'s covenant loyalty to Jonathan extended to his crippled son Mephibosheth — a picture of grace given to the undeserving.'},
+            'beelzebub':       {pron:'bee-EL-zeh-bub',    syllables:'bee | EL | zeh | bub',        origin:'Hebrew',     meaning:'Lord of flies; a Philistine god, later a name for Satan or the prince of demons (Matthew 12:24)',    context:'The Pharisees accused Jesus of casting out demons by Beelzebub — Jesus refuted this with the "house divided" argument.'},
+            'propitiation':    {pron:'pruh-pish-ee-AY-shun', syllables:'pruh | pish | ee | AY | shun', origin:'Latin',  meaning:'Atoning sacrifice that satisfies God\'s wrath and restores relationship (1 John 2:2; Romans 3:25)', context:'Christ is the propitiation for our sins — His death fully satisfied divine justice, making peace between God and humanity.'},
+            'sanctification':  {pron:'sank-tih-fih-KAY-shun', syllables:'sank | tih | fih | KAY | shun', origin:'Latin', meaning:'The ongoing process of being set apart and made holy by the Holy Spirit (1 Thessalonians 4:3)',   context:'Sanctification follows justification. It is both God\'s work in us and our cooperative response through spiritual disciplines.'},
+            'justification':   {pron:'jus-tih-fih-KAY-shun', syllables:'jus | tih | fih | KAY | shun',  origin:'Latin', meaning:'God\'s legal declaration that the sinner is righteous through faith in Christ (Romans 3:28)',      context:'Luther called justification the article by which the church stands or falls. We are declared righteous — not made righteous — the moment we believe.'},
+            'jehoshaphat':     {pron:'jih-HOSH-uh-fat',   syllables:'jih | HOSH | uh | fat',       origin:'Hebrew',     meaning:'The LORD has judged; king of Judah who sought God and was delivered from enemies (2 Chronicles 20)', context:'Jehoshaphat\'s prayer and worship-led battle strategy is one of Scripture\'s most powerful models of trusting God against impossible odds.'},
+            'abednego':        {pron:'uh-BED-nee-goh',    syllables:'uh | BED | nee | goh',        origin:'Aramaic',    meaning:'Servant of Nebo (Babylonian god); Hebrew name: Azariah, meaning "The LORD has helped"',            context:'One of the three Hebrew men who refused to bow to Nebuchadnezzar\'s golden image and were protected in the fiery furnace (Daniel 3).'},
+            'shekinah':        {pron:'sheh-KY-nuh',       syllables:'sheh | KY | nuh',             origin:'Hebrew',     meaning:'The dwelling; the visible glory of God\'s presence — the luminous cloud that filled the Tabernacle and Temple', context:'Though not a biblical word itself, Shekinah is used by rabbis to describe the radiant presence of God seen in Exodus 40:34-38 and 1 Kings 8:10-11.'},
+            'jehoshaphat':     {pron:'jih-HOSH-uh-fat',   syllables:'jih | HOSH | uh | fat',       origin:'Hebrew',     meaning:'Jehovah has judged', context:'King of Judah known for his prayer and worship-led military victory (2 Chronicles 20).'},
+            'nebuchadnezzar':  {pron:'neb-uh-kud-NEZ-er', syllables:'neb | uh | kud | NEZ | er',   origin:'Babylonian', meaning:'O Nabu, protect my son/boundary', context:'King of Babylon who destroyed Jerusalem in 586 BC. His humbling in Daniel 4 is one of Scripture\'s most dramatic conversion accounts.'},
+            'melchizedek':     {pron:'mel-KIZ-uh-dek',   syllables:'mel | KIZ | uh | dek',        origin:'Hebrew',     meaning:'King of righteousness; priest-king of Salem who blessed Abraham (Genesis 14; Hebrews 7)',           context:'Melchizedek is a type of Christ — a priest-king whose order pre-dates Aaron. Hebrews argues Christ\'s priesthood surpasses the Levitical system.'},
+            'gethsemane':      {pron:'geth-SEM-uh-nee',  syllables:'geth | SEM | uh | nee',       origin:'Aramaic',    meaning:'Oil press; the garden where Jesus prayed before His arrest (Matthew 26:36)',                         context:'At Gethsemane Jesus prayed three times for the cup to pass, yet submitted fully to the Father\'s will — the deepest act of obedience in history.'},
+            'ecclesiastes':    {pron:'ih-klee-zee-AS-teez', syllables:'ih | klee | zee | AS | teez', origin:'Greek',   meaning:'One who addresses the assembly; Preacher, Qoheleth',                                               context:'A wisdom book exploring the meaning of life apart from God ("vanity of vanities") and concluding: fear God and keep His commandments (Eccl. 12:13).'},
+            'deuteronomy':     {pron:'dyoo-ter-ON-uh-mee', syllables:'dyoo | ter | ON | uh | mee', origin:'Greek',     meaning:'Second law; Moses\' final sermons restating the Law before Israel entered Canaan',                  context:'Deuteronomy contains the Shema (6:4-5), the Great Commandment Jesus quotes in Matthew 22, and the covenant blessings and curses of chapter 28.'},
+            'habakkuk':        {pron:'HAB-uh-kuk',        syllables:'HAB | uh | kuk',              origin:'Hebrew',     meaning:'Embrace; a prophet who wrestled boldly with God over injustice (Habakkuk 1:2-4)',                    context:'Habakkuk\'s famous confession — "the righteous shall live by faith" (2:4) — is quoted by Paul in Romans, Galatians, and Hebrews to anchor justification by faith.'},
+            'zephaniah':       {pron:'zef-uh-NY-uh',      syllables:'zef | uh | NY | uh',         origin:'Hebrew',     meaning:'The LORD has hidden/treasured; prophet during King Josiah\'s reform',                               context:'Zephaniah announces the Day of the LORD with intensity, but closes with one of Scripture\'s most tender promises of restoration (3:17).'},
+            'thessalonians':   {pron:'thes-uh-LOH-nee-unz', syllables:'thes | uh | LOH | nee | unz', origin:'Greek',  meaning:'People of Thessalonica; recipients of Paul\'s earliest letters (c. AD 50)',                         context:'1 Thessalonians contains the fullest NT teaching on the resurrection and the coming of the Lord — Paul\'s pastoral response to believers grieving their dead.'},
+            'philemon':        {pron:'fih-LEE-mun',       syllables:'fih | LEE | mun',             origin:'Greek',     meaning:'Affectionate; a wealthy Colossian Christian whose slave Onesimus ran away and met Paul',            context:'Paul\'s shortest letter is a masterclass in Christian reconciliation — appealing to Philemon to receive Onesimus back as "a brother in the Lord" (v.16).'},
+            'methuselah':      {pron:'muh-THYOO-zuh-luh', syllables:'muh | THYOO | zuh | luh',    origin:'Hebrew',     meaning:'Man of the javelin, or his death shall bring; the oldest person in Scripture — 969 years (Gen 5:27)', context:'Methuselah\'s name, possibly meaning "his death shall send it," may encode a prophecy: he died the year of the flood.'},
+            'zacchaeus':       {pron:'zuh-KEE-us',        syllables:'zuh | KEE | us',              origin:'Hebrew',     meaning:'Pure, innocent; a chief tax collector who climbed a tree to see Jesus (Luke 19:1-10)',              context:'Zacchaeus represents the truth that salvation comes by seeking Jesus even on the margins. Jesus said "the Son of Man came to seek and save the lost" (Lk 19:10).'},
+            'caesarea philippi':{pron:'ses-uh-REE-uh fih-LIP-eye', syllables:'ses | uh | REE | uh  fih | LIP | eye', origin:'Latin/Greek', meaning:'Caesar\'s Caesarea; city of Philip the Tetrarch at the foot of Mount Hermon', context:'At Caesarea Philippi Peter confessed "You are the Christ, the Son of the living God" (Matt 16:16) — the turning point of the Gospel narrative.'}
         };
 
         function lookupPronunciation() {
