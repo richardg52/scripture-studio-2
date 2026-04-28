@@ -13452,6 +13452,10 @@
         }
 
         function bypassAuth() {
+            // Dismiss both gates
+            var ssGate = document.getElementById('ss-gate');
+            if (ssGate) ssGate.remove();
+            localStorage.setItem('ss_access_granted', 'true');
             var gate = document.getElementById('auth-gate');
             var app  = document.getElementById('main-app');
             if (gate) gate.classList.add('hidden');
@@ -13467,6 +13471,10 @@
         }
 
         function showApp(user) {
+            // Dismiss both gates when Outseta auth succeeds
+            var ssGate = document.getElementById('ss-gate');
+            if (ssGate) ssGate.remove();
+            localStorage.setItem('ss_access_granted', 'true');
             var gate = document.getElementById('auth-gate');
             var app  = document.getElementById('main-app');
             if (gate) gate.classList.add('hidden');
