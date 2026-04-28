@@ -2154,7 +2154,42 @@
                       </div>
                       <!-- CENTER: Clock + Weather -->
                       <div id="dash-clock-col" style="flex:1;text-align:center;padding:0 16px">
-                        <div id="dash-clock" style="font-size:2rem;font-weight:300;color:#1d1d1f;letter-spacing:-0.02em;line-height:1;font-variant-numeric:tabular-nums"></div>
+                        <!-- Clock toggle wrapper — click anywhere to switch modes -->
+                        <div id="dash-clock-wrap" onclick="toggleClockMode()" title="Switch clock style" style="cursor:pointer;display:inline-block;position:relative">
+                          <!-- DIGITAL -->
+                          <div id="dash-clock" style="font-size:2rem;font-weight:300;color:#1d1d1f;letter-spacing:-0.02em;line-height:1;font-variant-numeric:tabular-nums"></div>
+                          <!-- ANALOG (hidden by default unless preference saved) -->
+                          <div id="dash-clock-analog" style="display:none">
+                            <svg id="analog-clock-svg" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                              <!-- Face -->
+                              <circle cx="60" cy="60" r="56" fill="#1e3a5f" stroke="#d4a820" stroke-width="2.5"/>
+                              <!-- Hour markers -->
+                              <circle cx="60" cy="10" r="2.5" fill="#d4a820"/>
+                              <circle cx="110" cy="60" r="2.5" fill="#d4a820"/>
+                              <circle cx="60" cy="110" r="2.5" fill="#d4a820"/>
+                              <circle cx="10" cy="60" r="2.5" fill="#d4a820"/>
+                              <!-- Minor markers -->
+                              <circle cx="85" cy="14.6" r="1.4" fill="rgba(212,168,32,0.45)"/>
+                              <circle cx="105.4" cy="35" r="1.4" fill="rgba(212,168,32,0.45)"/>
+                              <circle cx="105.4" cy="85" r="1.4" fill="rgba(212,168,32,0.45)"/>
+                              <circle cx="85" cy="105.4" r="1.4" fill="rgba(212,168,32,0.45)"/>
+                              <circle cx="35" cy="105.4" r="1.4" fill="rgba(212,168,32,0.45)"/>
+                              <circle cx="14.6" cy="85" r="1.4" fill="rgba(212,168,32,0.45)"/>
+                              <circle cx="14.6" cy="35" r="1.4" fill="rgba(212,168,32,0.45)"/>
+                              <circle cx="35" cy="14.6" r="1.4" fill="rgba(212,168,32,0.45)"/>
+                              <!-- Hour hand -->
+                              <line id="hand-hour" x1="60" y1="60" x2="60" y2="28" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+                              <!-- Minute hand -->
+                              <line id="hand-minute" x1="60" y1="60" x2="60" y2="18" stroke="#e2e8f0" stroke-width="2.2" stroke-linecap="round"/>
+                              <!-- Second hand -->
+                              <line id="hand-second" x1="60" y1="65" x2="60" y2="14" stroke="#d4a820" stroke-width="1.2" stroke-linecap="round"/>
+                              <!-- Center cap -->
+                              <circle cx="60" cy="60" r="3.5" fill="#d4a820"/>
+                            </svg>
+                          </div>
+                          <!-- Toggle hint -->
+                          <div style="font-size:0.6rem;color:#94a3b8;margin-top:3px;letter-spacing:0.08em;text-transform:uppercase">tap to switch</div>
+                        </div>
                         <div id="dash-weather" style="font-size:0.8rem;color:#6e6e73;margin-top:5px;display:flex;align-items:center;justify-content:center;gap:6px">
                           <span id="dash-weather-text">&#9728; Loading weather...</span>
                         </div>
@@ -6322,7 +6357,36 @@
 
         // ---- CLOCK ----
         var _clockInterval = null;
+        var _clockMode = localStorage.getItem('ss_clock_mode') || 'digital'; // 'digital' | 'analog'
+
+        function toggleClockMode() {
+            _clockMode = (_clockMode === 'digital') ? 'analog' : 'digital';
+            localStorage.setItem('ss_clock_mode', _clockMode);
+            applyClockMode();
+        }
+
+        function applyClockMode() {
+            var dig = document.getElementById('dash-clock');
+            var ana = document.getElementById('dash-clock-analog');
+            if (!dig || !ana) return;
+            if (_clockMode === 'analog') {
+                dig.style.display = 'none';
+                ana.style.display = 'block';
+            } else {
+                dig.style.display = 'block';
+                ana.style.display = 'none';
+            }
+        }
+
+        function _rotateHand(id, deg) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            // Rotate around center (60,60)
+            el.setAttribute('transform', 'rotate(' + deg + ' 60 60)');
+        }
+
         function startDashClock() {
+            applyClockMode();
             function tick() {
                 var el = document.getElementById('dash-clock');
                 if (!el) { clearInterval(_clockInterval); _clockInterval = null; return; }
@@ -6330,10 +6394,21 @@
                 var h = now.getHours();
                 var m = now.getMinutes();
                 var s = now.getSeconds();
+                var ms = now.getMilliseconds();
                 var ampm = h >= 12 ? 'PM' : 'AM';
-                h = h % 12; if (h === 0) h = 12;
-                el.innerHTML = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0') +
+                h12 = h % 12; if (h12 === 0) h12 = 12;
+
+                // Digital
+                el.innerHTML = String(h12).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0') +
                     ' <span style="font-size:0.85rem;font-weight:600;color:#6e6e73;vertical-align:middle;margin-left:3px">' + ampm + '</span>';
+
+                // Analog hands
+                var secDeg  = s * 6 + ms * 0.006;               // 360/60 per second, smooth
+                var minDeg  = m * 6 + s * 0.1;                   // 360/60 per minute
+                var hourDeg = (h % 12) * 30 + m * 0.5;           // 360/12 per hour
+                _rotateHand('hand-second', secDeg);
+                _rotateHand('hand-minute', minDeg);
+                _rotateHand('hand-hour',   hourDeg);
             }
             if (_clockInterval) clearInterval(_clockInterval);
             tick();
