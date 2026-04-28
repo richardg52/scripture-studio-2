@@ -10531,19 +10531,20 @@
                 '<a href="' + f.stripeSigned + '" target="_blank" style="background:#0a0810;border:1px solid rgba(210,168,40,0.6);color:#d4a820;font-size:0.78rem;font-weight:700;padding:9px 18px;border-radius:8px;text-decoration:none;white-space:nowrap">&#9997; Signed — ' + f.priceSigned + '</a>' +
                 '</div></div></div>';
 
-            // Tab navigation
+            // Tab navigation — colorful pill chips
             var tabs = [
-                {key:'contemporary', label:'&#128293; New Releases'},
-                {key:'classics',     label:'&#128366; Classic Library'},
-                {key:'marriage',     label:'&#128145; Marriage & Family'},
-                {key:'sermons',      label:'&#9995; Sermon Classics'},
-                {key:'prayer',       label:'&#128591; Prayer Library'},
-                {key:'reference',    label:'&#128220; Bible Reference'}
+                {key:'contemporary', label:'&#128293; New Releases',    color:'#ef4444', bg:'#fef2f2'},
+                {key:'classics',     label:'&#128366; Classic Library', color:'#1e3a5f', bg:'#eff6ff'},
+                {key:'marriage',     label:'&#128145; Marriage &amp; Family', color:'#db2777', bg:'#fdf2f8'},
+                {key:'sermons',      label:'&#9995; Sermon Classics',   color:'#b45309', bg:'#fffbeb'},
+                {key:'prayer',       label:'&#128591; Prayer Library',  color:'#7c3aed', bg:'#f5f3ff'},
+                {key:'reference',    label:'&#128220; Bible Reference', color:'#0d9488', bg:'#f0fdfa'},
+                {key:'book-club',    label:'&#128218; Book Club',        color:'#1e3a5f', bg:'#eff6ff'}
             ];
-            html += '<div style="display:flex;gap:0;border-bottom:2px solid #e2e8f0;margin-bottom:22px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none">';
+            html += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;padding-bottom:4px">';
             tabs.forEach(function(t) {
                 var active = (tab === t.key);
-                html += '<button onclick="window._rrTab=\'' + t.key + '\';rrRender()" style="flex-shrink:0;background:none;border:none;border-bottom:' + (active ? '3px solid #1e3a5f' : '3px solid transparent') + ';color:' + (active ? '#1e3a5f' : '#64748b') + ';font-size:0.78rem;font-weight:' + (active ? '700' : '600') + ';padding:10px 14px;cursor:pointer;white-space:nowrap">' + t.label + '</button>';
+                html += '<button onclick="window._rrTab=\'' + t.key + '\';rrRender()" style="flex-shrink:0;border:1.5px solid ' + (active ? t.color : '#e2e8f0') + ';border-radius:980px;background:' + (active ? t.color : '#fff') + ';color:' + (active ? '#fff' : '#64748b') + ';font-size:0.78rem;font-weight:700;padding:8px 16px;cursor:pointer;white-space:nowrap;transition:all 0.15s;box-shadow:' + (active ? '0 2px 8px rgba(0,0,0,0.15)' : 'none') + '">' + t.label + '</button>';
             });
             html += '</div>';
 
@@ -10659,14 +10660,158 @@
                 html += '</div>';
             }
 
+            // ── Book Club ───────────────────────────────────────────────────
+            if (tab === 'book-club') {
+                var bc = bsGetBook();
+                var bcT = bsGetTeacher();
+                var bcSd = bc.sessionDate ? new Date(bc.sessionDate) : null;
+                var bcDateStr = bcSd ? bcSd.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}) + ' at ' + bcSd.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true}) : 'Date TBA';
+
+                // Hero banner
+                html += '<div style="background:linear-gradient(135deg,#0a0f2e 0%,#1e3a5f 60%,#0f1e3a 100%);border-radius:14px;padding:22px 24px;color:#fff;margin-bottom:20px">' +
+                    '<div style="font-size:0.65rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:#93c5fd;margin-bottom:6px">&#128218; Scripture Studio — The Push You Needed Book Club</div>' +
+                    '<div style="font-size:1.35rem;font-weight:800;margin-bottom:4px">' + bc.title + '</div>' +
+                    '<div style="font-size:0.85rem;opacity:0.72">by ' + bc.author + ' &nbsp;·&nbsp; ' + bc.theme + '</div>' +
+                    '</div>';
+
+                // Countdown clock
+                html += '<div style="background:linear-gradient(135deg,#0f172a,#1e3a5f);border-radius:14px;padding:20px 24px;color:#fff;margin-bottom:20px;text-align:center">' +
+                    '<div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:2.5px;opacity:0.55;margin-bottom:14px">&#9201; Next Live Session — ' + bcDateStr + '</div>' +
+                    '<div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap" id="bc-countdown-wrap">' +
+                    ['bc-days','bc-hours','bc-mins','bc-secs'].map(function(id, i) {
+                        var labels = ['Days','Hours','Mins','Secs'];
+                        return '<div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 18px;min-width:72px">' +
+                            '<div id="' + id + '" style="font-size:2rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:1px;color:#a5b4fc">--</div>' +
+                            '<div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:1.5px;opacity:0.55;margin-top:2px">' + labels[i] + '</div>' +
+                            '</div>';
+                    }).join('') +
+                    '</div></div>';
+
+                // Book card
+                html += '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-bottom:16px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap">' +
+                    '<div style="width:110px;min-width:110px;height:160px;background:linear-gradient(135deg,#1e3a5f,#312e81);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:10px;box-shadow:0 8px 24px rgba(0,0,0,0.18);flex-shrink:0;overflow:hidden">' +
+                    (bc.cover ? '<img src="' + bc.cover + '" style="width:100%;height:100%;object-fit:cover;border-radius:6px">' :
+                    '<div style="font-size:1.4rem;margin-bottom:6px">&#128218;</div><div style="font-size:0.75rem;font-weight:800;line-height:1.3">' + bc.title + '</div><div style="font-size:0.65rem;margin-top:5px;opacity:0.75">' + bc.author + '</div>') +
+                    '</div>' +
+                    '<div style="flex:1;min-width:200px">' +
+                    '<div style="font-size:0.68rem;font-weight:800;letter-spacing:2px;color:#6366f1;text-transform:uppercase;margin-bottom:5px">&#127381; Book of the Month</div>' +
+                    '<h3 style="color:#1e3a5f;font-size:1.15rem;font-weight:800;margin:0 0 3px">' + bc.title + '</h3>' +
+                    '<div style="color:#64748b;font-size:0.85rem;margin-bottom:10px">by ' + bc.author + ' &nbsp;·&nbsp; ' + bc.year + ' &nbsp;·&nbsp; ~' + bc.pages + ' pages</div>' +
+                    '<p style="font-size:0.84rem;color:#374151;line-height:1.65;margin:0 0 12px;background:#f8fafc;border-radius:8px;padding:12px">' + bc.description + '</p>' +
+                    '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+                    '<span style="background:#dbeafe;color:#1e40af;font-size:0.73rem;font-weight:600;padding:4px 10px;border-radius:12px">&#128214; ' + bc.scripture + '</span>' +
+                    '<span style="background:#f3e8ff;color:#7c3aed;font-size:0.73rem;font-weight:600;padding:4px 10px;border-radius:12px">&#127775; ' + bc.theme + '</span>' +
+                    '</div></div></div>';
+
+                // Reading plan
+                html += '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px 20px;margin-bottom:16px">' +
+                    '<h4 style="color:#1e3a5f;margin:0 0 14px;font-size:0.92rem">&#128197; 4-Week Reading Plan</h4>' +
+                    '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px">' +
+                    [
+                        {w:'Week 1',c:'Chapters 1–2',d:'The Weight of the Oil & The Labor of the Leap',bg:'#dbeafe',tc:'#1e40af'},
+                        {w:'Week 2',c:'Chapters 3–4',d:'The Rejection Is a Redirection & The Training of the Tension',bg:'#f3e8ff',tc:'#7c3aed'},
+                        {w:'Week 3',c:'Chapters 5–6',d:'The Revelation of the Remaining & Know Your Push',bg:'#dcfce7',tc:'#16a34a'},
+                        {w:'Week 4',c:'Chapters 7–8 + Live Session',d:'Thank You for the Push & Your Turn to Move',bg:'#fef3c7',tc:'#92400e'}
+                    ].map(function(wk) {
+                        return '<div style="background:' + wk.bg + ';border-radius:8px;padding:12px 14px">' +
+                            '<div style="font-size:0.75rem;font-weight:700;color:' + wk.tc + ';margin-bottom:2px">' + wk.w + ' — ' + wk.c + '</div>' +
+                            '<div style="font-size:0.78rem;color:#374151;line-height:1.5">' + wk.d + '</div>' +
+                            '</div>';
+                    }).join('') +
+                    '</div></div>';
+
+                // Auto-reminders
+                html += '<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px 16px;display:flex;gap:10px;align-items:center;margin-bottom:20px">' +
+                    '<div style="font-size:1.4rem;flex-shrink:0">&#128276;</div>' +
+                    '<div><div style="font-weight:700;color:#16a34a;font-size:0.88rem;margin-bottom:2px">Auto-Reminders Included with Every Ticket</div>' +
+                    '<div style="font-size:0.82rem;color:#374151;line-height:1.55">You\'ll receive email reminders 7 days, 24 hours, and 1 hour before each session. Your unique session code arrives in every reminder.</div></div></div>';
+
+                // Get Tickets heading
+                html += '<h4 style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#64748b;margin:0 0 12px">&#127915; Get Your Ticket — Choose a Membership</h4>';
+
+                // Pricing tiers grid
+                html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-bottom:16px">';
+                // Reader
+                html += bsTierCard('&#128214;','Reader','$14.99','/ month',['Book of the Month access','Monthly reading plan','Community discussion feed','Auto-email reminders + session code'],'#dbeafe','#1e40af',bc.stripeReaderLink,'Get Reader Access',false);
+                // Scholar
+                html += bsTierCard('&#127891;','Scholar','$24.99','/ month',['Everything in Reader','Full AI study guide','Live group session access','Guest teacher Q&A access','Session attendance tracking'],'#f3e8ff','#7c3aed',bc.stripeScholarLink,'Join as Scholar — Most Popular',true);
+                // SS Pro
+                html += bsTierCard('&#9997;','SS Pro','$39.99','/ month',['Everything in Scholar','Monthly preaching companion guide','Co-host session privileges','Early next-month book preview','Direct guest teacher access'],'#fef3c7','#92400e',bc.stripePastorProLink,'Join SS Pro',false);
+                html += '</div>';
+
+                // Guest pass
+                html += '<div style="background:linear-gradient(135deg,#0f172a,#1e3a5f);border-radius:12px;padding:18px 22px;color:#fff;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:16px">' +
+                    '<div><div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:2px;opacity:0.6;margin-bottom:4px">&#127915; A-La-Carte Guest Pass</div>' +
+                    '<div style="font-size:1.4rem;font-weight:800;margin-bottom:4px">$9.99 <span style="font-size:0.82rem;font-weight:400;opacity:0.65">per session</span></div>' +
+                    '<p style="opacity:0.72;font-size:0.82rem;margin:0">One session only. Unique entry code emailed to you.</p></div>' +
+                    '<button class="btn" style="background:#6366f1;color:#fff;white-space:nowrap;padding:10px 22px;font-weight:600;flex-shrink:0" onclick="window.open(\'' + bc.stripeGuestLink + '\',\'_blank\')">&#127915; Buy Guest Pass — $9.99</button></div>';
+
+                // Founding member callout
+                html += '<div style="background:#fef3c7;border:1px solid #fcd34d;border-radius:10px;padding:14px 16px;margin-bottom:20px">' +
+                    '<div style="font-weight:700;color:#92400e;font-size:0.88rem;margin-bottom:4px">&#11088; Founding Member Offer</div>' +
+                    '<div style="font-size:0.83rem;color:#374151">The first 100 Scholar members lock in $17.99/month for life. Join before May 20th to secure founding member pricing.</div></div>';
+
+                // Guest teacher
+                html += '<h4 style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#64748b;margin:0 0 12px">&#127979; May 2026 Guest Teacher</h4>';
+                html += '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:22px 24px;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:20px">' +
+                    '<div style="width:80px;height:80px;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,#1e3a5f,#6366f1);display:flex;align-items:center;justify-content:center;border:3px solid #e2e8f0;flex-shrink:0">' +
+                    (bcT.photo ? '<img src="' + bcT.photo + '" style="width:100%;height:100%;object-fit:cover">' : '<span style="font-size:2rem">&#128100;</span>') +
+                    '</div>' +
+                    '<div style="flex:1;min-width:180px">' +
+                    '<div style="font-size:1rem;font-weight:800;color:#1e3a5f;margin-bottom:2px">' + bcT.name + '</div>' +
+                    '<div style="color:#6366f1;font-size:0.85rem;font-weight:600;margin-bottom:2px">' + bcT.title + '</div>' +
+                    '<div style="color:#64748b;font-size:0.8rem;margin-bottom:12px">' + bcT.ministry + '</div>' +
+                    '<p style="font-size:0.85rem;color:#374151;line-height:1.65;margin:0 0 12px">' + bcT.bio + '</p>' +
+                    '<div style="background:linear-gradient(135deg,#f3e8ff,#dbeafe);border-radius:8px;padding:12px 14px;border-left:3px solid #6366f1">' +
+                    '<p style="font-size:0.85rem;color:#374151;font-style:italic;margin:0;line-height:1.6">' + bcT.quote + '</p></div>' +
+                    '</div></div>';
+
+                // Enter session room button
+                html += '<div style="text-align:center;padding-bottom:8px">' +
+                    '<button class="btn" style="background:#6366f1;color:#fff;font-size:0.9rem;font-weight:700;padding:12px 28px;border-radius:10px;cursor:pointer" onclick="window._rrTab=\'book-club\';rrRender()">' +
+                    '&#128250; Enter Live Session Room</button>' +
+                    '</div>';
+            }
+
             // Footer
-            html += '<div style="padding:14px 16px;background:#f8fafc;border-radius:10px;border:1px solid #e2e8f0;text-align:center">' +
-                '<p style="font-size:0.75rem;color:#94a3b8;margin:0">Classic library books are in the public domain. Read links open Project Gutenberg, CCEL.org, or Archive.org. Print copy links may earn affiliate commissions when you add your Amazon Associates tag.</p>' +
-                '</div>';
+            if (tab !== 'book-club') {
+                html += '<div style="padding:14px 16px;background:#f8fafc;border-radius:10px;border:1px solid #e2e8f0;text-align:center">' +
+                    '<p style="font-size:0.75rem;color:#94a3b8;margin:0">Classic library books are in the public domain. Read links open Project Gutenberg, CCEL.org, or Archive.org. Print copy links may earn affiliate commissions when you add your Amazon Associates tag.</p>' +
+                    '</div>';
+            }
 
             html += '</div>';
             document.getElementById('rr-root').innerHTML = html;
+            if (tab === 'book-club') { rrBookClubCountdown(); }
         }
+        var _rrBcTimer = null;
+        function rrBookClubCountdown() {
+            if (_rrBcTimer) { clearInterval(_rrBcTimer); _rrBcTimer = null; }
+            var book = bsGetBook();
+            var target = book.sessionDate ? new Date(book.sessionDate) : new Date('2026-05-20T19:00:00');
+            var pad = function(n){ return String(Math.floor(Math.abs(n))).padStart(2,'0'); };
+            function tick() {
+                var diff = target - new Date();
+                var d = document.getElementById('bc-days'),
+                    h = document.getElementById('bc-hours'),
+                    m = document.getElementById('bc-mins'),
+                    s = document.getElementById('bc-secs');
+                if (!d) { clearInterval(_rrBcTimer); _rrBcTimer = null; return; }
+                if (diff <= 0) {
+                    d.textContent = '00'; h.textContent = '00'; m.textContent = '00'; s.textContent = '00';
+                    var wrap = document.getElementById('bc-countdown-wrap');
+                    if (wrap) wrap.insertAdjacentHTML('afterend','<div style="color:#22c55e;font-weight:700;font-size:0.9rem;margin-top:10px">&#128308; Session is Live — Enter Now</div>');
+                    clearInterval(_rrBcTimer); _rrBcTimer = null; return;
+                }
+                if(d) d.textContent = pad(diff/86400000);
+                if(h) h.textContent = pad((diff%86400000)/3600000);
+                if(m) m.textContent = pad((diff%3600000)/60000);
+                if(s) s.textContent = pad((diff%60000)/1000);
+            }
+            tick();
+            _rrBcTimer = setInterval(tick, 1000);
+        }
+
         function rrShowAddBook() {
             var id = 'rr-add-' + Date.now();
             var html = '<div id="' + id + '" style="position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">' +
