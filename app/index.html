@@ -1922,7 +1922,7 @@
                     <div class="nav-section-title">Foundations</div>
                     <div class="nav-item" data-page="reading-room">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                        <span>Reading Room</span>
+                        <span>Book Club Society</span>
                     </div>
                     <div class="nav-item" data-page="scripture-memory">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.04Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.04Z"/></svg>
@@ -3500,6 +3500,17 @@
                             </div>
                             <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
                             <button class="btn btn-secondary" style="margin-left: 0.5rem;" onclick="window.Outseta.auth.logout()">Sign Out</button>
+                            <hr style="margin:1.5rem 0;border:none;border-top:1px solid #e2e8f0">
+                            <h4 style="margin-bottom:0.75rem;font-size:0.88rem;color:#1e3a5f">&#128274; App Access Gate</h4>
+                            <div class="form-group">
+                                <label class="form-label">Current Access Code</label>
+                                <input type="text" class="form-input" id="settings-gate-code" placeholder="scripture2026" style="font-family:monospace;letter-spacing:1px">
+                                <div style="font-size:0.75rem;color:#94a3b8;margin-top:4px">This is the code new members enter when signing in for the first time. Share it with registered members only.</div>
+                            </div>
+                            <div style="display:flex;gap:8px;flex-wrap:wrap">
+                                <button class="btn btn-secondary" style="font-size:0.82rem" onclick="ssGateSaveCode()">&#128190; Save New Code</button>
+                                <button class="btn btn-secondary" style="font-size:0.82rem;color:#ef4444;border-color:#fca5a5" onclick="ssGateReset()">&#128260; Lock App (Re-show Gate)</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3896,8 +3907,8 @@
                     <div style="background:linear-gradient(135deg,#0a0810 0%,#1a1228 60%,#0f0c18 100%);padding:20px 28px;margin:0 -2rem 0;width:calc(100% + 4rem);box-sizing:border-box;color:#fff;display:flex;align-items:center;gap:18px">
                       <div style="font-size:2.4rem;line-height:1;flex-shrink:0">&#128218;</div>
                       <div>
-                        <div style="font-size:1.1rem;font-weight:800;margin-bottom:3px">Scripture Studio Reading Room</div>
-                        <div style="font-size:0.83rem;opacity:0.78;line-height:1.5">New releases, faith essentials, and free classic Christian literature — curated by Bishop Richard G. Clark.</div>
+                        <div style="font-size:1.1rem;font-weight:800;margin-bottom:3px">Scripture Studio Book Club Society</div>
+                        <div style="font-size:0.83rem;opacity:0.78;line-height:1.5">New releases, Book Club sessions, faith essentials, and free classic Christian literature — curated by Bishop Richard G. Clark.</div>
                       </div>
                     </div>
                     <div class="panel" style="margin-top:0;border-radius:0 0 12px 12px">
@@ -4109,6 +4120,106 @@
         // Created by Richard G. Clark
         // ==========================================
 
+        // ── APP ACCESS GATE ──────────────────────────────────────────────────
+        var SS_APP_CODE = 'scripture2026'; // change this anytime in admin
+        var SS_ADMIN_CODE = 'ssbp2026';    // bishop admin override
+
+        function ssGateCheck() {
+            if (localStorage.getItem('ss_access_granted') === 'true') return;
+            var overlay = document.createElement('div');
+            overlay.id = 'ss-gate';
+            overlay.innerHTML =
+                '<div style="position:fixed;inset:0;background:linear-gradient(145deg,#04061a 0%,#0d1b3e 45%,#0a1228 100%);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow:auto">' +
+                // Logo
+                '<div style="margin-bottom:8px;font-size:2.4rem">&#9997;</div>' +
+                '<div style="font-size:0.58rem;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:rgba(210,168,40,0.85);margin-bottom:6px">Scripture Studio</div>' +
+                '<h1 style="font-size:1.7rem;font-weight:900;color:#fff;margin:0 0 4px;text-align:center;line-height:1.15">Book Club Society</h1>' +
+                '<p style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin:0 0 32px;text-align:center;max-width:340px">Curated study, live sessions, and deep Scripture tools — for the serious pastor.</p>' +
+                // Card
+                '<div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:18px;padding:28px 32px;width:100%;max-width:400px">' +
+                // Tabs
+                '<div style="display:flex;gap:0;margin-bottom:22px;background:rgba(255,255,255,0.06);border-radius:10px;padding:4px">' +
+                '<button id="ss-gate-tab-in" onclick="ssGateTab(\'in\')" style="flex:1;border:none;border-radius:7px;padding:9px 0;font-size:0.82rem;font-weight:700;cursor:pointer;background:#fff;color:#0d1b3e;transition:all 0.15s">Sign In</button>' +
+                '<button id="ss-gate-tab-reg" onclick="ssGateTab(\'reg\')" style="flex:1;border:none;border-radius:7px;padding:9px 0;font-size:0.82rem;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,0.55);transition:all 0.15s">Register</button>' +
+                '</div>' +
+                // Sign-in view
+                '<div id="ss-gate-signin">' +
+                '<label style="display:block;font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px">Access Code</label>' +
+                '<input id="ss-gate-pass" type="password" placeholder="Enter your access code" autocomplete="current-password" style="width:100%;border:1px solid rgba(255,255,255,0.18);border-radius:10px;padding:12px 16px;font-size:0.95rem;background:rgba(255,255,255,0.08);color:#fff;box-sizing:border-box;margin-bottom:8px;outline:none" oninput="document.getElementById(\'ss-gate-err\').textContent=\'\'" onkeydown="if(event.key===\'Enter\')ssGateEnter()">' +
+                '<div id="ss-gate-err" style="color:#f87171;font-size:0.78rem;min-height:18px;margin-bottom:12px"></div>' +
+                '<button onclick="ssGateEnter()" style="width:100%;background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff;border:none;border-radius:10px;padding:13px;font-size:0.92rem;font-weight:700;cursor:pointer;letter-spacing:0.5px">Enter Scripture Studio &#8594;</button>' +
+                '</div>' +
+                // Register view
+                '<div id="ss-gate-register" style="display:none;text-align:center">' +
+                '<div style="font-size:2rem;margin-bottom:10px">&#127381;</div>' +
+                '<div style="font-size:0.92rem;font-weight:700;color:#fff;margin-bottom:8px">Join Book Club Society</div>' +
+                '<p style="font-size:0.82rem;color:rgba(255,255,255,0.55);line-height:1.6;margin:0 0 20px">Create your free account. Once registered you\'ll receive your personal access code by email within minutes.</p>' +
+                '<a href="https://scripturestudio.outseta.com/auth?widgetMode=register" target="_blank" style="display:block;background:linear-gradient(135deg,#d4a820,#f0cc50);color:#0a0810;font-size:0.9rem;font-weight:800;padding:13px;border-radius:10px;text-decoration:none;margin-bottom:12px">&#127979; Create Your Account</a>' +
+                '<p style="font-size:0.75rem;color:rgba(255,255,255,0.38);margin:0">After registering, return here and enter your access code on the Sign In tab.</p>' +
+                '</div>' +
+                '</div>' +
+                // Footer
+                '<p style="color:rgba(255,255,255,0.22);font-size:0.72rem;margin-top:24px;text-align:center">&#169; 2026 Scripture Studio &nbsp;·&nbsp; Bishop Richard G. Clark</p>' +
+                '</div>';
+            document.body.appendChild(overlay);
+        }
+
+        function ssGateTab(t) {
+            var inBtn = document.getElementById('ss-gate-tab-in');
+            var regBtn = document.getElementById('ss-gate-tab-reg');
+            var inView = document.getElementById('ss-gate-signin');
+            var regView = document.getElementById('ss-gate-register');
+            if (t === 'in') {
+                inBtn.style.background='#fff'; inBtn.style.color='#0d1b3e';
+                regBtn.style.background='transparent'; regBtn.style.color='rgba(255,255,255,0.55)';
+                inView.style.display='block'; regView.style.display='none';
+            } else {
+                regBtn.style.background='#fff'; regBtn.style.color='#0d1b3e';
+                inBtn.style.background='transparent'; inBtn.style.color='rgba(255,255,255,0.55)';
+                regView.style.display='block'; inView.style.display='none';
+            }
+        }
+
+        function ssGateEnter() {
+            var val = (document.getElementById('ss-gate-pass')||{}).value||'';
+            val = val.trim();
+            var err = document.getElementById('ss-gate-err');
+            if (!val) { if(err) err.textContent='Please enter your access code.'; return; }
+            if (val === SS_APP_CODE || val === SS_ADMIN_CODE) {
+                if (val === SS_ADMIN_CODE) localStorage.setItem('ss_admin_unlocked','true');
+                localStorage.setItem('ss_access_granted','true');
+                var gate = document.getElementById('ss-gate');
+                if (gate) gate.remove();
+            } else {
+                if(err) err.textContent='Incorrect code. Check your email or contact Bishop Clark.';
+            }
+        }
+
+        function ssGateSaveCode() {
+            var val = (document.getElementById('settings-gate-code')||{}).value||'';
+            val = val.trim();
+            if (!val) { alert('Please enter a new access code first.'); return; }
+            SS_APP_CODE = val;
+            localStorage.setItem('ss_custom_gate_code', val);
+            alert('Access code updated to: ' + val + '\n\nShare this with new members when they register.');
+        }
+
+        function ssGateReset() {
+            if (!confirm('This will lock the app and show the sign-in gate again. Continue?')) return;
+            localStorage.removeItem('ss_access_granted');
+            location.reload();
+        }
+
+        // Load custom gate code if admin saved one
+        (function() {
+            var custom = localStorage.getItem('ss_custom_gate_code');
+            if (custom) SS_APP_CODE = custom;
+        })();
+
+        // Run gate check immediately (before AppState loads)
+        ssGateCheck();
+        // ── END GATE ────────────────────────────────────────────────────────
+
         // STATE
         const AppState = {
             currentPage: 'dashboard',
@@ -4168,7 +4279,7 @@
             'personal-diary':'Personal Diary',
             'heb-greek-lexicon':'Hebrew & Greek Lexicon',
             'pronunciation-tool':'Pronunciation Tool',
-            'development-studio':'Resource Builder','group-study':'Group Bible Study','word-studio-1b':'Word Studio 1B','sermon-studio-1a':'Sermon Studio 1A','reading-room':'Reading Room','scripture-memory':'Scripture Memory','scripture-graphics':'Scripture Graphics','bible-book-library':'Bible Book Library',
+            'development-studio':'Resource Builder','group-study':'Group Bible Study','word-studio-1b':'Word Studio 1B','sermon-studio-1a':'Sermon Studio 1A','reading-room':'Book Club Society','scripture-memory':'Scripture Memory','scripture-graphics':'Scripture Graphics','bible-book-library':'Bible Book Library',
             'commentaries':'Commentaries'
         };
 
@@ -10518,6 +10629,7 @@
 
 
         window._rrTab = window._rrTab || 'contemporary';
+        window._rrBcView = window._rrBcView || 'main';
 
         function rrFreeCard(book, showBuy) {
             var html = '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.07);display:flex;flex-direction:column">';
@@ -10571,7 +10683,7 @@
             html += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;padding-bottom:4px">';
             tabs.forEach(function(t) {
                 var active = (tab === t.key);
-                html += '<button onclick="window._rrTab=\'' + t.key + '\';rrRender()" style="flex-shrink:0;border:1.5px solid ' + (active ? t.color : '#e2e8f0') + ';border-radius:980px;background:' + (active ? t.color : '#fff') + ';color:' + (active ? '#fff' : '#64748b') + ';font-size:0.78rem;font-weight:700;padding:8px 16px;cursor:pointer;white-space:nowrap;transition:all 0.15s;box-shadow:' + (active ? '0 2px 8px rgba(0,0,0,0.15)' : 'none') + '">' + t.label + '</button>';
+                html += '<button onclick="window._rrTab=\'' + t.key + '\';window._rrBcView=\'main\';rrRender()" style="flex-shrink:0;border:1.5px solid ' + (active ? t.color : '#e2e8f0') + ';border-radius:980px;background:' + (active ? t.color : '#fff') + ';color:' + (active ? '#fff' : '#64748b') + ';font-size:0.78rem;font-weight:700;padding:8px 16px;cursor:pointer;white-space:nowrap;transition:all 0.15s;box-shadow:' + (active ? '0 2px 8px rgba(0,0,0,0.15)' : 'none') + '">' + t.label + '</button>';
             });
             html += '</div>';
 
@@ -10688,7 +10800,15 @@
             }
 
             // ── Book Club ───────────────────────────────────────────────────
-            if (tab === 'book-club') {
+            if (tab === 'book-club' && window._rrBcView === 'session') {
+                // Session room wrapper — bsRenderSession() fills #bsContent after innerHTML is set
+                html += '<div style="margin-bottom:12px">' +
+                    '<button onclick="window._rrBcView=\'main\';rrRender()" style="background:#f1f5f9;border:1px solid #e2e8f0;color:#475569;border-radius:8px;padding:8px 16px;font-size:0.82rem;font-weight:600;cursor:pointer">&#8592; Back to Book Club</button>' +
+                    '</div>' +
+                    '<div id="bsContent"></div>';
+            }
+
+            if (tab === 'book-club' && window._rrBcView === 'main') {
                 var bc = bsGetBook();
                 var bcT = bsGetTeacher();
                 var bcSd = bc.sessionDate ? new Date(bc.sessionDate) : null;
@@ -10795,7 +10915,7 @@
 
                 // Enter session room button
                 html += '<div style="text-align:center;padding-bottom:8px">' +
-                    '<button class="btn" style="background:#6366f1;color:#fff;font-size:0.9rem;font-weight:700;padding:12px 28px;border-radius:10px;cursor:pointer" onclick="window._rrTab=\'book-club\';rrRender()">' +
+                    '<button class="btn" style="background:#6366f1;color:#fff;font-size:0.9rem;font-weight:700;padding:12px 28px;border-radius:10px;cursor:pointer" onclick="window._rrBcView=\'session\';window._rrTab=\'book-club\';rrRender()">' +
                     '&#128250; Enter Live Session Room</button>' +
                     '</div>';
             }
@@ -10809,7 +10929,11 @@
 
             html += '</div>';
             document.getElementById('rr-root').innerHTML = html;
-            if (tab === 'book-club') { rrBookClubCountdown(); }
+            if (tab === 'book-club' && window._rrBcView === 'session') {
+                bsRenderSession();
+            } else if (tab === 'book-club') {
+                rrBookClubCountdown();
+            }
         }
         var _rrBcTimer = null;
         function rrBookClubCountdown() {
