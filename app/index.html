@@ -1000,6 +1000,9 @@
             animation: spin 1s linear infinite;
         }
 
+        @keyframes blink {
+            0%,100% { opacity:1; } 50% { opacity:0.2; }
+        }
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
@@ -9980,10 +9983,27 @@
 
                 // Session room (hidden until code entered)
                 '<div id="bs-session-room" style="display:none;grid;gap:14px">' +
+                // Welcome banner
                 '<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px">' +
                 '<div style="font-size:1.2rem">&#9989;</div>' +
                 '<div><div id="bs-welcome-name" style="font-weight:700;color:#16a34a;font-size:0.9rem">Welcome!</div>' +
                 '<div style="font-size:0.78rem;color:#374151">You\'re checked in. Session begins when the countdown reaches zero.</div></div></div>' +
+                // ── Daily.co Live Audio Room ──────────────────────────────
+                '<div style="background:#0f172a;border-radius:14px;overflow:hidden;margin-bottom:4px">' +
+                '<div style="padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">' +
+                '<div style="display:flex;align-items:center;gap:10px">' +
+                '<div style="width:9px;height:9px;background:#ff3b30;border-radius:50%;box-shadow:0 0 8px rgba(255,59,48,0.9);animation:blink 1s infinite"></div>' +
+                '<span style="font-size:0.72rem;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.75);text-transform:uppercase">Live Audio Room</span></div>' +
+                '<div style="display:flex;gap:8px">' +
+                '<button id="bs-daily-join" onclick="bsJoinAudioRoom()" style="background:#6366f1;color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:0.8rem;font-weight:700;cursor:pointer">&#127908; Join Audio</button>' +
+                '<button id="bs-daily-leave" onclick="bsLeaveAudioRoom()" style="display:none;background:#ef4444;color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:0.8rem;font-weight:700;cursor:pointer">&#9632; Leave Room</button>' +
+                '</div></div>' +
+                '<div id="bs-daily-frame" style="display:none;width:100%;height:380px">' +
+                '<iframe id="bs-daily-iframe" src="" allow="microphone; camera; autoplay; display-capture; fullscreen" style="width:100%;height:100%;border:none;display:block"></iframe>' +
+                '</div>' +
+                '<div id="bs-daily-hint" style="padding:10px 16px 14px;font-size:0.78rem;color:rgba(255,255,255,0.4);text-align:center">Click <strong style="color:rgba(255,255,255,0.7)">Join Audio</strong> to enter the live voice room — audio only, no video required.</div>' +
+                '</div>' +
+                // ── Main layout: raise-hand + comments | attendees ───────
                 '<div style="display:grid;grid-template-columns:1fr 300px;gap:14px;align-items:start">' +
                 // Main panel
                 '<div style="display:flex;flex-direction:column;gap:12px">' +
@@ -10015,6 +10035,91 @@
             bsRefreshGuestList();
         }
 
+        // ── Sound Effects (Web Audio API) ────────────────────────────────────
+        function bsPlaySound(type) {
+            try {
+                var ctx = new (window.AudioContext || window.webkitAudioContext)();
+                var osc = ctx.createOscillator();
+                var gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'sine';
+                if (type === 'checkin') {
+                    // Warm welcome chime — two ascending tones
+                    osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.18);
+                    osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.36);
+                    gain.gain.setValueAtTime(0.28, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.75);
+                    osc.start(ctx.currentTime);
+                    osc.stop(ctx.currentTime + 0.75);
+                } else if (type === 'hand') {
+                    // Hand raised — bright ascending ping
+                    osc.frequency.setValueAtTime(440, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(1046.5, ctx.currentTime + 0.25);
+                    gain.gain.setValueAtTime(0.22, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
+                    osc.start(ctx.currentTime);
+                    osc.stop(ctx.currentTime + 0.45);
+                } else if (type === 'message') {
+                    // New message — soft notification pop
+                    osc.frequency.setValueAtTime(880, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.12);
+                    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+                    osc.start(ctx.currentTime);
+                    osc.stop(ctx.currentTime + 0.18);
+                } else if (type === 'golive') {
+                    // Session goes live — triumphant fanfare (C-E-G-C)
+                    var freqs = [261.63, 329.63, 392.00, 523.25];
+                    freqs.forEach(function(f, i) {
+                        var o2 = ctx.createOscillator();
+                        var g2 = ctx.createGain();
+                        o2.connect(g2); g2.connect(ctx.destination);
+                        o2.type = 'sine'; o2.frequency.value = f;
+                        g2.gain.setValueAtTime(0.22, ctx.currentTime + i * 0.14);
+                        g2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.14 + 0.5);
+                        o2.start(ctx.currentTime + i * 0.14);
+                        o2.stop(ctx.currentTime + i * 0.14 + 0.5);
+                    });
+                    osc.start(ctx.currentTime); osc.stop(ctx.currentTime); // dummy
+                    return;
+                }
+                setTimeout(function(){ try { ctx.close(); } catch(e){} }, 2000);
+            } catch(e) {}
+        }
+
+        // ── Daily.co Audio Room ──────────────────────────────────────────────
+        var BS_DAILY_URL = 'https://scripturestudio.daily.co/book-society';
+
+        function bsJoinAudioRoom() {
+            var frame = document.getElementById('bs-daily-frame');
+            var iframe = document.getElementById('bs-daily-iframe');
+            var joinBtn = document.getElementById('bs-daily-join');
+            var leaveBtn = document.getElementById('bs-daily-leave');
+            var hint = document.getElementById('bs-daily-hint');
+            if (frame) frame.style.display = 'block';
+            if (iframe && !iframe.src) iframe.src = BS_DAILY_URL;
+            if (joinBtn) joinBtn.style.display = 'none';
+            if (leaveBtn) leaveBtn.style.display = 'inline-block';
+            if (hint) hint.style.display = 'none';
+            bsPlaySound('checkin');
+        }
+
+        function bsLeaveAudioRoom() {
+            var frame = document.getElementById('bs-daily-frame');
+            var iframe = document.getElementById('bs-daily-iframe');
+            var joinBtn = document.getElementById('bs-daily-join');
+            var leaveBtn = document.getElementById('bs-daily-leave');
+            var hint = document.getElementById('bs-daily-hint');
+            if (frame) frame.style.display = 'none';
+            if (iframe) { iframe.src = ''; }
+            if (joinBtn) joinBtn.style.display = 'inline-block';
+            if (leaveBtn) leaveBtn.style.display = 'none';
+            if (hint) hint.style.display = 'block';
+        }
+        // ────────────────────────────────────────────────────────────────────
+
         function bsStartClock(sessionDate) {
             function tick() {
                 var now = new Date();
@@ -10026,6 +10131,7 @@
                 if (countEl && sessionDate) {
                     var diff = sessionDate - now;
                     if (diff <= 0) {
+                        if (countEl.textContent !== '🔴 SESSION LIVE') { bsPlaySound('golive'); }
                         countEl.textContent = '🔴 SESSION LIVE';
                         countEl.style.color = '#4ade80';
                     } else {
@@ -10075,6 +10181,7 @@
             if (gate) gate.style.display = 'none';
             if (room) { room.style.display = 'grid'; }
             if (welcome) welcome.textContent = 'Welcome, ' + name + '! You\'re checked in.';
+            bsPlaySound('checkin');
             bsRenderComments();
             bsRefreshGuestList();
             BS_COMMENTS_TIMER = setInterval(bsRenderComments, 3000);
@@ -10112,6 +10219,7 @@
             if (me) {
                 me.hand = !me.hand;
                 localStorage.setItem('bs_guests', JSON.stringify(guests));
+                if (me.hand) bsPlaySound('hand');
             }
             var raisedCount = guests.filter(function(g){return g.hand;}).length;
             var countEl = document.getElementById('bs-hand-count');
@@ -10140,6 +10248,7 @@
             comments.push({name:name, text:text, time:new Date().toISOString()});
             localStorage.setItem('bs_comments', JSON.stringify(comments));
             if (inp) inp.value = '';
+            bsPlaySound('message');
             bsRenderComments();
         }
 
